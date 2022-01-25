@@ -15,8 +15,8 @@ function isPalindrom(word) {
         wordOrder = wordOrder + word.charAt(i);
         wordReverse = wordReverse + word.charAt(y-i);
     }
-    console.log(wordOrder);
-    console.log(wordReverse);
+    //console.log(wordOrder);
+    //console.log(wordReverse);
     if (wordOrder === wordReverse) {
         return true;
     } else {
@@ -28,32 +28,9 @@ console.log(isPalindrom("anilina")); // (arr.length - 1) / 2
 console.log(isPalindrom("arbol"));
 console.log(isPalindrom("anitalavalatina"));
 console.log(isPalindrom("anna")); // arr.length / 2
+console.log(isPalindrom("luzazul"));
+console.log(isPalindrom("rana"));
 
-function isPalindrom2(word) {
-
-    var wordOrder = "";
-    var wordReverse = "";
-    for (let i = 0; i < word.length; i++) {
-        var y = word.length - 1;
-        
-        if (console.log(word.charAt(i)) === console.log(word.charAt(y-i))) {
-            
-            //return true;
-        }
-    }
-    console.log(wordOrder);
-    console.log(wordReverse);
-    if (wordOrder === wordReverse) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-console.log(isPalindrom2("anilina")); // (arr.length - 1) / 2 
-console.log(isPalindrom2("arbol"));
-console.log(isPalindrom2("anitalavalatina"));
-console.log(isPalindrom2("anna")); // arr.length / 2
 
 /*
  * y = arr.length - 1
