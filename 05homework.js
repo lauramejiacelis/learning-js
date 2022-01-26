@@ -38,12 +38,14 @@ function cashBackMachine(payWith, productPrice){
     var cashBack = payWith - productPrice;
     var bills = [50000, 20000, 10000, 5000, 2000, 1000, 500, 200, 100, 50];
     var mod = 0;
-    /* for (let i = 0; i < bills.length; i++) {
-        if (cashBack >= bills[i]) {
-            mod = cashBack % bills[i];
+    for (let i = 0; i < bills.length; i++) {
+        var billSelected = bills[i];
+        if (cashBack >= billSelected) {
+            mod = cashBack % billSelected;
+            console.log(billSelected);
             console.log(mod);
         }
-    } */
+    }
     //console.log(mod);
     console.log(cashBack % 20000);
     console.log(cashBack % 10000);
