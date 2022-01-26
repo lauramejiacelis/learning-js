@@ -23,3 +23,19 @@
  *  100
  *  50
  */
+
+/*
+1. inputs (payWith, productPrice) y outputs ()
+2. recorrerlo todo?  no
+3. operador? %
+4. estrategía? 
+5. resultado?  ()
+*/
+
+console.log(cashBackMachine(50000, 3750))
+
+function cashBackMachine(payWith, productPrice){
+    var cashBack = payWith - productPrice;
+    console.log(cashBack % 20000);
+    return cashBack;
+}
