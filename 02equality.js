@@ -13,6 +13,8 @@ console.log(!!{}) // true
 console.log(!!{ a:true }) // true
 console.log(!![]) // true
 console.log(!![1,2,3]) // true
+console.log(!!true) // true
+console.log(!!false) // false
 
 // operadores lógicos
 

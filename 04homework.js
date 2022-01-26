@@ -7,30 +7,27 @@
  */
 
 function isPalindrom(word) {
+  var wordOrder = "";
+  var wordReverse = "";
 
-    var wordOrder = "";
-    var wordReverse = "";
-    for (let i = 0; i < word.length; i++) {
-        var y = word.length - 1;
-        wordOrder = wordOrder + word.charAt(i);
-        wordReverse = wordReverse + word.charAt(y-i);
-    }
-    //console.log(wordOrder);
-    //console.log(wordReverse);
-    if (wordOrder === wordReverse) {
-        return true;
-    } else {
-        return false;
-    }
+  for (let i = 0; i < word.length; i++) {
+    var y = word.length - 1;
+    wordReverse = wordReverse + word.charAt(y - i);
+  }
+
+  if (word === wordReverse) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
-console.log(isPalindrom("anilina")); // (arr.length - 1) / 2 
+console.log(isPalindrom("anilina")); // (arr.length - 1) / 2
 console.log(isPalindrom("arbol"));
 console.log(isPalindrom("anitalavalatina"));
 console.log(isPalindrom("anna")); // arr.length / 2
 console.log(isPalindrom("luzazul"));
 console.log(isPalindrom("rana"));
-
 
 /*
  * y = arr.length - 1
