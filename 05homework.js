@@ -32,24 +32,33 @@
 5. resultado?  ()
 */
 
-console.log(cashBackMachine(50000, 3750))
+cashBackMachine(50000, 3750)
+cashBackMachine(70000, 14750)
+cashBackMachine(100000, 22750)
 
 function cashBackMachine(payWith, productPrice){
     var cashBack = payWith - productPrice;
     var bills = [50000, 20000, 10000, 5000, 2000, 1000, 500, 200, 100, 50];
     var mod = 0;
+    var billsQuantity =  0;
+    console.log(`La devuelta es ${cashBack}`);
     for (let i = 0; i < bills.length; i++) {
         var billSelected = bills[i];
+        //console.log("Current cashbak " + cashBack);
         if (cashBack >= billSelected) {
             mod = cashBack % billSelected;
-            console.log(billSelected);
-            console.log(mod);
-        }
+            //console.log(`Billete seleccionado: ${billSelected}`);
+            //console.log(`Resto ${mod}`);
+            var moneyReturn = cashBack - mod;
+            cashBack = cashBack - moneyReturn;
+            //console.log(`Money Return ${moneyReturn}`)
+            //console.log(`Nuevo CashBack ${cashBack}`)
+            billsQuantity = moneyReturn/billSelected;
+            if (billSelected >= 1000) {
+                console.log(`Devuelvo ${billsQuantity} billetes de ${billSelected}`)
+            } else {
+                console.log(`Devuelvo ${billsQuantity} monedas de ${billSelected}`)
+            }
+        }        
     }
-    //console.log(mod);
-    console.log(cashBack % 20000);
-    console.log(cashBack % 10000);
-    console.log(cashBack % 5000);
-    console.log(cashBack % 2000);
-    return cashBack;
 }
