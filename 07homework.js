@@ -31,3 +31,24 @@ var products = [
  * crear un arreglo con los productos pero el nombre en mayuscula todo
  * calcular cual es el total de comprar cada producto 1 vez
  */
+
+var price = products.filter(function (product) {
+  return product.price > 200;
+})
+
+var price1500 = products.find(function (product) {
+  return product.price === 1500;
+})
+
+var Upper = products.map(function (product) {
+  return product.name.toUpperCase();
+})
+
+var sum = products.reduce(function (acc, product) {
+  return acc + product.price;
+},0)
+
+console.log(price);
+console.log(price1500);
+console.log(Upper);
+console.log(sum);
