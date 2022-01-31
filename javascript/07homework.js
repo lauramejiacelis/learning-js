@@ -40,7 +40,7 @@ var price1500 = products.find(function (product) {
   return product.price === 1500;
 })
 
-var Upper = products.map(function (product) {
+var upper = products.map(function (product) {
   return product.name.toUpperCase();
 })
 
@@ -50,5 +50,5 @@ var sum = products.reduce(function (acc, product) {
 
 console.log(price);
 console.log(price1500);
-console.log(Upper);
+console.log(upper);
 console.log(sum);
