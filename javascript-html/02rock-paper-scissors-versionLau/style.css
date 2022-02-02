@@ -1,0 +1,22 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html,
+body{
+    height: 100%;
+}
+
+.hide {
+    display: none;
+}
+
+.main-container{
+    display: flex;
+    height: 100%;
+}
+
+.player-content {
+    flex: 1;
+}
