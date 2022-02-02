@@ -4,14 +4,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Homework</title>
+    <title>Rock Paper Scissors</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Homework</h1>
-    <div id="square"></div>
-    <button id="button">Change Color and Size</button>
-
+    <div id="setup">
+      <h1 id="inputMessage">Please enter Player 1 Name</h1>
+      <input id="playerName" type="text" />
+      <button id="addPlayer">Add Player</button>
+    </div>
+    <div id="board" class="main-container hide"></div>
     <script src="index.js"></script>
   </body>
 </html>

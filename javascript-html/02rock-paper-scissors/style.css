@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.hide {
+  display: none;
+}
+
+.main-container {
+  display: flex;
+  height: 100%;
+}
+
+.main-container.hide {
+  display: none;
+}
+
+.player-content {
+  flex: 1;
+}
+
+.player-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.player-status.hide {
+  display: none;
+}

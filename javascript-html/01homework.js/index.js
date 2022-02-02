@@ -9,11 +9,9 @@ var button = document.getElementById("button");
 var flag = false;
 var count = 0;
 button.addEventListener("click", function (event) {
-    square.classList = "";
-    square.classList.add(flag ? "square1" : "square2");
-    flag = !flag;
-    count++;
-    console.log(count);
-})
-
-console.log(button);
+  square.classList = "";
+  square.classList.add(flag ? "square1" : "square2");
+  flag = !flag;
+  count++;
+  console.log(count);
+});
