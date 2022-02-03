@@ -5,6 +5,7 @@ var setup = document.getElementById("setup");
 var board = document.getElementById("board");
 var roundIndicator = document.getElementById("roundIndicator");
 var turnIndicator = document.getElementById("turnIndicator");
+var body = document.querySelector("body");
 
 var round = 0;
 var turn = 0;
@@ -68,7 +69,7 @@ function prepareBoard() {
     playerName.innerText = player.name;
 
     var playerScore = document.createElement("span");
-
+    playerScore.setAttribute("id", `${player.id}Score`);
     playerScore.innerText = 0;
 
     var cardsContainer = document.createElement("div");
@@ -94,17 +95,28 @@ function prepareBoard() {
             var player1Option = PLAY_OPTIONS.find(function (option) {
               return option.name === game[round].player1;
             });
-            console.log(player1Option);
+
             if (player1Option.beats === game[round].player2) {
-              console.log("Gana player 1");
-              // darle un punto al ganador
-              // aumentar la ronda
-              // validar si el juego termino
+              game[round].won = "player1";
+              players[0].score++;
+              var player1Score = document.getElementById("player1Score");
+              player1Score.innerText++;
             } else if (player1Option.name === game[round].player2) {
-              console.log("Empate");
+              game[round].won = "tie";
             } else {
-              console.log("Gana player 2");
+              game[round].won = "player2";
+              players[1].score++;
+              var player2Score = document.getElementById("player2Score");
+              player2Score.innerText++;
             }
+            round++;
+            players.forEach(function (player) {
+              if (player.score === 2) {
+                var message = document.createElement("h1");
+                message.innerText = `Congratulations ${player.id} Won!`;
+                body.appendChild(message);
+              }
+            });
           }
         } else {
           console.log("No, wait for your turn");
