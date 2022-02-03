@@ -17,6 +17,7 @@ loop(arr, function (num) {
 
 // recorrer y ya
 // función que se pasa como parametro es un callback
+console.log("for each")
 arr.forEach(function (element, index, array) {
   console.log(element);
 });
