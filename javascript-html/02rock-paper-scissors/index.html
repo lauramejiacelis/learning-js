@@ -8,12 +8,18 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <h1 id="roundStatus" class="hide">
+      Round <span id="roundIndicator">1</span>
+      - Player
+      <span id="turnIndicator">1</span> turn
+    </h1>
     <div id="setup">
       <h1 id="inputMessage">Please enter Player 1 Name</h1>
       <input id="playerName" type="text" />
       <button id="addPlayer">Add Player</button>
     </div>
     <div id="board" class="main-container hide"></div>
+
     <script src="index.js"></script>
   </body>
 </html>

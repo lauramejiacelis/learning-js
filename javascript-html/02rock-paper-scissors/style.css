@@ -33,3 +33,24 @@ body {
 .player-status.hide {
   display: none;
 }
+
+.card {
+  width: 140px;
+  height: 250px;
+  display: grid;
+  place-content: center;
+  border: 1px solid black;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 38px;
+}
+
+.card:hover {
+  color: white;
+  background-color: black;
+}
+
+.card-container {
+  display: flex;
+  gap: 10px;
+}
