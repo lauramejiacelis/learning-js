@@ -34,25 +34,29 @@ startButton.addEventListener("click", function () {
         var card = document.createElement("div");
         card.classList.add("card");
         card.innerText = element;
-                
-        //* 2. Agregar el evento del click carta
-        cardsContainer.addEventListener("click", function (event) {
-            console.log(event.target.innerText);
-            var cardPlay = event.target;
-            console.log(`carta clickeada  ${cardPlay.innerText}`);
-            cardPlay.classList.remove("card");
-            cardPlay.classList.add("card-show");
-            plays.push(cardPlay.innerText);
-            console.log(`Jugadas ${plays}`);
-            if (plays.length ===2) {
-                if (plays [0] === plays[1]) {
-                    console.log("Las cartas son iguales");
-                } else {
-                    console.log("Las cartas son diferetes");
-                }
-            }
-        });
         cardsContainer.appendChild(card);
+    });
+
+    //* 2. Agregar el evento del click carta
+    cardsContainer.addEventListener("click", function (event) {
+        console.log(event.target.innerText);
+        var cardPlay = event.target;
+        console.log(`carta clickeada  ${cardPlay.innerText}`);
+        cardPlay.classList.remove("card");
+        cardPlay.classList.add("card-show");
+        plays.push(cardPlay);
+        console.log(`Jugadas ${plays[0].innerText}`);
+        if (plays.length ===2) {
+            if (plays [0].innerText === plays[1].innerText) {
+                console.log("Las cartas son iguales");
+            } else {
+                console.log("Las cartas son diferetes");
+                plays[0].classList.remove("card-show");
+                plays[0].classList.add("card");
+                plays[1].classList.remove("card-show");
+                plays[1].classList.add("card");
+            }
+        }
     });
 
     
