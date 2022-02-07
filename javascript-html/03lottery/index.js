@@ -10,10 +10,12 @@
 
 var startButton = document.getElementById("startButton");
 var cardsContainer = document.getElementById("cardsContainer");
+var quantity = document.getElementById("quantity");
+var body = document.querySelector("body");
 
 var round = 0;
 var cards = [];
-var plays = [];
+//var plays = [];
 
 //* 1. Crear todas las cartas
 function createCards(CARDSQTY) {
@@ -28,8 +30,11 @@ function createCards(CARDSQTY) {
     return cards;
 }
 
-startButton.addEventListener("click", function () {
-    createCards(4);
+function startGame() {
+    cardsContainer.innerHTML = "";
+    var plays = [];
+    createCards(quantity.value);
+    startButton.disabled = true;
     cards.forEach(function (element) {
         var card = document.createElement("div");
         card.classList.add("card");
@@ -38,6 +43,7 @@ startButton.addEventListener("click", function () {
     });
 
     //* 2. Agregar el evento del click carta
+    //* 3. Logica para seleccionar 2 cartas
     cardsContainer.addEventListener("click", function (event) {
         console.log(event.target.innerText);
         var cardPlay = event.target;
@@ -45,25 +51,50 @@ startButton.addEventListener("click", function () {
         cardPlay.classList.remove("card");
         cardPlay.classList.add("card-show");
         plays.push(cardPlay);
-        console.log(`Jugadas ${plays[0].innerText}`);
-        if (plays.length ===2) {
-            if (plays [0].innerText === plays[1].innerText) {
+        console.log(`cards-length ${cards.length}`)
+        console.log(`plays-length ${plays.length}`)
+        var last = plays.length-1;
+        var previous = plays.length-2;
+
+        //Función para tapar las cartas (la creé para el setTimeOut que NO funcionó)
+        function hide() {
+            plays[last].classList.remove("card-show");
+            plays[last].classList.add("card");
+            plays[previous].classList.remove("card-show");
+            plays[previous].classList.add("card");
+        }
+
+        function clear() {
+            cardsContainer.innerHTML = "";
+            message.innerText="";
+            body.removeChild(clearbutton);
+        }
+        
+        if (plays.length === cards.length) {
+            var message = document.createElement("h1");
+            message.innerText = `Congratulations you Won!`;
+            body.appendChild(message);
+            startButton.disabled = false; 
+            var clearbutton = document.createElement("button");
+            clearbutton.innerText = `Clear`;
+            body.appendChild(clearbutton);
+            clearbutton.addEventListener("click", clear)
+
+        //* 4. Comparar las cartas
+        } else if ((plays.length % 2) === 0) {
+            if (plays [last].innerText === plays[previous].innerText) {
                 console.log("Las cartas son iguales");
             } else {
                 console.log("Las cartas son diferetes");
-                plays[0].classList.remove("card-show");
-                plays[0].classList.add("card");
-                plays[1].classList.remove("card-show");
-                plays[1].classList.add("card");
+                hide();
+                //setTimeout(hide, 5000);
+                plays.pop();
+                plays.pop();
             }
         }
     });
+}
 
-    
-})
+startButton.addEventListener("click", startGame)
 
-
-//* 3. Logica para seleccionar 2 cartas
-//* 4. Comparar las cartas
-// *    4.1 Iguales -> dejarlas volteadas y agregarlas a la la lista de cartas resueltas
-//*    4.2 Diferentes -> volver a ocultar y volver al paso 3
+//no funcionó el setTimeOut
