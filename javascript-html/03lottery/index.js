@@ -18,27 +18,22 @@ var cards = [];
 //var plays = [];
 
 //* 1. Crear todas las cartas
-function createCards(CARDSQTY) {
+function createCards(cardsQty) {
   // Review: Nunca parametros en mayuscula ya que no son constantes
-  cards.length = CARDSQTY;
+  //cards.length = cardsQty; //ya no se necesita
 
-  for (let i = 0; i < CARDSQTY / 2; i++) {
+  for (let i = 0; i < (cardsQty / 2); i++) {
     // Review: se podría hacer con cards.push(i + 1) dos veces
-    cards[i] = i + 1;
-    cards[CARDSQTY / 2 + i] = i + 1;
+    cards.push(i+1);
+    cards.push(i+1);
+    // cards[i] = i + 1;
+    // cards[cardsQty / 2 + i] = i + 1;
   }
   cards = cards.sort(function () {
     return Math.random() - 0.5;
   });
   console.log(cards);
-  return cards;
-}
 
-function startGame() {
-  cardsContainer.innerHTML = "";
-  var plays = [];
-  createCards(quantity.value);
-  startButton.disabled = true;
   cards.forEach(function (element) {
     var card = document.createElement("div");
     card.classList.add("card");
@@ -46,20 +41,31 @@ function startGame() {
     cardsContainer.appendChild(card);
   });
 
+  return cards;
+}
+
+function startGame() {
+  cardsContainer.innerHTML = "";
+  var plays = [];
+  cards = [];
+  createCards(quantity.value);
+  startButton.disabled = true;
+
   //* 2. Agregar el evento del click carta
   //* 3. Logica para seleccionar 2 cartas
   cardsContainer.addEventListener("click", function (event) {
     console.log(event.target.innerText);
     var cardPlay = event.target;
-    /*
+    //Para cuando hacemos click en el contenedor
     if (cardPlay === cardsContainer) {
       return;
     }
-    */
     console.log(`carta clickeada  ${cardPlay.innerText}`);
-    cardPlay.classList.remove("card"); // Review: no hay necesidad de quitar la clase base
-    cardPlay.classList.add("card-show");
+    //cardPlay.classList.remove("card"); // Review: no hay necesidad de quitar la clase base
+    cardPlay.classList.add("show"); //se cambió 
     plays.push(cardPlay);
+    cardPlay.setAttribute("id", `${plays.length}`);
+    console.log(cardPlay);
     console.log(`cards-length ${cards.length}`);
     console.log(`plays-length ${plays.length}`);
     var last = plays.length - 1;
@@ -75,10 +81,8 @@ function startGame() {
      * hide(plays[previous], 'card-show')
      */
     function hide() {
-      plays[last].classList.remove("card-show");
-      plays[last].classList.add("card");
-      plays[previous].classList.remove("card-show");
-      plays[previous].classList.add("card");
+      plays[last].classList.remove("show");
+      plays[previous].classList.remove("show");
     }
 
     function clear() {
@@ -104,17 +108,12 @@ function startGame() {
         // Bug: se pueden seguir clickeando las cartas luego de hacer match
       } else {
         console.log("Las cartas son diferetes");
-        hide();
-        //setTimeout(hide, 5000);
-        plays.pop();
-        plays.pop();
-        /*
         setTimeout(function () {
           hide();
           plays.pop();
           plays.pop();
         }, 2000);
-        */
+        
       }
     }
   });
@@ -122,4 +121,4 @@ function startGame() {
 
 startButton.addEventListener("click", startGame);
 
-//no funcionó el setTimeOut
+//Revisar el cambio del setTimeOut

@@ -3,11 +3,6 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.show{
-  color: black;
-  background-color: white;
-}
-
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -26,19 +21,15 @@
   color: black;
   background-color: black;
 }
-/* Review: card y card-show tienen lo mismo! card-show solo debe cambiar el background color*/
-.card-show {
-  width: 140px;
-  height: 250px;
-  display: grid;
-  place-content: center;
-  border: 1px solid black;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 38px;
+
+/* Lo cambié de posición para que funcionara*/
+.show{
   color: black;
   background-color: white;
+  pointer-events: none;
 }
+
+/* Review: card y card-show tienen lo mismo! card-show solo debe cambiar el background color*/
 
 .button{
   font-size: 16px;
