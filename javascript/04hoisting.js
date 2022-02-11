@@ -7,6 +7,7 @@ message = "good morning my friend";
 console.log(message);
 
 // Declaration are hoisted
+var message;
 
 // Declaration are hoisted
 function sum(a, b) {

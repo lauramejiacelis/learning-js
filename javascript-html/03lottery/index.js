@@ -22,10 +22,10 @@ function createCards(cardsQty) {
   // Review: Nunca parametros en mayuscula ya que no son constantes
   //cards.length = cardsQty; //ya no se necesita
 
-  for (let i = 0; i < (cardsQty / 2); i++) {
+  for (let i = 0; i < cardsQty / 2; i++) {
     // Review: se podría hacer con cards.push(i + 1) dos veces
-    cards.push(i+1);
-    cards.push(i+1);
+    cards.push(i + 1);
+    cards.push(i + 1);
     // cards[i] = i + 1;
     // cards[cardsQty / 2 + i] = i + 1;
   }
@@ -62,7 +62,7 @@ function startGame() {
     }
     console.log(`carta clickeada  ${cardPlay.innerText}`);
     //cardPlay.classList.remove("card"); // Review: no hay necesidad de quitar la clase base
-    cardPlay.classList.add("show"); //se cambió 
+    cardPlay.classList.add("show"); //se cambió
     plays.push(cardPlay);
     cardPlay.setAttribute("id", `${plays.length}`);
     console.log(cardPlay);
@@ -113,7 +113,6 @@ function startGame() {
           plays.pop();
           plays.pop();
         }, 2000);
-        
       }
     }
   });
