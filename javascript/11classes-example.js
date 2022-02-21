@@ -14,12 +14,12 @@ Vehicle.prototype.move = function () {
 };
 
 function Car(name, model, horsePower, year) {
-  Vehicle.call(this, 4, "ground", horsePower, year);
+  Vehicle.call(this, 4, "ground", horsePower, year); //connects properties
   this.name = name;
   this.model = model;
 }
 
-Object.setPrototypeOf(Car.prototype, Vehicle.prototype);
+Object.setPrototypeOf(Car.prototype, Vehicle.prototype); //inheritance
 
 Car.prototype.move = function () {
   Vehicle.prototype.move.call(this);

@@ -24,6 +24,7 @@ var {
   name,
 } = obj;
 
+console.log("Example Destructuring Objects")
 console.log(name);
 console.log(parentName);
 /*
@@ -45,6 +46,7 @@ var arr = [
 var [lau, dianita, profe, { balance }] = arr;
 
 // var lau = arr[0]
+console.log("Example Destructuring Arrays")
 console.log(lau);
 console.log(dianita);
 console.log(profe);
@@ -57,5 +59,5 @@ var person = {
 function getPersonName({ name }) {
   console.log(name);
 }
-
+console.log("Example Destructuring")
 getPersonName(person);
