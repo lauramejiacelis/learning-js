@@ -10,40 +10,29 @@
     SpecialAccount deposits has 1% fee, and can also have negative balance when withdrawing. ***quita 1%
 */
 
-class Account {
-    constructor() {
-        this.balance = 0;
-    }
-
-    deposit(inflow){
-        //if (inflow >= 0){
-        this.balance += inflow;
-        console.log(`You deposit ${inflow} and your new balance is ${this.balance}`)     
-    }
-    withdraw(outflow){
-        this.balance -= outflow;
-    }
-}
-
 // Checking account has to leave at least 10k, if trying to withdraw more should show me an error message
 
-class CheckingAccount extends Account {
+class CheckingAccount {
     constructor(number){
-        super();
+        this.balance = 0;
         this.number = number;
     }
 
-    deposit(inflow) {
-        super.deposit(inflow);
+    deposit(inflow){
+        this.balance += inflow;
+        console.log(`You deposit ${inflow} and your new balance is ${this.balance}`)
+        
     }
-    withdraw(outflow) {
-        super.withdraw(outflow);
+
+    withdraw(outflow){
+        this.balance -= outflow;
         if (this.balance < 10000){
             this.balance +=outflow;
-            console.log(`Error, this withdrawal ${outflow} cannot be made because it exceeds your balance ${this.balance}`)
+            console.log(`Error, this withdrawal cannot be made because it exceeds your balance ${this.balance}`)
         } else {
             console.log(`You withdraw ${outflow} and your new balance is ${this.balance}`)
         }
+        
     }
 }
 
@@ -54,20 +43,23 @@ accountC.deposit(200000);
 accountC.withdraw(5000);
 accountC.withdraw(250000);
 
+
 //SpecialAccount deposits has 1% fee, and can also have negative balance when withdrawing. ***quita 1%
 
-class SpecialAccount extends Account {
+class SpecialAccount{
     constructor(number){
-        super();
         this.number = number;
+        this.balance = 0;
     }
 
-    deposit(inflow) {
-        super.deposit(inflow);
+    deposit(inflow){
+        this.balance += (inflow * 0.99);
+        console.log(`You deposit ${inflow} and your new balance is ${this.balance}`)
+        
     }
-
-    withdraw(outflow) {
-        super.withdraw(outflow);
+    
+    withdraw(outflow){
+        this.balance -= outflow;
         console.log(`You withdraw ${outflow} and your new balance is ${this.balance}`)  
         if (outflow > this.balance)  {
             console.log("OMG you're overdrawn")
