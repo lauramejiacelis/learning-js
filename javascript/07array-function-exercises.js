@@ -25,6 +25,8 @@ var products = [
   },
 ];
 
+var product = products.forEach(element => console.log(element.name))
+
 var fruits = products.filter(function (product) {
   return product.category === "fruit";
 });
