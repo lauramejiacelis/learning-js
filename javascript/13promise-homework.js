@@ -2,7 +2,6 @@
 const fetch = require("isomorphic-fetch");
 
 fetch("https://pokeapi.co/api/v2/pokemon/")
-    .then((res)=> res.json())
-    //.then((result) => console.log(result.results))
-    .then((result) => result.results)
-    .then((arr) => arr.forEach(element => console.log(element.name)))
+  .then((res) => res.json())
+  .then((res) => (console.log(res), res))
+  .then(({ results }) => results.map((element) => console.log(element.name)));
