@@ -27,6 +27,7 @@ var {
 console.log("Example Destructuring Objects")
 console.log(name);
 console.log(parentName);
+console.log(numRooms);
 /*
 console.log(address);
 console.log(age);
