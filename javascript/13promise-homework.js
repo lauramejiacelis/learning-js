@@ -6,7 +6,7 @@ fetch("https://pokeapi.co/api/v2/pokemon/")
   .then((res) => (console.log(res), res))
   .then(({ results }) => results.map((element) => console.log(element.name)));
 */
-  fetch("https://pokeapi.co/api/v2/pokemon/bulbasaur")
+fetch("https://pokeapi.co/api/v2/pokemon/bulbasaur")
   .then((res) => res.json())
   .then((res) => (console.log(res), res))
   .then(({moves}) => moves.map(({ move }) => console.log(move.name)))
