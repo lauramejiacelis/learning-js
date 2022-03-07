@@ -3,6 +3,11 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+img{
+width: 300px;
+height: auto;
+}
+
 .main-container{
     text-align: center;
 }
@@ -15,4 +20,17 @@
 .logo-container{
     width: 200px;
     margin: 0 auto;
+}
+
+.artist-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.artist-results{
+    display: grid;
+    padding: 10px;
+    border: 1px solid black;
 }
