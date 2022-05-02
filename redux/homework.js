@@ -62,7 +62,7 @@ const productsReducer = (state = productsInitialState, action) => {
         case PRODUCTS_ACTION_TYPES.CHANGE_STATUS:
             return state.map((product)=>{
                 if (product.id === action.payload.id && product.qty >= action.payload.qty){
-                    return {...product, status: action.payload.status, qty: qty-action.payload.qty}
+                    return {...product, status: action.payload.status, qty: product.qty-action.payload.qty}
                 }
                 return product;
             })
