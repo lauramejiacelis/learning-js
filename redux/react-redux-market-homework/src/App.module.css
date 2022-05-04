@@ -1,0 +1,19 @@
+th, td {
+    padding: 15px;
+}
+
+.mainContainer {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.inputContainer {
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.tableContainer {
+    width: 90%;
+    margin: 0 auto;
+}
