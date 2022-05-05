@@ -1,0 +1,5 @@
+export const PRODUCTS_ACTION_TYPES = {
+    CREATE: "CREATE",
+    EDIT: "EDIT",
+    DELETE: "DELETE"
+}

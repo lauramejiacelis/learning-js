@@ -1,5 +1,7 @@
 import styles from './App.module.css';
 import { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { addProduct, editProduct, deleteProduct} from "./redux/products";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, InputGroup, Input, Table } from 'reactstrap';
 
@@ -8,14 +10,17 @@ class App extends PureComponent {
     input: ""
   }
   
+  handleChange = ({target: {value}}) => this.setState({input: value})
+
+  handleClick = () => {
+    const {input} = this.state;
+    const {addProduct} = this.props;
+    console.log(addProduct(input));
+    this.setState({input: ""});
+  }
+
   render (){
     const {input} = this.state;
-
-    // handleChange = ({target: value}) => this.setState({input: value})
-
-    // handleClick = () => {
-
-    // }
 
     return (
       <div className={styles.mainContainer}>
@@ -51,4 +56,18 @@ class App extends PureComponent {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    todos:state.todos,
+  }
+}
+
+const mapDispatchToProps = {
+  addProduct,
+  editProduct,
+  deleteProduct,
+};
+
+const ConnectedApp = connect(mapStateToProps, mapDispatchToProps) (App);
+
+export default ConnectedApp;
