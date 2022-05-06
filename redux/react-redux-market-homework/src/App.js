@@ -7,27 +7,36 @@ import { Button, InputGroup, Input, Table } from 'reactstrap';
 
 class App extends PureComponent {
   state={
-    input: ""
+    inputName: "",
+    inputQty: 0,
+    editProduct: null,
   }
   
-  handleChange = ({target: {value}}) => this.setState({input: value})
+  handleChange = ({target: {value, name}}) => {
+    console.log(name)
+    console.log(value)
+    this.setState({[name]: value})
+  }
+  
 
   handleClick = () => {
-    const {input} = this.state;
+    const {inputName, inputQty} = this.state;
     const {addProduct} = this.props;
-    console.log(addProduct(input));
-    this.setState({input: ""});
+    addProduct(inputName, inputQty);
+    console.log(addProduct(inputName, inputQty));
+    this.setState({inputName: "", inputQty:""});
   }
 
   render (){
-    const {input} = this.state;
-
+    const {inputName, inputQty} = this.state;
+    const {products} = this.props;
     return (
       <div className={styles.mainContainer}>
         <h1>Market Products</h1>
         <div className={styles.inputContainer}>
           <InputGroup>
-            <Input type="text" value={input} onChange={this.handleChange}/>
+            <Input placeholder='Product Name' type="text" value={inputName} name='inputName' onChange={this.handleChange}/>
+            <Input placeholder='Quantity' type="text" value={inputQty} name='inputQty' onChange={this.handleChange}/>
             <Button onClick={this.handleClick}>Add</Button>
           </InputGroup>
         </div>
@@ -48,6 +57,16 @@ class App extends PureComponent {
                 <td>3</td>
                 <td>IN_STORAGE</td>
               </tr>
+              {products.map(({id, name, qty, status,})=>{
+                <tr>
+                  <th scope='row'>{id}</th>
+                  <td>
+                    {name}
+                  </td>
+                  <td>{qty}</td>
+                  <td>{status}</td>
+                </tr>
+              })}
             </tbody>
           </Table>
         </div>
@@ -58,7 +77,7 @@ class App extends PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    todos:state.todos,
+    products: state.products,
   }
 }
 

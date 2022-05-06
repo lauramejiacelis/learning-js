@@ -1,8 +1,8 @@
 import { PRODUCTS_ACTION_TYPES } from "./types";
 
-export const addProduct = (name) =>({
+export const addProduct = (name, qty) =>({
     type: PRODUCTS_ACTION_TYPES.CREATE,
-    payload: name,
+    payload: {name,qty}
 })
 
 export const deleteProduct = (id) =>({

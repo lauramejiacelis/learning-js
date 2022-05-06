@@ -8,13 +8,12 @@ const PRODUCT_STATUS = {
 const initialState = [];
 
 let id= 0;
-let qty= 1;
 
 export const productsReducer = (state = initialState, action) => {
     switch (action.type) {
         case PRODUCTS_ACTION_TYPES.CREATE:
             id++;
-            return [...state, {id, name:action.payload.name, qty, status: PRODUCT_STATUS.IN_STORAGE}];
+            return [...state, {id, name:action.payload.name, qty: action.payload.qty, status: PRODUCT_STATUS.IN_STORAGE}];
         case PRODUCTS_ACTION_TYPES.EDIT:
             return state.map((product)=>
                 product.id === action.payload.id ? action.payload : product
