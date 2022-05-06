@@ -10,7 +10,7 @@ export const deleteProduct = (id) =>({
     payload: {id},
 })
 
-export const editProduct = (data) =>({
+export const editProduct = (product) =>({
     type: PRODUCTS_ACTION_TYPES.EDIT,
-    payload: data,
+    payload: product,
 })

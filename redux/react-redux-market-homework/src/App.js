@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { addProduct, editProduct, deleteProduct} from "./redux/products";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, InputGroup, Input, Table } from 'reactstrap';
+import { Button, InputGroup, Input, Table, InputGroupText } from 'reactstrap';
 
 class App extends PureComponent {
   state={
@@ -13,30 +13,51 @@ class App extends PureComponent {
   }
   
   handleChange = ({target: {value, name}}) => {
-    console.log(name)
-    console.log(value)
     this.setState({[name]: value})
   }
   
-
   handleClick = () => {
     const {inputName, inputQty} = this.state;
     const {addProduct} = this.props;
     addProduct(inputName, inputQty);
-    console.log(addProduct(inputName, inputQty));
     this.setState({inputName: "", inputQty:""});
   }
 
+  handleEdit = (product) => (event) =>{
+    this.setState({ editProduct: product})
+    console.log(product)
+  }
+
+  handleUpdateEdit = ({target: {value, name}}) =>{
+    this.setState({editProduct: {...this.state.editProduct, [name]: value}})
+  }
+
+  handleCancel = () =>{
+    this.setState({editProduct: null})
+  }
+
+  handleFinishEdit = () => {
+    this.props.editProduct(this.state.editProduct);//No entiendo esta línea (? a David)
+    this.setState({editProduct: null})
+  }
+
+  handleDelete = (id) => (event) =>{
+    const {deleteProduct} = this.props;
+    deleteProduct(id)
+  }
+
   render (){
-    const {inputName, inputQty} = this.state;
+    const {inputName, inputQty, editProduct} = this.state;
     const {products} = this.props;
     return (
       <div className={styles.mainContainer}>
         <h1>Market Products</h1>
         <div className={styles.inputContainer}>
           <InputGroup>
+            <InputGroupText>Product Name</InputGroupText>
             <Input placeholder='Product Name' type="text" value={inputName} name='inputName' onChange={this.handleChange}/>
-            <Input placeholder='Quantity' type="text" value={inputQty} name='inputQty' onChange={this.handleChange}/>
+            <InputGroupText>Quantity</InputGroupText>
+            <Input placeholder='Quantity' type="number" value={inputQty} name='inputQty' onChange={this.handleChange}/>
             <Button onClick={this.handleClick}>Add</Button>
           </InputGroup>
         </div>
@@ -51,21 +72,48 @@ class App extends PureComponent {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope='row'>1</th>
-                <td>Salt</td>
-                <td>3</td>
-                <td>IN_STORAGE</td>
-              </tr>
               {products.map(({id, name, qty, status,})=>{
-                <tr>
+                return id ===editProduct?.id ? (
+                  <tr>
                   <th scope='row'>{id}</th>
                   <td>
-                    {name}
+                    <input
+                      type="text"
+                      value={editProduct.name}
+                      name="name"
+                      onChange={this.handleUpdateEdit}
+                    />
                   </td>
+                  <td>
+                    <input
+                      type="text"
+                      value={editProduct.qty}
+                      name="qty"
+                      onChange={this.handleUpdateEdit}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      value={editProduct.status}
+                      name="status"
+                      onChange={this.handleUpdateEdit}
+                    />
+                  </td>
+                  <td><Button onClick={this.handleCancel}>Cancel</Button></td>
+                  <td><Button onClick={this.handleFinishEdit}>Finish</Button></td>
+                </tr>
+                ) : (
+                  <tr>
+                  <th scope='row'>{id}</th>
+                  <td>{name}</td>
                   <td>{qty}</td>
                   <td>{status}</td>
+                  <td><Button onClick={this.handleEdit({id, name, qty, status})}>Edit</Button></td>
+                  <td><Button onClick={this.handleDelete(id)}>Delete</Button></td>
                 </tr>
+                )
+                
               })}
             </tbody>
           </Table>
