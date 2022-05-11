@@ -9,11 +9,11 @@ class App extends PureComponent {
   state={
     inputName: "",
     inputQty: 0,
-    editProduct: null,
+    editedProduct: null,
   }
   
   handleChange = ({target: {value, name}}) => {
-    this.setState({[name]: value})
+    this.setState({[name]: name === 'inputQty' ? parseInt(value): value})
   }
   
   handleClick = () => {
@@ -24,21 +24,21 @@ class App extends PureComponent {
   }
 
   handleEdit = (product) => (event) =>{
-    this.setState({ editProduct: product})
+    this.setState({ editedProduct: product})
     console.log(product)
   }
 
   handleUpdateEdit = ({target: {value, name}}) =>{
-    this.setState({editProduct: {...this.state.editProduct, [name]: value}})
+    this.setState({editedProduct: {...this.state.editedProduct, [name]: value}})
   }
 
   handleCancel = () =>{
-    this.setState({editProduct: null})
+    this.setState({editedProduct: null})
   }
 
   handleFinishEdit = () => {
-    this.props.editProduct(this.state.editProduct);//No entiendo esta línea (? a David)
-    this.setState({editProduct: null})
+    this.props.editProduct(this.state.editedProduct);//No entiendo esta línea (? a David)
+    this.setState({editedProduct: null})
   }
 
   handleDelete = (id) => (event) =>{
@@ -47,7 +47,7 @@ class App extends PureComponent {
   }
 
   render (){
-    const {inputName, inputQty, editProduct} = this.state;
+    const {inputName, inputQty, editedProduct} = this.state;
     const {products} = this.props;
     return (
       <div className={styles.mainContainer}>
@@ -73,13 +73,13 @@ class App extends PureComponent {
             </thead>
             <tbody>
               {products.map(({id, name, qty, status,})=>{
-                return id ===editProduct?.id ? (
+                return id ===editedProduct?.id ? (
                   <tr>
                   <th scope='row'>{id}</th>
                   <td>
                     <input
                       type="text"
-                      value={editProduct.name}
+                      value={editedProduct.name}
                       name="name"
                       onChange={this.handleUpdateEdit}
                     />
@@ -87,7 +87,7 @@ class App extends PureComponent {
                   <td>
                     <input
                       type="text"
-                      value={editProduct.qty}
+                      value={editedProduct.qty}
                       name="qty"
                       onChange={this.handleUpdateEdit}
                     />
@@ -95,7 +95,7 @@ class App extends PureComponent {
                   <td>
                     <input
                       type="text"
-                      value={editProduct.status}
+                      value={editedProduct.status}
                       name="status"
                       onChange={this.handleUpdateEdit}
                     />
