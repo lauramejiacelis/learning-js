@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Form, Formik, ErrorMessage, Field } from "formik";
+import { Formik } from "formik";
 import {
   Container,
   VStack,
@@ -49,21 +49,37 @@ class App extends Component {
         >
           {(formik) => {
             return (
-              <Form>
+              <form onSubmit={formik.handleSubmit}>
                 <VStack spacing={4}>
                   <FormControl
                     isInvalid={formik.errors.name && formik.touched.name}
                   >
                     <FormLabel>Name</FormLabel>
-                    <Field name="name" as={Input} placeholder="Hola" />
-                    <ErrorMessage name="name" component={FormErrorMessage} />
+                    <Input
+                      type="text"
+                      name="name"
+                      value={formik.values.name}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                    />
+                    {formik.errors.name && formik.touched.name && (
+                      <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
+                    )}
                   </FormControl>
                   <FormControl
                     isInvalid={formik.errors.email && formik.touched.email}
                   >
                     <FormLabel>Email</FormLabel>
-                    <Field name="email" as={Input} />
-                    <ErrorMessage name="email" component={FormErrorMessage} />
+                    <Input
+                      type="email"
+                      name="email"
+                      value={formik.values.email}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                    />
+                    {formik.errors.email && formik.touched.email && (
+                      <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
+                    )}
                   </FormControl>
                   <FormControl
                     isInvalid={
@@ -71,11 +87,18 @@ class App extends Component {
                     }
                   >
                     <FormLabel>Password</FormLabel>
-                    <Field type="password" name="password" as={Input} />
-                    <ErrorMessage
+                    <Input
+                      type="password"
                       name="password"
-                      component={FormErrorMessage}
+                      value={formik.values.password}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
                     />
+                    {formik.errors.password && formik.touched.password && (
+                      <FormErrorMessage>
+                        {formik.errors.password}
+                      </FormErrorMessage>
+                    )}
                   </FormControl>
                   <FormControl
                     isInvalid={
@@ -84,11 +107,19 @@ class App extends Component {
                     }
                   >
                     <FormLabel>Confirm Password</FormLabel>
-                    <Field type="password" name="confirmPassword" as={Input} />
-                    <ErrorMessage
+                    <Input
+                      type="password"
                       name="confirmPassword"
-                      component={FormErrorMessage}
+                      value={formik.values.confirmPassword}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
                     />
+                    {formik.errors.confirmPassword &&
+                      formik.touched.confirmPassword && (
+                        <FormErrorMessage>
+                          {formik.errors.confirmPassword}
+                        </FormErrorMessage>
+                      )}
                   </FormControl>
                   <Button
                     type="submit"
@@ -98,7 +129,7 @@ class App extends Component {
                   </Button>
                 </VStack>
                 <pre>{JSON.stringify(formik, null, 4)}</pre>
-              </Form>
+              </form>
             );
           }}
         </Formik>
