@@ -47,60 +47,53 @@ class App extends Component {
           validationSchema={UserSchema}
           onSubmit={this.handleSubmit}
         >
-          {(formik) => {
-            return (
-              <Form>
-                <VStack spacing={4}>
-                  <FormControl
-                    isInvalid={formik.errors.name && formik.touched.name}
-                  >
-                    <FormLabel>Name</FormLabel>
-                    <Field name="name" as={Input} placeholder="Hola" />
-                    <ErrorMessage name="name" component={FormErrorMessage} />
-                  </FormControl>
-                  <FormControl
-                    isInvalid={formik.errors.email && formik.touched.email}
-                  >
-                    <FormLabel>Email</FormLabel>
-                    <Field name="email" as={Input} />
-                    <ErrorMessage name="email" component={FormErrorMessage} />
-                  </FormControl>
-                  <FormControl
-                    isInvalid={
-                      formik.errors.password && formik.touched.password
-                    }
-                  >
-                    <FormLabel>Password</FormLabel>
-                    <Field type="password" name="password" as={Input} />
-                    <ErrorMessage
-                      name="password"
-                      component={FormErrorMessage}
-                    />
-                  </FormControl>
-                  <FormControl
-                    isInvalid={
-                      formik.errors.confirmPassword &&
-                      formik.touched.confirmPassword
-                    }
-                  >
-                    <FormLabel>Confirm Password</FormLabel>
-                    <Field type="password" name="confirmPassword" as={Input} />
-                    <ErrorMessage
-                      name="confirmPassword"
-                      component={FormErrorMessage}
-                    />
-                  </FormControl>
-                  <Button
-                    type="submit"
-                    disabled={!formik.isValid || !formik.dirty}
-                  >
-                    Submit
-                  </Button>
-                </VStack>
-                <pre>{JSON.stringify(formik, null, 4)}</pre>
-              </Form>
-            );
-          }}
+          {(formik) => (
+            <Form>
+              <VStack spacing={4}>
+                <FormControl
+                  isInvalid={formik.errors.name && formik.touched.name}
+                >
+                  <FormLabel>Name</FormLabel>
+                  <Field name="name" as={Input} placeholder="Hola" />
+                  <ErrorMessage name="name" component={FormErrorMessage} />
+                </FormControl>
+                <FormControl
+                  isInvalid={formik.errors.email && formik.touched.email}
+                >
+                  <FormLabel>Email</FormLabel>
+                  <Field name="email" as={Input} />
+                  <ErrorMessage name="email" component={FormErrorMessage} />
+                </FormControl>
+                <FormControl
+                  isInvalid={formik.errors.password && formik.touched.password}
+                >
+                  <FormLabel>Password</FormLabel>
+                  <Field type="password" name="password" as={Input} />
+                  <ErrorMessage name="password" component={FormErrorMessage} />
+                </FormControl>
+                <FormControl
+                  isInvalid={
+                    formik.errors.confirmPassword &&
+                    formik.touched.confirmPassword
+                  }
+                >
+                  <FormLabel>Confirm Password</FormLabel>
+                  <Field type="password" name="confirmPassword" as={Input} />
+                  <ErrorMessage
+                    name="confirmPassword"
+                    component={FormErrorMessage}
+                  />
+                </FormControl>
+                <Button
+                  type="submit"
+                  disabled={!formik.isValid || !formik.dirty}
+                >
+                  Submit
+                </Button>
+              </VStack>
+              <pre>{JSON.stringify(formik, null, 4)}</pre>
+            </Form>
+          )}
         </Formik>
       </Container>
     );
