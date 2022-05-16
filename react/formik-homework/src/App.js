@@ -1,14 +1,15 @@
 import {Component} from 'react';
 import { Form, Formik, ErrorMessage, Field } from "formik";
-import { Avatar, Button, Box, Container, FormControl, Input, InputLabel, FormHelperText, Stack, TextField } from '@mui/material';
+import { Avatar, Button, Box, Container, FormControl, Input, InputLabel, FormHelperText, Stack, Select, MenuItem } from '@mui/material';
 import * as Yup from "yup";
 
 const SignupSchema= Yup.object().shape({
   name: Yup.string().min(3,'muy corto!').required('Porfa ingresa tu nombre'),
-  lastName: Yup.string().required(),
-  gender: Yup.string(),
-  email: Yup.string().email().required(),
-  password: Yup.string().min().max().required(),
+  lastName: Yup.string().required('Porfa ingresa tu apellido'),
+  gender: Yup.string().required('Porfa ingresa tu género'),
+  email: Yup.string().email().required('Porfa ingresa tu email'),
+  cel: Yup.number().min(10,'faltan números!'),
+  password: Yup.string().min(4, 'muy corta!').max(10, 'muy larga').required('Porfa ingresa una contraseña'),
   confirmPassword: Yup.string().oneOf([Yup.ref("password"), null], 'No coinciden las contraseñas')
 })
 
@@ -19,10 +20,10 @@ class App extends Component {
     return (
       <Container maxWidth="sm" sx={{bgcolor: '#ccccff', py: '10px'}}>
         <Box sx={{ pt: 2 }}>
-          <Avatar alt="Remy Sharp" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqBSc0gg_8l_k-xFGWM0X3mvx6BCgW9l-XQA&usqp=CAU" />
+          <Avatar alt="Remy Sharp" src="https://i.pinimg.com/236x/6c/99/c0/6c99c007bc370a5351c51ab4cd77f52d.jpg" />
         </Box>
         
-        <h1>Registrate!</h1>
+        <h1>Regístrate!</h1>
         
         <Formik
           initialValues={{
@@ -42,33 +43,55 @@ class App extends Component {
                 <Stack spacing={2}>
                   <FormControl color='secondary'>
                     <InputLabel htmlFor="name">Nombre</InputLabel>
-                    <Input name='name' id="name" aria-describedby="helper-name"
-                    onChange={formik.handleChange}/>
-                    <ErrorMessage name="name" />
-                    <FormHelperText id="helper-name">{formik.touched.name && formik.errors.name}</FormHelperText>
+                    <Field name='name' as={Input} aria-describedby="helper-name"/>
+                    <FormHelperText id="helper-name">{formik.errors.name}</FormHelperText>
                   </FormControl>
 
                   <FormControl color='secondary'>
                     <InputLabel htmlFor="lastName">Apellido</InputLabel>
-                    <Input id="lastName"/>
+                    <Field name='lastName' as={Input}/>
+                    <ErrorMessage name="lastName" component={FormHelperText}/>
                   </FormControl>
 
-                  <TextField
-                    fullWidth
-                    id="email"
-                    name="email"
-                    label="Email"
-                    value={formik.values.email}
-                    onChange={formik.handleChange}
-                    error={formik.touched.email && Boolean(formik.errors.email)}
-                    helperText={formik.touched.email && formik.errors.email}
-                  />
+                  <FormControl color='secondary'>
+                    <InputLabel htmlFor="gender">Género</InputLabel>
+                    <Field as={Select} name="gender">
+                      <MenuItem value="femenine">Femenino</MenuItem>
+                      <MenuItem value="masculine">Masculino</MenuItem>
+                      <MenuItem value="other">Otro</MenuItem>
+                    </Field>
+                    <ErrorMessage name="gender" component={FormHelperText} />
+                  </FormControl>
+
+                  <FormControl color='secondary'>
+                    <InputLabel htmlFor="cel">Número de Celular</InputLabel>
+                    <Field name='cel' as={Input}/>
+                    <ErrorMessage name="cel" component={FormHelperText}/>
+                  </FormControl>
+
+                  <FormControl color='secondary'>
+                    <InputLabel htmlFor="email">Email</InputLabel>
+                    <Field name='email' as={Input}/>
+                    <ErrorMessage name="email" component={FormHelperText}/>
+                  </FormControl>
+
+                  <FormControl color='secondary'>
+                    <InputLabel htmlFor="password">Contraseña</InputLabel>
+                    <Field name='password' as={Input} type='password'/>
+                    <ErrorMessage name="password" component={FormHelperText}/>
+                  </FormControl>
+
+                  <FormControl color='secondary'>
+                    <InputLabel htmlFor="confirmPassword">Confirme la Contraseña</InputLabel>
+                    <Field name='confirmPassword' as={Input} type='password'/>
+                    <ErrorMessage name="confirmPassword" component={FormHelperText}/>
+                  </FormControl>
 
                   <Button variant="contained"
-                  color='secondary' type='submit'>Submit</Button>
+                  color='secondary' type='submit' disabled={!formik.isValid || !formik.dirty}>Submit</Button>
 
                 </Stack>
-                <pre>{JSON.stringify(formik, null, 4)}</pre>
+                
               </Form>
             )
           }
