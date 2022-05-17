@@ -1,6 +1,6 @@
 import {Component} from 'react';
 import { Form, Formik, ErrorMessage, Field } from "formik";
-import { Avatar, Button, Box, Container, FormControl, Input, InputLabel, FormHelperText, Stack, Select, MenuItem } from '@mui/material';
+import { Avatar, Button, Box, Container, FormControl, Input, InputLabel, FormHelperText, Stack, Select, MenuItem, TextField } from '@mui/material';
 import * as Yup from "yup";
 
 const SignupSchema= Yup.object().shape({
@@ -41,9 +41,11 @@ class App extends Component {
             (formik) => (
               <Form>
                 <Stack spacing={2}>
-                  <FormControl color='secondary'>
+                  <Field name='name' as={TextField} label='Name' error={formik.errors.name} helperText={formik.errors.name} />
+                  <Field name='lastName' as={TextField} label='Last Name' error={formik.errors.lastName} helperText={formik.errors.lastName} />
+                  <FormControl color='secondary' error={formik.errors.name}>
                     <InputLabel htmlFor="name">Nombre</InputLabel>
-                    <Field name='name' as={Input} aria-describedby="helper-name"/>
+                    <Field name='name' as={Input} aria-describedby="helper-name" />
                     <FormHelperText id="helper-name">{formik.errors.name}</FormHelperText>
                   </FormControl>
 
