@@ -1,14 +1,14 @@
 import {
-  getArtistLoading,
-  getArtistSuccess,
-  getArtistError,
+  getArtistsLoading,
+  getArtistsSuccess,
+  getArtistsError,
 } from './actionCreators';
-import { getArtistSelector } from './selectors';
+import { getArtistsSelector } from './selectors';
 
 const token =
-  'BQDHB4MFwC5Liyp1ZAdCxfLrvzHT-xSiB-WJvVmEm8dQAVcX6TrtItqAt1jumW4Nv0hpF03TDqaB1BHg0sQK1gOQnHlvoeuDWfatAFEXcSqNYjw4OoHm_8qD7pNKnPeLEXIfUm4K-z8UksRWr7FGdSggmkuIpmm7aSY';
+  'BQDM4rwwnp_rKyqjRkmnWG6sZfz5Mx-nZpdKXhHsyOyRxd5DOeDMEzSGV667V_rBT8Z9CKEkO9eFop6IVozpwp0F5TAC9Peft5uCdyfMOSyhV0c1t-BOs81KK2wQF0cAksyd59MnPfblVFKOtkcyEAp9Hib6S75jsfM';
 
-function getArtistApi(artistName) {
+function getArtistsApi(artistName) {
   const type = 'artist';
   console.log(`Artist ${artistName}`);
   return fetch(
@@ -35,21 +35,21 @@ function getArtistApi(artistName) {
   );
 }
 
-export const getArtistThunk = (artistName) => (dispatch, getState) => {
+export const getArtistsThunk = (artistName) => (dispatch, getState) => {
   const state = getState();
-  const artist = getArtistSelector(state);
-  console.log(artist);
-  if (artist.lenght > 0){
+  const artists = getArtistsSelector(state);
+  console.log(artists);
+  if (artists.lenght > 0){
       return;
   }
-  dispatch(getArtistLoading());
+  dispatch(getArtistsLoading());
   setTimeout(()=> {
-    getArtistApi(artistName)
+    getArtistsApi(artistName)
       .then((artist) => {
-        dispatch(getArtistSuccess(artist));
+        dispatch(getArtistsSuccess(artist));
       })
     .catch((err)=>{
-        dispatch(getArtistError(err));
+        dispatch(getArtistsError(err));
     });
   },1000);
 };

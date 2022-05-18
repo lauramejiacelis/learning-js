@@ -1,0 +1,26 @@
+.mainContainer {
+    text-align: center;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+.inputContainer {
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.artistsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.artistInfo {
+    display: grid;
+}
+
+.artistImage {
+    width: 350px;
+}
