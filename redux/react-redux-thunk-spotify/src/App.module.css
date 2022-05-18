@@ -20,25 +20,3 @@
     margin: 0 auto;
 }
 
-.artistImage {
-    border-radius: 50%;
-    padding: 10px;
-    height: 200px;
-}
-
-.artistContainer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 10px;
-    justify-content: center;
-    align-items: center;
-}
-
-.artistResults {
-    display: grid;
-    padding: 10px;
-    border: 1px solid LightGray;
-    border-radius: 5%;
-    text-decoration: none;
-}

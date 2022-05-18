@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   album: [],
-  artist: {},
+  artist: [],
   isloading: false,
   error: null,
 };

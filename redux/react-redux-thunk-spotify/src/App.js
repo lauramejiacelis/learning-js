@@ -50,8 +50,16 @@ class App extends Component {
         <div className={styles.artistContainer}>
           
         </div>
-
-
+        {
+          artist.map((artistInfo)=>{
+            console.log(artistInfo)
+            return(
+              <div className={styles.imageContainer}>
+                <img src={artistInfo.image} alt=""/>
+              </div>
+            )
+          })
+        }
         </div>
         
       </div>
