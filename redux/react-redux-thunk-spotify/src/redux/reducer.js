@@ -5,7 +5,7 @@ import {
 } from './types'
 
 const initialState = {
-  album: [],
+  albums: [],
   artists: [],
   isloading: false,
   error: null,
@@ -16,7 +16,7 @@ const getArtistsreducer = (state= initialState, action) => {
     case GET_ARTISTS_LOADING:
       return { ...state, isLoading: true, error: null };
     case GET_ARTISTS_SUCCESS:
-      return { ...state, isLoading: false, artists: action.payload };
+      return { ...state, isLoading: false, artists: action.payload.artists, albums: action.payload.albums};
     case GET_ARTISTS_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
     default:

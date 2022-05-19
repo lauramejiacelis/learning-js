@@ -4,9 +4,9 @@ import {
     GET_ARTISTS_FAILURE,
 } from './types';
 
-export const getArtistsSuccess = (artist) => ({
+export const getArtistsSuccess = (artists, albums) => ({
     type: GET_ARTISTS_SUCCESS,
-    payload: artist,
+    payload: {artists, albums}
 });
 
 export const getArtistsError = (error) => ({

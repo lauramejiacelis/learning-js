@@ -16,8 +16,6 @@ class Home extends Component {
         this.setState({
             input: value,
         })
-        const { artists } = this.props;
-        console.log(artists)
     }
     
     handleSearch = ()=>{
@@ -33,7 +31,7 @@ class Home extends Component {
 
         if (isLoading) return (<h1>Loading...</h1>);
 
-        if (error) return "Oops, an error ocurred"
+        if (error) return (<h1>Oops, an error ocurred</h1>)
 
         return(
             <div>
@@ -54,7 +52,7 @@ class Home extends Component {
                 <div className={styles.artistsContainer}>
                 {
                     artists.map((artistInfo)=>{
-                    console.log(artistInfo)
+                    //console.log(artistInfo)
                     return(
                         <Link 
                         to={`/Artist/${artistInfo.id}`}
