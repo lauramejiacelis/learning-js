@@ -2,7 +2,7 @@ import { Component } from "react";
 import { Link } from "react-router-dom";
 import { withRouter } from './withRouter'
 import { connect } from 'react-redux'
-import { errorSelector, getArtistsSelector, isLoadingSelector } from './redux/selectors';
+import { errorSelector, getAlbumsSelector, getArtistsSelector, isLoadingSelector } from './redux/selectors';
 import { getArtistsThunk } from './redux/thunks';
 
 
@@ -12,9 +12,10 @@ class Artist extends Component {
     }
 
     componentDidMount(){
-        const {id} = this.props.params;
-        console.log(id);
-        this.props.getArtistsThunk(id)
+        const {id, name} = this.props.params;
+        console.log(`artist id clicked: ${id}`);
+        console.log(`artist name clicked: ${name}`)
+        //this.props.getArtistsThunk(id)
     }
     
     render() {
@@ -32,6 +33,7 @@ class Artist extends Component {
 const mapStateToProps = (state) => {
     return {
         artists: getArtistsSelector(state.artists),
+        //albums: getAlbumsSelector(state.albums),
         isLoading: isLoadingSelector(state.artists),
         error: errorSelector(state.artists),
     }

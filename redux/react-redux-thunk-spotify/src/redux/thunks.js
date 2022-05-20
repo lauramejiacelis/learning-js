@@ -6,7 +6,7 @@ import {
 import { getArtistsSelector } from './selectors';
 
 const token =
-  'BQCTofHt7S5gFxA1u_9dZkvKOfwARfYmyTt7nOHcNL_i8fXnDJ44Jt4T63VsUCF566wjN4Z73Mag46vlIvxwqO1DrJ4GE3s9e5PebK0oaP5G4vv_vW0bHqh6pJo_ZFg9Q2Ac4tM8w9Xlw72z10rebgZEM5zl2PauMmYp8OI';
+  'BQC40TaChxTyR4N9sJgmviO_GTRNLHBaeSVrCnGGHVaoWmKmoxCsjMZkEZW-ugd1Ur0lsit21Y0ZFWmw-7BXv9-6KqcdpuOP6_dVC5tqjwP-_3p4w-YRPBpnfRMHCjaeKFXSAgU6rlI6EwPECV2_Rw6FZbj4IxUmke_9syc';
 
 function getArtistsApi(artistName) {
   const type = 'artist';
