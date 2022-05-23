@@ -2,15 +2,16 @@ import {
   getArtistsLoading,
   getArtistsSuccess,
   getArtistsError,
+  getAlbumsSuccess,
 } from './actionCreators';
-import { getArtistsSelector } from './selectors';
+import { getArtistsSelector, getAlbumsSelector } from './selectors';
 
 const token =
-  'BQC40TaChxTyR4N9sJgmviO_GTRNLHBaeSVrCnGGHVaoWmKmoxCsjMZkEZW-ugd1Ur0lsit21Y0ZFWmw-7BXv9-6KqcdpuOP6_dVC5tqjwP-_3p4w-YRPBpnfRMHCjaeKFXSAgU6rlI6EwPECV2_Rw6FZbj4IxUmke_9syc';
+  'BQCIC49px-MZz3BGPfcPm-dckCsx98TKQG7VjSq5D3U7h1nIPe8517K9mbT2Rbp1WwhH-RlvuZg08PyxCRHVl2f1tWWIwOJzF9JMk5WDlHykctbVwHaLtqcuBzZBFHli2vr_6OsIzSaxciVG7n3ZUk5vFUWWzxLrW2Z4-B4';
 
 function getArtistsApi(artistName) {
   const type = 'artist';
-  //console.log(`Artist ${artistName}`);
+  
   return fetch(
     `https://api.spotify.com/v1/search?q=${artistName}&type=${type}`,
     {
@@ -36,7 +37,7 @@ function getArtistsApi(artistName) {
 }
 
 function getAlbumsApi (artistId){
-  console.log(`artist id: ${artistId}`)
+  
   return fetch (
     `https://api.spotify.com/v1/artists/${artistId}/albums`,
     {
@@ -59,7 +60,7 @@ function getAlbumsApi (artistId){
   }))
 }
 
-export const getArtistsThunk = (artistName, artistId) => (dispatch, getState) => {
+export const getArtistsThunk = (artistName) => (dispatch, getState) => {
   const state = getState();
   const artists = getArtistsSelector(state);
   console.log(artists);
@@ -76,9 +77,22 @@ export const getArtistsThunk = (artistName, artistId) => (dispatch, getState) =>
         dispatch(getArtistsError(err));
     });
   },1000);
-
-  
-  getAlbumsApi(artistId)
-
-
 };
+
+export const getAlbumsThunk = (artistId) => (dispatch, getState) => {
+  const state = getState();
+  const albums = getAlbumsSelector(state);
+  console.log(albums)
+  dispatch(getArtistsLoading())
+
+  setTimeout(()=>{
+    getAlbumsApi(artistId)
+      .then((album)=>{
+        dispatch(getAlbumsSuccess(album))
+      })
+    .catch((err)=>{
+      dispatch(getArtistsError(err))
+    })
+  },1000)
+  
+}

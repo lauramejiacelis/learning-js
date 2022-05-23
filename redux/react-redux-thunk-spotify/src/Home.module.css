@@ -19,6 +19,8 @@
 
 .artistInfo {
     display: grid;
+    text-decoration: none;
+    color: black;
 }
 
 .artistImage {

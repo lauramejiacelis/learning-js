@@ -58,7 +58,7 @@ class Home extends Component {
                         to={`/Artist/${artistInfo.id}`}
                         className={styles.artistInfo}>
                         <img className={styles.artistImage} src={artistInfo.image} alt=""/>
-                        {artistInfo.name}
+                        <h4>{artistInfo.name}</h4>
                         </Link>
                     )
                     })

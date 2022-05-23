@@ -1,0 +1,33 @@
+h1{
+    text-align: center;
+}
+
+.home {
+    text-decoration: none;
+    color: white;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    
+}
+
+.homeIcon{
+    width: 20px;
+}
+
+.homeTittle{
+    font-weight: bolder;
+    vertical-align: middle;
+}
+
+.albumsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+}
+
+.albumInfo{
+    width: 350px;
+    text-align: center;
+}
