@@ -1,13 +1,12 @@
 import {
-  getArtistsLoading,
+  getLoading,
   getArtistsSuccess,
-  getArtistsError,
+  getError,
   getAlbumsSuccess,
 } from './actionCreators';
-import { getArtistsSelector, getAlbumsSelector } from './selectors';
 
 const token =
-  'BQCIC49px-MZz3BGPfcPm-dckCsx98TKQG7VjSq5D3U7h1nIPe8517K9mbT2Rbp1WwhH-RlvuZg08PyxCRHVl2f1tWWIwOJzF9JMk5WDlHykctbVwHaLtqcuBzZBFHli2vr_6OsIzSaxciVG7n3ZUk5vFUWWzxLrW2Z4-B4';
+  'BQC_f4YJ04L3fDtrm7vSuw6tt6cFj1jg3wF7GQ_PIY0_Yqh0gwINOMEFDDDxcrRfxyw0jmqm6AFQB3Wi7iuqjnXvuA2zcbW77oX8vx3hh9aPPC2U1e9TRLsmURXRVGR-wS75Na7B9pM1vt4FUesEe5VAvgsFeZcNAuvEjEU';
 
 function getArtistsApi(artistName) {
   const type = 'artist';
@@ -60,30 +59,21 @@ function getAlbumsApi (artistId){
   }))
 }
 
-export const getArtistsThunk = (artistName) => (dispatch, getState) => {
-  const state = getState();
-  const artists = getArtistsSelector(state);
-  console.log(artists);
-  if (artists.lenght > 0){
-      return;
-  }
-  dispatch(getArtistsLoading());
+export const getArtistsThunk = (artistName) => (dispatch) => {
+  dispatch(getLoading());
   setTimeout(()=> {
     getArtistsApi(artistName)
       .then((artist) => {
         dispatch(getArtistsSuccess(artist));
       })
     .catch((err)=>{
-        dispatch(getArtistsError(err));
+        dispatch(getError(err));
     });
   },1000);
 };
 
-export const getAlbumsThunk = (artistId) => (dispatch, getState) => {
-  const state = getState();
-  const albums = getAlbumsSelector(state);
-  console.log(albums)
-  dispatch(getArtistsLoading())
+export const getAlbumsThunk = (artistId) => (dispatch) => {
+  dispatch(getLoading())
 
   setTimeout(()=>{
     getAlbumsApi(artistId)
@@ -91,7 +81,7 @@ export const getAlbumsThunk = (artistId) => (dispatch, getState) => {
         dispatch(getAlbumsSuccess(album))
       })
     .catch((err)=>{
-      dispatch(getArtistsError(err))
+      dispatch(getError(err))
     })
   },1000)
   
