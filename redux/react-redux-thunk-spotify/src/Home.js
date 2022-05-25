@@ -55,7 +55,7 @@ class Home extends Component {
                     //console.log(artistInfo)
                     return(
                         <Link 
-                        to={`/Artist/${artistInfo.id}`}
+                        to={`/artist/${artistInfo.id}`}
                         className={styles.artistInfo}>
                         <img className={styles.artistImage} src={artistInfo.image} alt=""/>
                         <h4>{artistInfo.name}</h4>
