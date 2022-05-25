@@ -1,0 +1,4 @@
+export const GET_LOADING = 'GET_LOADING';
+export const GET_FAILURE = 'GET_FAILURE';
+
+export const GET_POKEMONS_SUCCESS = 'GET_POKEMONS_SUCCESS';
