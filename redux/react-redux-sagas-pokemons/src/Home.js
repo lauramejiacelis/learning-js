@@ -5,10 +5,8 @@ import { getLoading, getPokemonsSelector, getPokemonsSuccess } from "./redux/pok
 
 class Home extends PureComponent {
     componentDidMount(){
-        const {dispatch, pokemons} = this.props;
-        console.log(pokemons)
-        //console.log(dispatch(getLoading()))
-        dispatch(getPokemonsSuccess(pokemons))
+        const {getLoading} = this.props;
+        getLoading();
     }
 
     render (){
@@ -26,4 +24,8 @@ const mapStateToProps = (state) =>({
     pokemons: getPokemonsSelector(state),
 })
 
-export default connect(mapStateToProps)(Home);
+const mapDispatchToProps = {
+    getLoading
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

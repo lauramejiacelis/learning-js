@@ -8,15 +8,14 @@ import { getPokemonsApi } from '../../pokemonsApi';
 
 function* getPokemons(){
     try{
-        debugger;
         yield call(getPokemonsApi);
         //console.log(`we're on getPokemons ${pokemons}`)
-        return yield put(getPokemonsSuccess)
+        yield put(getPokemonsSuccess())
     } catch(error){
         return put(getError)
     }
 }
 
 export function* pokemonsSagas() {
-    yield takeEvery(TYPES.GET_POKEMONS_SUCCESS, getPokemons)
+    yield takeEvery(TYPES.GET_LOADING, getPokemons) //escuchar la acción
 }

@@ -2,7 +2,7 @@ import {PureComponent} from 'react';
 import styles from './App.module.css';
 import { Routes, Route } from 'react-router-dom';
 import Home from './Home';
-import Pokedex from './Pokedex';
+//import Pokedex from './Pokedex';
 
 class App extends PureComponent {
   render () {
@@ -14,7 +14,7 @@ class App extends PureComponent {
 
         <Routes>
           <Route path='/' element={<Home/>}/>
-          <Route path='/pokedex' element={<Pokedex/>}/>
+          {/* <Route path='/pokedex' element={<Pokedex/>}/> */}
         </Routes>
 
       </div>
