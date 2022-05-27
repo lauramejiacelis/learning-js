@@ -14,7 +14,11 @@ class Home extends PureComponent {
         return(
             <div>
                 <h2>Pokemons List</h2>
-                
+                <ul>
+                    {pokemons.map((name)=>(
+                        <li>{name}</li>
+                    ))}
+                </ul>
             </div>
         )
     }
@@ -28,4 +32,4 @@ const mapDispatchToProps = {
     getLoading
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home); 

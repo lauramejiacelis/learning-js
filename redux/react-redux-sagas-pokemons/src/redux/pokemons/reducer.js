@@ -15,7 +15,7 @@ export const getPokemonsreducer = (state = initialState, action) => {
         case GET_LOADING:
             return {...state, isloading: true, error: null}
         case GET_POKEMONS_SUCCESS:
-            return {...state, isloading: false, pokemons: action.payload.pokemons}
+            return {...state, isloading: false, pokemons: action.payload}
         case GET_FAILURE:
             return {...state, isloading:false, error:action.payload}
         default:

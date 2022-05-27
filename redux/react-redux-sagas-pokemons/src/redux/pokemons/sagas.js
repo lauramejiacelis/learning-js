@@ -8,9 +8,9 @@ import { getPokemonsApi } from '../../pokemonsApi';
 
 function* getPokemons(){
     try{
-        yield call(getPokemonsApi);
-        //console.log(`we're on getPokemons ${pokemons}`)
-        yield put(getPokemonsSuccess())
+        const pokemons = yield call(getPokemonsApi);
+        console.log(pokemons)
+        yield put(getPokemonsSuccess(pokemons))
     } catch(error){
         return put(getError)
     }
