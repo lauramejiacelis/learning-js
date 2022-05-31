@@ -1,14 +1,33 @@
-import { PureComponent } from "react";
-
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable react/jsx-filename-extension */
+import { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import styles from './Home.module.css';
+import { getCharactersSelector, getLoading } from './redux/characters';
 
 class Home extends PureComponent {
-    render() {
-        return(
-            <div> 
-                <h2>Home</h2>
-            </div>
-        )
-    }
+  componentDidMount() {
+    const { getLoading } = this.props;
+    getLoading();
+  }
+
+  render() {
+    return (
+      <div className={styles.homeContainer}>
+        <h2>All Characters</h2>
+      </div>
+    );
+  }
 }
 
-export default Home;
+const mapStateToProps = (state) => ({
+  characters: getCharactersSelector(state),
+});
+
+const mapDispatchToProps = {
+  getLoading,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

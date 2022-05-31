@@ -1,20 +1,26 @@
-import {PureComponent} from 'react';
+/* eslint-disable react/jsx-filename-extension */
+import { PureComponent, React } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Home from './Home'
-import styles from './App.module.css'
+import Home from './Home';
+import styles from './App.module.css';
 
 class App extends PureComponent {
-
-  render(){
+  render() {
     return (
-      <div>
-        <img className={styles.appLogo} alt='logo Rick and Morty' src='https://upload.wikimedia.org/wikipedia/commons/b/b1/Rick_and_Morty.svg'/>
-        <h1>My App Rick And Morty</h1>
+      <div className={styles.mainContainer}>
+        <div className={styles.tittleContainer}>
+          <h1>The Rick and Morty API</h1>
+          <img
+            className={styles.bgImage}
+            alt="Rick And Morty"
+            src="https://repository-images.githubusercontent.com/120371205/b6740400-92d4-11ea-8a13-d5f6e0558e9b"
+          />
+        </div>
         <Routes>
-          <Route path='/' element={<Home/>}/>
+          <Route path="/" element={<Home />} />
         </Routes>
       </div>
-    )
+    );
   }
 }
 
