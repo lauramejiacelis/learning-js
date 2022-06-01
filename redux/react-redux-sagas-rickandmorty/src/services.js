@@ -6,21 +6,17 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable import/prefer-default-export */
 export function getCharactersApi() {
-  fetch('https://rickandmortyapi.com/api/character')
+  return fetch('https://rickandmortyapi.com/api/character')
     .then((res) => res.json())
     .then(({ results }) =>
-      results.map(({ id, name, status, species, origin, location, image }) => {
-        const originName = origin.name;
-        const locationName = location.name;
-        return {
-          id,
-          name,
-          status,
-          species,
-          originName,
-          locationName,
-          image,
-        };
-      })
+      results.map(({ id, name, status, species, origin, location, image }) => ({
+        id,
+        name,
+        status,
+        species,
+        originName: origin.name,
+        locationName: location.name,
+        image,
+      }))
     );
 }

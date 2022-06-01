@@ -1,0 +1,44 @@
+.homeContainer {
+  background-color: #24282f;
+}
+
+.charactersContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+}
+
+.characterInfo {
+  background-color: #3c3e44;
+  border-radius: 10px;
+  overflow: hidden;
+  color: whitesmoke;
+  display: flex;
+  gap: 15px;
+}
+
+.imageContainer {
+  vertical-align: middle;
+}
+
+.characterImage {
+  width: 250px;
+}
+
+.characterData {
+  width: 300px;
+  height: 250px;
+  line-height: 80%;
+  vertical-align: middle;
+}
+
+.icon {
+  width: 10px;
+}
+
+.characterData h3 {
+  color: lightgray;
+}
