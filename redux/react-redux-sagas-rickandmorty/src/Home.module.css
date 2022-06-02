@@ -1,5 +1,44 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .homeContainer {
   background-color: #24282f;
+}
+
+.initialContainer {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  background-color: white;
+}
+
+.tittleContainer {
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+
+.tittleContainer h1 {
+  padding: 30px;
+  position: relative;
+  z-index: 2;
+  font-size: 500%;
+  font-weight: 900;
+}
+
+.bgImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: auto;
+  height: 300px;
+  opacity: 0.2;
 }
 
 .charactersContainer {
@@ -33,6 +72,16 @@
   height: 250px;
   line-height: 80%;
   vertical-align: middle;
+}
+
+.characterName {
+  text-decoration: none;
+  color: white;
+}
+
+.characterName :hover {
+  text-decoration: none;
+  color: lightgreen;
 }
 
 .icon {

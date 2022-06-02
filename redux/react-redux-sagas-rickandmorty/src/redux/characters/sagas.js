@@ -6,8 +6,8 @@
 /* eslint-disable no-console */
 /* eslint-disable import/prefer-default-export */
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { getCharactersApi } from '../../services';
-import { GET_LOADING } from './types';
+import { getCharactersApi, getOneCharacter } from '../../services';
+import { GET_LOADING, GET_LOADING_ONE_CHARACTER } from './types';
 import { getCharactersSuccess, getError } from './actionCreators';
 
 function* getCharacters() {
@@ -20,6 +20,17 @@ function* getCharacters() {
   }
 }
 
+function* getCharacter() {
+  try {
+    const character = yield call(getOneCharacter);
+    console.log(character);
+    yield put(getCharactersSuccess(character));
+  } catch (error) {
+    yield put(getError());
+  }
+}
+
 export function* charactersSagas() {
   yield takeEvery(GET_LOADING, getCharacters);
+  yield takeEvery(GET_LOADING_ONE_CHARACTER, getCharacter);
 }

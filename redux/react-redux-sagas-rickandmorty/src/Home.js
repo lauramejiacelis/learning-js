@@ -4,6 +4,7 @@
 /* eslint-disable react/jsx-filename-extension */
 import { PureComponent } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import styles from './Home.module.css';
 import { getCharactersSelector, getLoading } from './redux/characters';
 
@@ -17,6 +18,17 @@ class Home extends PureComponent {
     const { characters } = this.props;
     return (
       <div className={styles.homeContainer}>
+        <div className={styles.initialContainer}>
+          <div className={styles.tittleContainer}>
+            <h1>The Rick and Morty API</h1>
+            <img
+              className={styles.bgImage}
+              alt="Rick And Morty"
+              src="https://repository-images.githubusercontent.com/120371205/b6740400-92d4-11ea-8a13-d5f6e0558e9b"
+            />
+          </div>
+        </div>
+
         <div className={styles.charactersContainer}>
           {characters.map((character) => {
             return (
@@ -28,7 +40,12 @@ class Home extends PureComponent {
                 />
 
                 <div className={styles.characterData}>
-                  <h2>{character.name}</h2>
+                  <Link
+                    className={styles.characterName}
+                    to={`/character/${character.id}`}
+                  >
+                    <h2>{character.name}</h2>
+                  </Link>
                   <p>
                     <img
                       className={styles.icon}
