@@ -6,6 +6,7 @@ import {
   GET_CHARACTERS_SUCCESS,
   GET_FAILURE,
   GET_ONE_CHARACTER_SUCCESS,
+  GET_LOADING_ONE_CHARACTER,
 } from './types';
 
 const initialStateLoading = {
@@ -21,6 +22,7 @@ const initialStateFailure = {
 };
 
 const initialStateOneCharacter = {
+  id: 0,
   character: [],
 };
 //duda con estos reducers
@@ -28,6 +30,15 @@ export const loadingReducer = (state = initialStateLoading, action) => {
   switch (action.type) {
     case GET_LOADING:
       return { ...state, isloading: true, error: null };
+    default:
+      return state;
+  }
+};
+
+export const loadingReducerOne = (state = initialStateLoading, action) => {
+  switch (action.type) {
+    case GET_LOADING_ONE_CHARACTER:
+      return { ...state, isloading: true, error: null, id: action.payload };
     default:
       return state;
   }
@@ -62,7 +73,11 @@ export const oneCharacterReducer = (
 ) => {
   switch (action.type) {
     case GET_ONE_CHARACTER_SUCCESS:
-      return { ...state, character: action.payload };
+      return {
+        ...state,
+        id: action.payload.id,
+        character: action.payload.character,
+      };
     default:
       return state;
   }

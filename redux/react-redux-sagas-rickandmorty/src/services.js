@@ -21,6 +21,7 @@ export function getCharactersApi() {
     );
 }
 
+//Revisar que esto no necesita results... revisar insomnia
 export function getOneCharacter(id) {
   return fetch(`https://rickandmortyapi.com/api/character/${id}`)
     .then((res) => res.json())

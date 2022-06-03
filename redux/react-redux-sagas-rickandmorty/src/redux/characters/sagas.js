@@ -8,7 +8,12 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { getCharactersApi, getOneCharacter } from '../../services';
 import { GET_LOADING, GET_LOADING_ONE_CHARACTER } from './types';
-import { getCharactersSuccess, getError } from './actionCreators';
+import {
+  getCharactersSuccess,
+  getError,
+  getOneCharacterSuccess,
+  getLoadingOneCharacter,
+} from './actionCreators';
 
 function* getCharacters() {
   try {
@@ -20,11 +25,12 @@ function* getCharacters() {
   }
 }
 
-function* getCharacter() {
+function* getCharacter(id) {
   try {
-    const character = yield call(getOneCharacter);
+    id = 3;
+    const character = yield call(getOneCharacter, id);
     console.log(character);
-    yield put(getCharactersSuccess(character));
+    yield put(getOneCharacterSuccess(character));
   } catch (error) {
     yield put(getError());
   }

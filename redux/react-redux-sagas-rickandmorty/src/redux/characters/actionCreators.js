@@ -10,8 +10,9 @@ export const getLoading = () => ({
   type: GET_LOADING,
 });
 
-export const getLoadingOneCharacter = () => ({
+export const getLoadingOneCharacter = (id) => ({
   type: GET_LOADING_ONE_CHARACTER,
+  payload: id,
 });
 
 export const getError = (error) => ({
@@ -24,7 +25,7 @@ export const getCharactersSuccess = (characters) => ({
   payload: characters,
 });
 
-export const getOneCharactersSuccess = (character) => ({
+export const getOneCharacterSuccess = (character) => ({
   type: GET_ONE_CHARACTER_SUCCESS,
   payload: character,
 });
