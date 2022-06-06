@@ -13,15 +13,24 @@ class Character extends PureComponent {
     const { getLoadingOneCharacter } = this.props;
     getLoadingOneCharacter();
     console.log(getLoadingOneCharacter(id));
-    const { character } = this.props;
-    console.log(character);
+    
   }
 
   render() {
+    const { character } = this.props;
+    console.log(character);
     return (
       <div>
         <h3>Character</h3>
-        <div></div>
+        <img alt='character'
+        src={character.image}/>
+        <div>
+            <h3>{character.name}</h3>
+            <p>{character.status} {character.species}</p>
+            {character.gender}
+            {character.origin} {character.location}
+            {character.created}
+        </div>
       </div>
     );
   }

@@ -27,7 +27,6 @@ function* getCharacters() {
 
 function* getCharacter(id) {
   try {
-    id = 3;
     const character = yield call(getOneCharacter, id);
     console.log(character);
     yield put(getOneCharacterSuccess(character));
@@ -38,5 +37,5 @@ function* getCharacter(id) {
 
 export function* charactersSagas() {
   yield takeEvery(GET_LOADING, getCharacters);
-  yield takeEvery(GET_LOADING_ONE_CHARACTER, getCharacter);
+  yield takeEvery(GET_LOADING_ONE_CHARACTER, getCharacter, 1);
 }

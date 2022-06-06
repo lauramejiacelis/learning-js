@@ -23,29 +23,16 @@ export function getCharactersApi() {
 
 //Revisar que esto no necesita results... revisar insomnia
 export function getOneCharacter(id) {
-  return fetch(`https://rickandmortyapi.com/api/character/${id}`)
-    .then((res) => res.json())
-    .then((results) =>
-      results.map(
-        ({
-          name,
-          status,
-          species,
-          gender,
-          origin,
-          location,
-          image,
-          created,
-        }) => ({
-          name,
-          status,
-          species,
-          gender,
-          originName: origin.name,
-          locationName: location.name,
-          image,
-          created,
-        })
-      )
-    );
-}
+    return fetch(`https://rickandmortyapi.com/api/character/${id}`)
+      .then((res) => res.json())
+      .then((results) => ({
+        name: results.name,
+        status: results.status,
+        species: results.species,
+        gender: results.gender,
+        origin: results.origin.name,
+        location: results.location.name,
+        image: results.image,
+        created: results.created
+      }));
+  }

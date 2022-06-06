@@ -22,7 +22,6 @@ const initialStateFailure = {
 };
 
 const initialStateOneCharacter = {
-  id: 0,
   character: [],
 };
 //duda con estos reducers
@@ -75,8 +74,7 @@ export const oneCharacterReducer = (
     case GET_ONE_CHARACTER_SUCCESS:
       return {
         ...state,
-        id: action.payload.id,
-        character: action.payload.character,
+        character: action.payload,
       };
     default:
       return state;
