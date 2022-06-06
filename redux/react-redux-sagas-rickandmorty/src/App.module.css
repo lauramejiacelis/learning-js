@@ -3,9 +3,11 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.header {
-  background-color: white;
-  border-bottom: 1px solid grey;
+.topnav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .homeLinkImage {
@@ -15,4 +17,17 @@
 
 .headerText {
   text-decoration: none;
+  text-align: center;
+  padding: 14px 16px;
+  font-weight: bold;
+  font-size: 19px;
+  color: black;
+}
+
+.headerText :hover {
+  color: #ff9800;
+}
+
+.headerText .active {
+  color: #ff9800;
 }

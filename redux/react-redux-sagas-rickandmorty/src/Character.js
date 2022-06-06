@@ -5,6 +5,7 @@ import {
   getLoadingOneCharacter,
 } from './redux/characters';
 import withRouter from './withRouter';
+import styles from './Character.module.css';
 
 class Character extends PureComponent {
   componentDidMount() {
@@ -13,23 +14,30 @@ class Character extends PureComponent {
     const { getLoadingOneCharacter } = this.props;
     getLoadingOneCharacter();
     console.log(getLoadingOneCharacter(id));
-    
   }
 
   render() {
     const { character } = this.props;
     console.log(character);
     return (
-      <div>
-        <h3>Character</h3>
-        <img alt='character'
-        src={character.image}/>
-        <div>
-            <h3>{character.name}</h3>
-            <p>{character.status} {character.species}</p>
-            {character.gender}
-            {character.origin} {character.location}
-            {character.created}
+      <div className={styles.characterContainer}>
+        <img
+          className={styles.characterImage}
+          alt="character"
+          src={character.image}
+        />
+        <div className={styles.characterInfo}>
+          <h3>{character.name}</h3>
+          <p>
+            {character.status} | {character.species}
+          </p>
+          {character.gender}
+          <p>First seen in: </p>
+          {character.origin}
+          <p>Last known location: </p>
+          {character.location}
+          <p>Created: </p>
+          {character.created}
         </div>
       </div>
     );

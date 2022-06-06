@@ -12,7 +12,6 @@ import {
   getCharactersSuccess,
   getError,
   getOneCharacterSuccess,
-  getLoadingOneCharacter,
 } from './actionCreators';
 
 function* getCharacters() {
@@ -25,9 +24,9 @@ function* getCharacters() {
   }
 }
 
-function* getCharacter(id) {
+function* getCharacter(action) {
   try {
-    const character = yield call(getOneCharacter, id);
+    const character = yield call(getOneCharacter, action.payload);
     console.log(character);
     yield put(getOneCharacterSuccess(character));
   } catch (error) {
@@ -37,5 +36,5 @@ function* getCharacter(id) {
 
 export function* charactersSagas() {
   yield takeEvery(GET_LOADING, getCharacters);
-  yield takeEvery(GET_LOADING_ONE_CHARACTER, getCharacter, 1);
+  yield takeEvery(GET_LOADING_ONE_CHARACTER, getCharacter);
 }
