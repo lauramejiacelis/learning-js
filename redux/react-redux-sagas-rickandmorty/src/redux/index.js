@@ -5,7 +5,7 @@ import createSagaMiddleware from 'redux-saga';
 import {
   charactersReducer,
   charactersSagas,
-  failureReducer,
+  errorReducer,
   loadingReducer,
   oneCharacterReducer,
 } from './characters';
@@ -20,7 +20,7 @@ const sagaMiddleware = createSagaMiddleware();
 const reducer = combineReducers({
   loading: loadingReducer,
   characters: charactersReducer,
-  failure: failureReducer,
+  error: errorReducer,
   character: oneCharacterReducer,
 });
 
