@@ -27,3 +27,18 @@
   color: lightslategray;
   font-weight: bolder;
 }
+
+.status {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}

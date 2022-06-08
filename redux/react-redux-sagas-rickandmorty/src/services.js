@@ -5,6 +5,8 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable object-curly-newline */
 /* eslint-disable import/prefer-default-export */
+import styles from './Home.module.css';
+
 export function getCharactersApi() {
   return fetch('https://rickandmortyapi.com/api/character')
     .then((res) => res.json())
@@ -23,16 +25,31 @@ export function getCharactersApi() {
 
 //Revisar que esto no necesita results... revisar insomnia
 export function getOneCharacter(id) {
-    return fetch(`https://rickandmortyapi.com/api/character/${id}`)
-      .then((res) => res.json())
-      .then((results) => ({
-        name: results.name,
-        status: results.status,
-        species: results.species,
-        gender: results.gender,
-        origin: results.origin.name,
-        location: results.location.name,
-        image: results.image,
-        created: results.created
-      }));
-  }
+  return fetch(`https://rickandmortyapi.com/api/character/${id}`)
+    .then((res) => res.json())
+    .then((results) => ({
+      name: results.name,
+      status: results.status,
+      species: results.species,
+      gender: results.gender,
+      origin: results.origin.name,
+      location: results.location.name,
+      image: results.image,
+      created: results.created,
+    }));
+}
+
+const MAP_STATUS = {
+  Alive: 'green',
+  Dead: 'red',
+  unknown: 'gray',
+};
+
+export function CircleStatus({ status }) {
+  return (
+    <div
+      className={styles.circle}
+      style={{ backgroundColor: MAP_STATUS[status] }}
+    ></div>
+  );
+}

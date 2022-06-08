@@ -6,7 +6,16 @@ import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styles from './Home.module.css';
-import { getCharactersSelector, getLoading } from './redux/characters';
+import {
+  errorSelector,
+  getCharactersSelector,
+  getLoading,
+  isLoadingSelector,
+} from './redux/characters';
+import { CircleStatus } from './services';
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 class Home extends PureComponent {
   componentDidMount() {
@@ -15,7 +24,30 @@ class Home extends PureComponent {
   }
 
   render() {
-    const { characters } = this.props;
+    const { characters, loading, error } = this.props;
+
+    if (loading) {
+      toast('Loading...', {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      return (
+        <div>
+          <ToastContainer autoClose={3000} />
+        </div>
+      );
+    }
+
+    if (error) {
+      toast.error('error', {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      return (
+        <div>
+          <ToastContainer autoClose={3000} />
+        </div>
+      );
+    }
+
     return (
       <div className={styles.homeContainer}>
         <div className={styles.initialContainer}>
@@ -46,18 +78,14 @@ class Home extends PureComponent {
                   >
                     <h2>{character.name}</h2>
                   </Link>
-                  <p>
-                    <img
-                      className={styles.icon}
-                      alt="green"
-                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Ski_trail_rating_symbol-green_circle.svg/1024px-Ski_trail_rating_symbol-green_circle.svg.png"
-                    />
-                    {character.status}-{character.species}
-                  </p>
-                  <p>
+                  <div className={styles.status}>
+                    <CircleStatus status={character.status} />
+                    {character.status} - {character.species}
+                  </div>
+                  <div>
                     <h3>Last Known Location:</h3>
                     {character.locationName}
-                  </p>
+                  </div>
                   <p>
                     <h3>First seen in:</h3>
                     {character.originName}
@@ -74,6 +102,8 @@ class Home extends PureComponent {
 
 const mapStateToProps = (state) => ({
   characters: getCharactersSelector(state),
+  loading: isLoadingSelector(state),
+  error: errorSelector(state),
 });
 
 const mapDispatchToProps = {

@@ -1,11 +1,15 @@
 import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import {
+  errorSelector,
   getCharacterSelector,
   getLoadingOneCharacter,
+  isLoadingSelector,
 } from './redux/characters';
 import withRouter from './withRouter';
 import styles from './Character.module.css';
+import { CircleStatus } from './services';
+import { ToastContainer, toast } from 'react-toastify';
 
 class Character extends PureComponent {
   componentDidMount() {
@@ -17,8 +21,30 @@ class Character extends PureComponent {
   }
 
   render() {
-    const { character } = this.props;
-    console.log(character);
+    const { character, loading, error } = this.props;
+
+    if (loading) {
+      toast('Loading...', {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      return (
+        <div>
+          <ToastContainer autoClose={3000} />
+        </div>
+      );
+    }
+
+    if (error) {
+      toast.error('error', {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      return (
+        <div>
+          <ToastContainer autoClose={3000} />
+        </div>
+      );
+    }
+
     return (
       <div className={styles.characterContainer}>
         <img
@@ -28,9 +54,10 @@ class Character extends PureComponent {
         />
         <div className={styles.characterInfo}>
           <h3>{character.name}</h3>
-          <p>
+          <div className={styles.status}>
+            <CircleStatus status={character.status} />
             {character.status} | {character.species}
-          </p>
+          </div>
           {character.gender}
           <p>First seen in: </p>
           {character.origin}
@@ -46,6 +73,8 @@ class Character extends PureComponent {
 
 const mapStateToProps = (state) => ({
   character: getCharacterSelector(state),
+  loading: isLoadingSelector(state),
+  error: errorSelector(state),
 });
 
 const mapDispatchToProps = {

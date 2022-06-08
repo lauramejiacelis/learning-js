@@ -9,35 +9,24 @@ import {
   GET_LOADING_ONE_CHARACTER,
 } from './types';
 
-const initialStateLoading = {
-  isloading: false,
-};
+const initialStateLoading = false;
 
-const initialState = {
-  characters: [],
-};
+const initialState = [];
 
-const initialStateFailure = {
-  error: null,
-};
+const initialStateFailure = null;
 
-const initialStateOneCharacter = {
-  character: [],
-};
+const initialStateOneCharacter = {};
+
 //duda con estos reducers
 export const loadingReducer = (state = initialStateLoading, action) => {
   switch (action.type) {
     case GET_LOADING:
-      return { ...state, isloading: true, error: null };
-    default:
-      return state;
-  }
-};
-
-export const loadingReducerOne = (state = initialStateLoading, action) => {
-  switch (action.type) {
     case GET_LOADING_ONE_CHARACTER:
-      return { ...state, isloading: true, error: null, id: action.payload };
+      return true;
+    case GET_CHARACTERS_SUCCESS:
+    case GET_ONE_CHARACTER_SUCCESS:
+    case GET_FAILURE:
+      return false;
     default:
       return state;
   }
@@ -46,21 +35,23 @@ export const loadingReducerOne = (state = initialStateLoading, action) => {
 export const charactersReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_CHARACTERS_SUCCESS:
-      return {
-        ...state,
-        isloading: false,
-        error: null,
-        characters: action.payload,
-      };
+      return action.payload;
+    case GET_FAILURE:
+      return [];
     default:
       return state;
   }
 };
 
-export const failureReducer = (state = initialStateFailure, action) => {
+export const errorReducer = (state = initialStateFailure, action) => {
   switch (action.type) {
     case GET_FAILURE:
-      return { ...state, isloading: false, error: action.payload };
+      return  action.payload;
+    case GET_LOADING:
+    case GET_LOADING_ONE_CHARACTER:
+    case GET_CHARACTERS_SUCCESS:
+    case GET_ONE_CHARACTER_SUCCESS:
+      return null;
     default:
       return state;
   }
@@ -72,10 +63,9 @@ export const oneCharacterReducer = (
 ) => {
   switch (action.type) {
     case GET_ONE_CHARACTER_SUCCESS:
-      return {
-        ...state,
-        character: action.payload,
-      };
+      return action.payload;
+    case GET_FAILURE:
+      return {};
     default:
       return state;
   }
