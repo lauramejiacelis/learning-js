@@ -1,0 +1,4 @@
+const initialStateCharacter = {
+    character: []
+}
+

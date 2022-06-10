@@ -1,0 +1,3 @@
+export const GET_LOADING = "GET_LOADING";
+export const GET_CHARACTERS = "GET_CHARACTERS";
+export const GET_FAILURE = "GET_FAILURE";
