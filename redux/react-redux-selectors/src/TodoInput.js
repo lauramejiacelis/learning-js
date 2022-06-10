@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react";
-import { TODO_STATUS } from "./constants";
-import { capitalize } from "./helpers";
+import { TODO_STATUS, TODO_STATUS_LABEL } from "./constants";
 import {
   FormControl,
   FormLabel,
@@ -12,11 +11,6 @@ import {
 } from "@chakra-ui/react";
 import { connect } from "react-redux";
 import { addTodo } from "./redux/todos";
-
-const TODOS_SELECT = Object.values(TODO_STATUS).map((value) => ({
-  label: capitalize(value),
-  value,
-}));
 
 class TodoInput extends PureComponent {
   state = {
@@ -57,7 +51,7 @@ class TodoInput extends PureComponent {
               value={this.state.status}
               onChange={this.handleChange}
             >
-              {TODOS_SELECT.map(({ label, value }) => (
+              {TODO_STATUS_LABEL.map(({ label, value }) => (
                 <option value={value}>{label}</option>
               ))}
             </Select>
