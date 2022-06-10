@@ -1,19 +1,17 @@
 import { PureComponent } from "react";
-import { TODO_STATUS } from "./constants";
-import { capitalize } from "./helpers";
-import { Tabs, TabList, TabPanels, TabPanel, Tab } from "@chakra-ui/react";
+import { TODO_STATUS, TODO_STATUS_LABEL } from "./constants";
+import { Tabs, TabList, TabPanels, TabPanel } from "@chakra-ui/react";
 import { connect } from "react-redux";
 import TodoList from "./TodoList";
-
-const TODOS_TABS = Object.values(TODO_STATUS).map((value) => capitalize(value));
+import TodoTab from "./TodoTab";
 
 class TodoContainer extends PureComponent {
   render() {
     return (
       <Tabs>
         <TabList>
-          {TODOS_TABS.map((tab) => (
-            <Tab>{tab}</Tab>
+          {TODO_STATUS_LABEL.map(({ label, value }) => (
+            <TodoTab name={label} status={value} />
           ))}
         </TabList>
         <TabPanels>
