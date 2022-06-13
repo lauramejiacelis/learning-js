@@ -35,7 +35,9 @@ function TopNav (){
           <Image
             boxSize='70px'
             src='https://iselareyesperdomo94.github.io/MEX-Data-Lovers-008/src/img/rmicon.svg'
-            alt='Logo'/>
+            alt='Logo'
+            bg='gray.100'
+            borderRadius='50'/>
         </Link>
       </Box>
       <Box>

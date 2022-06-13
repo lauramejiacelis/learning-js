@@ -9,4 +9,6 @@ class Character extends PureComponent {
     }
 }
 
+
+
 export default Character
