@@ -1,3 +1,4 @@
-export const GET_LOADING = "GET_LOADING";
-export const GET_CHARACTERS = "GET_CHARACTERS";
-export const GET_FAILURE = "GET_FAILURE";
+export const GET_LOADING = 'GET_LOADING';
+export const GET_CHARACTERS = 'GET_CHARACTERS';
+export const GET_SINGLE_CHARACTER = 'GET_SINGLE_CHARACTER';
+export const GET_FAILURE = 'GET_FAILURE';

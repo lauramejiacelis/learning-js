@@ -1,17 +1,23 @@
-import {createStore, applyMiddleware, combineReducers} from 'redux'
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import {charactersReducer, loadingReducer, errorReducer} from './characters'
+import {
+  charactersReducer,
+  loadingReducer,
+  errorReducer,
+  singleCharacteReducer,
+} from './characters';
 
 const composeEnhancers =
   typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 
 const reducer = combineReducers({
-    loading: loadingReducer,
-    characters: charactersReducer,
-    error: errorReducer
-})
+  loading: loadingReducer,
+  characters: charactersReducer,
+  singleCharacter: singleCharacteReducer,
+  error: errorReducer,
+});
 
 export default createStore(
-    reducer,
-    composeEnhancers(applyMiddleware(thunkMiddleware))
-)
+  reducer,
+  composeEnhancers(applyMiddleware(thunkMiddleware))
+);

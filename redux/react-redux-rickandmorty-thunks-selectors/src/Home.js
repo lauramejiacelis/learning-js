@@ -1,42 +1,42 @@
-import { PureComponent } from "react";
+import { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { getCharactersSelector, loadingSelector, errorSelector, getCharactersThunk} from './redux/characters'
-import {TabList, Tabs, Tab} from '@chakra-ui/react'
-import CharactersList from './CharactersList'
-import {CHARACTERS_STATUS} from './constants'
+import { getCharactersThunk } from './redux/characters';
+import { TabList, Tabs, Tab, TabPanels, TabPanel } from '@chakra-ui/react';
+import CharactersList from './CharactersList';
+import { CHARACTERS_STATUS } from './constants';
 
-class Home extends PureComponent{
-    componentDidMount() {
-        const { getCharactersThunk } = this.props;
-        getCharactersThunk();
-    }
+class Home extends PureComponent {
+  componentDidMount() {
+    const { getCharactersThunk } = this.props;
+    getCharactersThunk();
+  }
 
-    render(){
-        return(
-            <div>
-                <Tabs>
-                    <TabList>
-                        {Object.values(CHARACTERS_STATUS).map((status)=>(
-                            <Tab>{status}</Tab>
-                        ))}
-                    </TabList>
-                </Tabs>
-                <CharactersList/>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <Tabs mt={5} isFitted variant="enclosed">
+          <TabList>
+            {Object.keys(CHARACTERS_STATUS).map((status) => (
+              <Tab>{status}</Tab>
+            ))}
+          </TabList>
+          <TabPanels>
+            {Object.values(CHARACTERS_STATUS).map((status) => (
+              <TabPanel>
+                <CharactersList status={status} />
+              </TabPanel>
+            ))}
+          </TabPanels>
+        </Tabs>
+      </div>
+    );
+  }
 }
 
-const mapStateToProps = (state) =>({
-    characters: getCharactersSelector(state),
-    loading: loadingSelector(state),
-    error: errorSelector(state)
-})
+const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = {
-    getCharactersThunk,
-}
-
+  getCharactersThunk,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
-
