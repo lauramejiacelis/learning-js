@@ -1,6 +1,10 @@
 import { PureComponent } from 'react';
 import { Box, Flex, Heading, Image, Text } from '@chakra-ui/react';
-import { getCharactersByStatus } from './redux/characters';
+import {
+  getCharactersByStatus,
+  loadingSelector,
+  errorSelector,
+} from './redux/characters';
 import { connect } from 'react-redux';
 import { CircleStatus } from './services';
 import { Link } from 'react-router-dom';
@@ -61,6 +65,8 @@ class CharacterList extends PureComponent {
 
 const mapStateToProps = (state, props) => ({
   characters: getCharactersByStatus(props.status)(state),
+  loading: loadingSelector(state),
+  error: errorSelector(state),
 });
 
 const mapDispatchToProps = {};
