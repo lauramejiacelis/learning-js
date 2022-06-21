@@ -11,7 +11,12 @@ import { Link } from 'react-router-dom';
 
 class CharacterList extends PureComponent {
   render() {
-    const { characters } = this.props;
+    const { characters, loading, error } = this.props;
+
+    if (loading) return <Heading>Characters Loading</Heading>;
+
+    if (error) return <Heading>An error ocurred</Heading>;
+
     return (
       <Flex mt={5} gap={5} wrap="wrap" align="center" justify="center">
         {characters.map((character) => {
