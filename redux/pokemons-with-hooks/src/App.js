@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Box, Heading, ListItem, UnorderedList } from '@chakra-ui/react';
 import { getPokemonsApi } from './services';
+import { connect } from 'react-redux';
+import { getPokemons } from './redux/pokemons';
+import { getPokemonsSelector } from './redux/selectors';
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
@@ -11,7 +14,7 @@ function App() {
   console.log(pokemons);
 
   return (
-    <Box>
+    <Box m={10}>
       <Heading> My Pokemon App</Heading>
       <UnorderedList>
         {pokemons.map((name) => (
@@ -22,4 +25,12 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  pokemons: getPokemonsSelector(state),
+});
+
+const mapDispatchToProps = {
+  getPokemons,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
