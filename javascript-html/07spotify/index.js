@@ -7,7 +7,7 @@ var artistList = document.getElementById("artistList");
 
 const type = "artist";
 const token =
-  "BQBsXKUrulOG76MpjrM02zsbaf5SSdcyfT0eDRpDRIKsvaoWJOKS1W8zRq4rtQRGA0WYscrr7k7Fzxo69QO3zShBYpb9Zp8zjFqI92VUoqZ8FwafW1koK6pcMrD8C9ixy3JRBSyXBHkg6Ts";
+  "BQCohzx7N1Fw3yW2ojd7pBq1T8KB2ET9WT0SLtOGHYyHu21EAY5y2K4_KvpDx2nwbamS0XU0GuZTUHmJX_5D09DCrSu_qNxkartCxRWsVyAkefUmOwKckGT9W85SbcVRzaXm7tf_1i32PQ31fiVFJIoLe0LfimDVMzI";
 
 search.addEventListener("click", function () {
   console.log(`Artist ${getArtist.value}`);

@@ -1,25 +1,17 @@
 import { PureComponent } from 'react';
-import {
-  Button,
-  Heading,
-  Image,
-  Box,
-  HStack,
-  useColorMode,
-  useColorModeValue,
-} from '@chakra-ui/react';
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { Button, Heading, Image, Box, HStack } from '@chakra-ui/react';
 import { Routes, Route, Link } from 'react-router-dom';
 import Home from './Home';
 import Character from './Character';
 import Docs from './Docs';
 import AboutUs from './AboutUs';
+import { withTheme } from './ThemeProvider';
 
 class App extends PureComponent {
   render() {
     return (
       <div>
-        <TopNav />
+        <TopNavWithTheme />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/character/:id" element={<Character />} />
@@ -33,10 +25,13 @@ class App extends PureComponent {
 
 export default App;
 
-function TopNav() {
-  const { colorMode, toggleColorMode } = useColorMode();
+function TopNav(props) {
+  console.log(props);
   return (
-    <HStack spacing="24px" bg={useColorModeValue('gray.100', 'gray.900')}>
+    <HStack
+      spacing="24px"
+      style={{ color: props.color, backgroundColor: props.bgColor }}
+    >
       <Box>
         <Link to="/">
           <Image
@@ -62,10 +57,24 @@ function TopNav() {
           </Heading>
         </Link>
       </Box>
-
-      <Button onClick={toggleColorMode}>
-        {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-      </Button>
+      <ButtonWithTheme />
     </HStack>
   );
 }
+
+const TopNavWithTheme = withTheme(TopNav);
+
+function ButtonTheme(props) {
+  console.log(props);
+  return (
+    <Button>
+      <Image
+        src="https://media.istockphoto.com/vectors/sun-and-moon-glyph-silhouette-icon-black-day-and-night-symbol-flat-vector-id1197264504?k=20&m=1197264504&s=612x612&w=0&h=EqHNb5MrNF-iDrQdp81KfiwdNdNwiXdCenp4-t-0EtA="
+        alt="switch theme"
+        boxSize="35px"
+      />
+    </Button>
+  );
+}
+
+const ButtonWithTheme = withTheme(ButtonTheme);

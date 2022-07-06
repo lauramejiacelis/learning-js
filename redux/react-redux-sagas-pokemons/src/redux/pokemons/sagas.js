@@ -12,7 +12,7 @@ function* getPokemons(){
         console.log(pokemons)
         yield put(getPokemonsSuccess(pokemons))
     } catch(error){
-        return put(getError)
+        return put(getError())
     }
 }
 

@@ -5,7 +5,7 @@ import {
   getError,
   getSingleCharacter,
 } from './actionCreators';
-import { getCharactersSelector, getSingleCharacterSelector } from './selectors';
+import { getCharactersSelector } from './selectors';
 
 export const getCharactersThunk = () => (dispatch, getState) => {
   const state = getState();

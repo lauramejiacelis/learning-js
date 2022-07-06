@@ -7,4 +7,4 @@ export const errorSelector = (state) => state.error;
 export const getCharactersByStatus = (status) => (state) =>
   state.characters.filter((character) => character.status === status);
 
-export const getSingleCharacterSelector = (state) => state.character;
+export const getSingleCharacterSelector = (state) => state.singleCharacter;
