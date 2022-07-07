@@ -1,6 +1,6 @@
 class Calculator {
   sum(a, b) {
-    return a + b + 1;
+    return a + b;
   }
 
   sub(a, b) {
