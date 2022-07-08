@@ -7,6 +7,8 @@ class About extends Component {
       location: { search },
     } = this.props;
 
+    console.log(search)
+
     const queryString = new URLSearchParams(search);
     const from = queryString.get("from");
 
