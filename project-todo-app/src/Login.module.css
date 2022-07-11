@@ -1,0 +1,15 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.mainContainer {
+  flex: 1;
+  background-image: url('https://cdn.pixabay.com/photo/2020/02/02/20/10/flowers-4814043_960_720.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  width: 1500px;
+  height: 1000px;
+}
