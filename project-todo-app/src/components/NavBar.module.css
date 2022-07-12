@@ -1,0 +1,30 @@
+.navBar {
+  /* background-color: #e8e8e8; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  width: 100px;
+}
+
+.links {
+  text-decoration: none;
+  padding: 14px 25px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #48c2a6;
+}
+
+.button {
+  background-color: #48c2a6;
+  color: beige;
+  text-decoration: none;
+  padding: 14px 25px;
+  border-radius: 12%;
+  text-align: center;
+  margin-right: 15px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
