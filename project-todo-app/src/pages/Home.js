@@ -1,17 +1,17 @@
 import { Link } from 'react-router-dom';
 import styles from './Home.module.css';
-import NavBar from '../components/NavBar';
 
 function Home() {
   return (
-    <div>
-      <NavBar />
-      <div className={styles.mainContent}>
-        <h1>The way to handle your tasks</h1>
-        <Link to="/register">Sign In</Link>
-        <Link to="/login">Log In</Link>
-        <button>Login</button>
-      </div>
+    <div className={styles.mainContainer}>
+      <h1 className={styles.title}>Notes, Tasks, Projects</h1>
+      <p className={styles.subtitle}>All in a single place</p>
+      <Link className={styles.links} to="/register">
+        Sign In
+      </Link>
+      <Link className={styles.links} to="/login">
+        Log In
+      </Link>
     </div>
   );
 }

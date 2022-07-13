@@ -1,4 +1,31 @@
-.mainContent {
+.mainContainer {
   padding: 50px;
   text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.title {
+  color: #4b4234;
+  padding: 10px 0px;
+  font-size: 3.5em;
+}
+
+.subtitle {
+  color: #4b4234;
+  padding: 10px 0px 40px 0px;
+  font-size: 2.5em;
+}
+
+.links {
+  text-decoration: none;
+  color: #48c2a6;
+  font-weight: bold;
+  padding: 5px 10px;
+  margin: 5px;
+  border: #48c2a6 solid 1px;
+  border-radius: 12%;
+  width: max-content;
 }
