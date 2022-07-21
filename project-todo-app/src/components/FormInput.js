@@ -13,3 +13,5 @@ export const FormInput = ({ label, ...props }) => {
     </>
   );
 };
+
+//este componente lo saqué haciendo el tutorial de formik
