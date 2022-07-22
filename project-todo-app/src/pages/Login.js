@@ -1,6 +1,6 @@
 import styles from './Login.module.css';
 import { Formik, Form } from 'formik';
-import { LoginSchema } from '../services/Schemas';
+import { loginSchema } from '../services/schemas';
 import { Link } from 'react-router-dom';
 import { FormInput } from '../components/FormInput';
 
@@ -16,7 +16,7 @@ function Login() {
           email: '',
           password: '',
         }}
-        validationSchema={LoginSchema}
+        validationSchema={loginSchema}
         onSubmit={handleSubmit}
       >
         {(formik) => (

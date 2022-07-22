@@ -1,20 +1,25 @@
 import { Formik, Form } from 'formik';
 import styles from './Register.module.css';
 import { Link } from 'react-router-dom';
-import { RegisterSchema } from '../services/Schemas';
+import { registerSchema } from '../services/schemas';
 import { FormInput } from '../components/FormInput';
-import {register} from '../services/fetchs'
+import { registerFetch } from '../services/fetchs';
 import { useState } from 'react';
 
 const RegisterForm = () => {
-
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState({});
+  const [register, setRegister] = useState({});
 
   const handleSubmit = (data) => {
     setUser(data);
-    register(user).then(console.log)
+    registerFetch(user).then((regis) => setRegister(regis));
   };
-  console.log(user)
+  console.log(user);
+  console.log(register);
+
+  if (register.errors)
+    return `Oops an error occurred ${register.errors.detail} `;
+  //
 
   return (
     <div className={styles.registerContainer}>
@@ -25,7 +30,7 @@ const RegisterForm = () => {
           lastname: '',
           password: '',
         }}
-        validationSchema={RegisterSchema}
+        validationSchema={registerSchema}
         onSubmit={handleSubmit}
       >
         {(formik) => (

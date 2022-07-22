@@ -21,6 +21,8 @@
 
 .form h1 {
   color: #4b4234;
+  font-size: 1.5em;
+  font-weight: 600;
 }
 
 .form label {
