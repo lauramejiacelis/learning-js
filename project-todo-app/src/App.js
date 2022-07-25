@@ -9,7 +9,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Settings from './pages/Setting';
 import Todos from './pages/Todos';
-import Error from './pages/Error';
+
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
         <Route path="/todos" element={<Todos />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/contactus" element={<ContactUs />} />
-        <Route path="/error" element={<Error />} />
+        
       </Routes>
     </div>
   );

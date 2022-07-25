@@ -5,21 +5,35 @@ import { registerSchema } from '../services/schemas';
 import { FormInput } from '../components/FormInput';
 import { registerFetch } from '../services/fetchs';
 import { useState } from 'react';
+import { ErrorComponent } from '../components/Error'
 
 const RegisterForm = () => {
   const [user, setUser] = useState({});
-  const [register, setRegister] = useState({});
+  const [error, setError] = useState(null)
 
   const handleSubmit = (data) => {
-    setUser(data);
-    registerFetch(user).then((regis) => setRegister(regis));
+    registerFetch(data).then((res) => {
+      if(!res.ok){
+        console.log(res);
+        throw Error (res.statusText)
+      }
+      return res.json()
+    })
+    .then((regis) => setUser(regis))
+    .catch(err=> {setError(err.message)});
   };
   console.log(user);
-  console.log(register);
+  console.log(error)
 
-  if (register.errors)
-    return `Oops an error occurred ${register.errors.detail} `;
-  //
+  //registerFetch(data).then((regis) => setUser(regis))
+
+  if (user.errors) {
+    const errorInfo= user.errors.email || user.errors.details
+    return (
+      <ErrorComponent errorInfo={errorInfo}/>
+    );
+  }
+  //qué pasa cuando es otro error
 
   return (
     <div className={styles.registerContainer}>
