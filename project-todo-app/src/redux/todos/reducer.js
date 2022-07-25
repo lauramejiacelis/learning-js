@@ -1,6 +1,8 @@
 import { TODOS_ACTION_TYPES } from './actionTypes';
 
-export const todosReducer = (state = [], action) => {
+const initialState = [];
+
+export const todosReducer = (state = initialState, action) => {
   switch (action.type) {
     case TODOS_ACTION_TYPES.ADD_TODO:
       return [...state, action.payload];
