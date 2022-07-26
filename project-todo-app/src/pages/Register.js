@@ -11,21 +11,21 @@ import { ErrorComponent } from '../components/Error';
 
 const RegisterForm = () => {
   const [user, setUser] = useState({});
+  const [error, setError] = useState()
 
   const handleSubmit = (data) => {
     registerFetch(data)
-      .then((res) => res.json())
-      .then((regis) => setUser(regis));
+      .then((data)=> setUser(data))
+      .catch((err)=>setError(err))
   };
   console.log(user);
 
-  //registerFetch(data).then((regis) => setUser(regis))
-
-  if (user.errors) {
-    const errorInfo = user.errors.email || user.errors.details;
+  if (error) {
+    const errorInfo = error.email || error.details;//improve
     return <ErrorComponent errorInfo={errorInfo} />;
   }
   //qué pasa cuando es otro error
+  //llevarme esta lógica para el thunk... en el redux se guarda cuando ya haya hecho el fetch
 
   return (
     <div className={styles.registerContainer}>

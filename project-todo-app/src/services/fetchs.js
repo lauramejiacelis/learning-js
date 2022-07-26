@@ -1,5 +1,6 @@
 const URL= 'https://dsangel-todos-api.herokuapp.com/api'
 
+//todo
 export function registerFetch(user) {
     const requestOptions = {
         method: 'POST',
@@ -11,7 +12,15 @@ export function registerFetch(user) {
   return fetch(
     `${URL}/register`,
     requestOptions
-  )//.then((res)=>res.json())
+  ).then((res)=>{
+    return res.json().then((info)=>{
+      if(!res.ok){
+        const {errors} = info
+        throw errors
+      }
+      return info;
+    })
+  })
 }
 
 export function loginFetch(user) {
