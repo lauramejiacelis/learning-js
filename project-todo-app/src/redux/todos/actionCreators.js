@@ -1,4 +1,4 @@
-import TODOS_ACTION_TYPES from './actionTypes';
+import { TODOS_ACTION_TYPES } from './actionTypes';
 
 export const addTodo = (description) => ({
   type: TODOS_ACTION_TYPES.ADD_TODO,

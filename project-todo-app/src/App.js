@@ -9,7 +9,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Settings from './pages/Setting';
 import Todos from './pages/Todos';
-
+import TodoDetail from './components/TodoDetail';
 
 function App() {
   return (
@@ -21,9 +21,9 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/todos" element={<Todos />} />
+        <Route path="/todos/:id" element={<TodoDetail />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/contactus" element={<ContactUs />} />
-        
       </Routes>
     </div>
   );
