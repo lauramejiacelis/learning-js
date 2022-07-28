@@ -20,12 +20,15 @@ const initialState = [];
   return state;
 }; */
 
+let id = 0;
+
 export const todosReducer = (state = initialState, action) => {
   switch (action.type) {
     case TODOS_ACTION_TYPES.ADD_TODO:
       console.log('created todo', action.payload);
       console.log(state);
-      return [...state, action.payload];
+      id++;
+      return [...state, { id, description: action.payload }];
     case TODOS_ACTION_TYPES.EDIT_TODO:
       return state.map((todo) =>
         todo.id === action.payload ? action.payload.id : todo

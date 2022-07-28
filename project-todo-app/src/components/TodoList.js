@@ -25,7 +25,7 @@ function TodoList({ todos }) {
           <Tbody>
             {todos &&
               todos.map((todo) => {
-                return <TodoItem todo={todo} key={todo.id} />;
+                return <TodoItem todo={todo} key={todo.id} id={todo.id} />;
               })}
           </Tbody>
         </Table>

@@ -20,7 +20,7 @@ function TodoInput(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.addTodo({ description: input });
+    props.addTodo(input);
     //setTodos((prevTodos) => [...prevTodos, { description: input }]); //lo ensayé con [...todos, input] y también me dio
     setInput('');
   };

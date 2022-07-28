@@ -3,8 +3,8 @@ import thunkMiddleware from 'redux-thunk';
 import {
   loginErrorReducer,
   loginReducer,
-  signinErrorReducer,
-  signinReducer,
+  signInErrorReducer,
+  signInReducer,
 } from './users/reducer';
 import { todosReducer } from './todos/reducer';
 
@@ -12,8 +12,8 @@ const composeEnhancers =
   typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 
 const reducer = combineReducers({
-  signin: signinReducer,
-  singinError: signinErrorReducer,
+  signin: signInReducer,
+  singinError: signInErrorReducer,
   login: loginReducer,
   loginError: loginErrorReducer,
   todos: todosReducer,

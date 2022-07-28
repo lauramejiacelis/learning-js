@@ -3,13 +3,13 @@ import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
 import { connect } from 'react-redux';
 import { editTodo, deleteTodo } from '../redux/todos';
 
-function TodoItem({ todo }) {
+function TodoItem({ todo, id, deleteTodo }) {
   const handleEdit = () => {
     console.log('ready to edit');
   };
 
   const handleDelete = () => {
-    console.log('ready to delete');
+    deleteTodo(id);
   };
 
   return (

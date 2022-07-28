@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { getTodosSelector } from '../redux/todos/selectors';
 
 function Todos(props) {
-  //console.log(props);
+  console.log(props);
   const { todos } = props;
   return (
     <Container py={12}>
@@ -14,7 +14,7 @@ function Todos(props) {
           My TODOS
         </Heading>
         <TodoInput />
-        <TodoList todos={todos} />
+        <TodoList key={todos.id} todos={todos} id={todos.id} />
       </VStack>
     </Container>
   );

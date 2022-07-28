@@ -1,29 +1,29 @@
 import { USER_ACTION_TYPES } from './actionTypes';
 
-export const postSingin = (user) => {
+export const singInSuccess = (user) => {
   return {
-    type: USER_ACTION_TYPES.POST_SIGNIN,
+    type: USER_ACTION_TYPES.SIGNIN_SUCCESS,
     payload: user,
   };
 };
 
-export const postSinginError = (error) => {
+export const singInError = (error) => {
   return {
-    type: USER_ACTION_TYPES.POST_SIGNIN_ERROR,
+    type: USER_ACTION_TYPES.SIGNIN_ERROR,
     payload: error,
   };
 };
 
-export const postLogin = (user) => {
+export const loginSuccess = (user) => {
   return {
-    type: USER_ACTION_TYPES.POST_LOGIN,
+    type: USER_ACTION_TYPES.LOGIN_SUCCESS,
     payload: user,
   };
 };
 
-export const postLoginError = (error) => {
+export const loginError = (error) => {
   return {
-    type: USER_ACTION_TYPES.POST_LOGIN_ERROR,
+    type: USER_ACTION_TYPES.LOGIN_ERROR,
     payload: error,
   };
 };

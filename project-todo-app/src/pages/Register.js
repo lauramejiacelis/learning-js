@@ -5,26 +5,29 @@ import { useState } from 'react';
 import { connect } from 'react-redux';
 import { registerSchema } from '../services/schemas';
 import { FormInput } from '../components/FormInput';
-import { registerFetch } from '../services/fetchs';
+import { authFetch } from '../services/fetchs';
 
 import { ErrorComponent } from '../components/Error';
 
 const RegisterForm = () => {
   const [user, setUser] = useState({});
-  const [error, setError] = useState()
+  const [error, setError] = useState();
 
   const handleSubmit = (data) => {
-    registerFetch(data)
-      .then((data)=> setUser(data))
-      .catch((err)=>setError(err))
+    authFetch('register', data)
+      .then((data) => setUser(data))
+      .catch((err) => setError(err));
   };
   console.log(user);
+  console.log(error);
 
   if (error) {
-    const errorInfo = error.email || error.details;//improve
-    return <ErrorComponent errorInfo={errorInfo} />;
+    console.log(`place: ${Object.keys(error)}`);
+    console.log(`kind of: ${Object.values(error)}`);
+    const errorPlace = Object.keys(error);
+    const errorInfo = Object.values(error);
+    return <ErrorComponent errorPlace={errorPlace} errorInfo={errorInfo} />;
   }
-  //qué pasa cuando es otro error
   //llevarme esta lógica para el thunk... en el redux se guarda cuando ya haya hecho el fetch
 
   return (

@@ -8,22 +8,22 @@ const initialStateLogin = [];
 
 const initialStateLoginError = null;
 
-export const signinReducer = (state = initialStateSignin, action) => {
+export const signInReducer = (state = initialStateSignin, action) => {
   switch (action.type) {
-    case USER_ACTION_TYPES.POST_SIGNIN:
+    case USER_ACTION_TYPES.SIGNIN_SUCCESS:
       return action.payload;
-    case USER_ACTION_TYPES.POST_SIGNIN_ERROR:
+    case USER_ACTION_TYPES.SIGNIN_ERROR:
       return null;
     default:
       return state;
   }
 };
 
-export const signinErrorReducer = (state = initialStateSigninError, action) => {
+export const signInErrorReducer = (state = initialStateSigninError, action) => {
   switch (action.type) {
-    case USER_ACTION_TYPES.POST_SIGNIN:
+    case USER_ACTION_TYPES.SIGNIN_SUCCESS:
       return null;
-    case USER_ACTION_TYPES.POST_SIGNIN_ERROR:
+    case USER_ACTION_TYPES.SIGNIN_ERROR:
       return action.payload;
     default:
       return state;
@@ -32,9 +32,9 @@ export const signinErrorReducer = (state = initialStateSigninError, action) => {
 
 export const loginReducer = (state = initialStateLogin, action) => {
   switch (action.type) {
-    case USER_ACTION_TYPES.POST_LOGIN:
+    case USER_ACTION_TYPES.LOGIN_SUCCESS:
       return action.payload;
-    case USER_ACTION_TYPES.POST_LOGIN_ERROR:
+    case USER_ACTION_TYPES.LOGIN_ERROR:
       return null;
     default:
       return state;
@@ -43,9 +43,9 @@ export const loginReducer = (state = initialStateLogin, action) => {
 
 export const loginErrorReducer = (state = initialStateLoginError, action) => {
   switch (action.type) {
-    case USER_ACTION_TYPES.POST_LOGIN:
+    case USER_ACTION_TYPES.LOGIN_SUCCESS:
       return null;
-    case USER_ACTION_TYPES.POST_LOGIN_ERROR:
+    case USER_ACTION_TYPES.LOGIN_ERROR:
       return action.payload;
     default:
       return state;
