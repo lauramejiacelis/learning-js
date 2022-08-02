@@ -6,14 +6,16 @@ import {
   postLoginError,
 } from './actionCreators';
 import {
-  signinSelector,
-  signinErrorSelector,
+  signInSelector,
+  signInErrorSelector,
   loginSelector,
   loginErrorSelector,
 } from './selectors';
+import { authFetch } from '../../services/fetchs';
 
-export const signinThunk = () => (dispatch, getState) => {
+export const signInThunk = () => (dispatch, getState) => {
   const state = getState();
-  const user = signinSelector(state);
-  console.log(state);
+  const user = signInSelector(state);
+  console.log(`state: ${state}`);
+  console.log(`user: ${user}`);
 };

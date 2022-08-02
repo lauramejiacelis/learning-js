@@ -1,5 +1,11 @@
 import { USER_ACTION_TYPES } from './actionTypes';
 
+export const singInLoading = () => {
+  return {
+    type: USER_ACTION_TYPES.LOADING,
+  };
+};
+
 export const singInSuccess = (user) => {
   return {
     type: USER_ACTION_TYPES.SIGNIN_SUCCESS,

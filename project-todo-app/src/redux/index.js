@@ -12,7 +12,7 @@ const composeEnhancers =
   typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 
 const reducer = combineReducers({
-  signin: signInReducer,
+  signIn: signInReducer,
   singinError: signInErrorReducer,
   login: loginReducer,
   loginError: loginErrorReducer,
