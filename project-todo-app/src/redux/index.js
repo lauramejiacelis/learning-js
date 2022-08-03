@@ -13,7 +13,7 @@ const composeEnhancers =
 
 const reducer = combineReducers({
   signIn: signInReducer,
-  singinError: signInErrorReducer,
+  signInError: signInErrorReducer,
   login: loginReducer,
   loginError: loginErrorReducer,
   todos: todosReducer,
