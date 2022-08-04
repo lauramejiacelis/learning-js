@@ -14,3 +14,13 @@ export const deleteTodo = (id) => ({
   type: TODOS_ACTION_TYPES.DELETE_TODO,
   payload: { id },
 });
+
+export const listTodos = (todos) => ({
+  type: TODOS_ACTION_TYPES.LIST_TODOS,
+  payload: todos,
+});
+
+export const getError = (err) => ({
+  type: TODOS_ACTION_TYPES.GET_ERROR,
+  payload: err,
+});

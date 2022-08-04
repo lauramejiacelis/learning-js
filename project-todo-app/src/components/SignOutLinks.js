@@ -13,8 +13,11 @@ export const SignOutLinks = () => {
       <Link className={styles.links} to="/contactus">
         Contact Us
       </Link>
-      <Link className={styles.button} to="/register">
+      <Link className={styles.links} to="/register">
         Sign In
+      </Link>
+      <Link className={styles.button} to="/login">
+        Log In
       </Link>
     </div>
   );

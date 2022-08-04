@@ -28,3 +28,15 @@ export function authFetch(type, user) {
     });
   });
 }
+
+export function logoutFetch() {
+  return fetch(`${URL}/logout`).then((res) => res.json());
+}
+
+export const getTodosApi = () => {
+  return fetch('https://dsangel-todos-api.herokuapp.com/api/todos', {
+    headers: {
+      'content-type': 'application/json',
+    },
+  }).then((res) => res.json());
+};

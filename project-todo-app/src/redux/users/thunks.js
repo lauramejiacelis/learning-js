@@ -4,9 +4,10 @@ import {
   singInError,
   loginSuccess,
   loginError,
+  logout,
 } from './actionCreators';
 import { loginSelector, signInSelector } from './selectors';
-import { authFetch } from '../../services/fetchs';
+import { authFetch, logoutFetch } from '../../services/fetchs';
 
 export const signInThunk = (data) => (dispatch, getState) => {
   /* const state = getState();
@@ -39,4 +40,10 @@ export const loginThunk = (data) => (dispatch, getState) => {
     });
 
   console.log(state);
+};
+
+export const logoutThunk = () => (dispatch, getState) => {
+  logoutFetch().then((message) => {
+    dispatch(logout(message));
+  });
 };

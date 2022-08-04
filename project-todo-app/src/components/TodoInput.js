@@ -7,7 +7,7 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { connect } from 'react-redux';
-import { addTodo } from '../redux/todos';
+import { addTodoThunk } from '../redux/todos/thunks';
 
 function TodoInput(props) {
   //console.log(props);
@@ -20,7 +20,7 @@ function TodoInput(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.addTodo(input);
+    props.addTodoThunk(input);
     //setTodos((prevTodos) => [...prevTodos, { description: input }]); //lo ensayé con [...todos, input] y también me dio
     setInput('');
   };
@@ -55,7 +55,7 @@ function TodoInput(props) {
 const mapStateToProps = null;
 
 const mapDispatchToProps = {
-  addTodo,
+  addTodoThunk,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoInput);

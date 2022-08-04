@@ -33,3 +33,10 @@ export const loginError = (error) => {
     payload: error,
   };
 };
+
+export const logout = (message) => {
+  return {
+    type: USER_ACTION_TYPES.LOGOUT,
+    payload: message,
+  };
+};

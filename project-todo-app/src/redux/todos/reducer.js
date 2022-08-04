@@ -20,21 +20,27 @@ const initialState = [];
   return state;
 }; */
 
-let id = 0;
+//let id = 0;
 
 export const todosReducer = (state = initialState, action) => {
   switch (action.type) {
     case TODOS_ACTION_TYPES.ADD_TODO:
       console.log('created todo', action.payload);
       console.log(state);
-      id++;
-      return [...state, { id, description: action.payload }];
+      //id++;
+      return [...state, { description: action.payload }];
     case TODOS_ACTION_TYPES.EDIT_TODO:
       return state.map((todo) =>
         todo.id === action.payload ? action.payload.id : todo
       );
     case TODOS_ACTION_TYPES.DELETE_TODO:
       return state.filter((todo) => todo.id !== action.payload.id);
+    case TODOS_ACTION_TYPES.LIST_TODOS:
+      console.log('listing todos');
+      return action.payload;
+    case TODOS_ACTION_TYPES.GET_ERROR:
+      console.log('error getting todos');
+      return action.payload;
     default:
       return state;
   }

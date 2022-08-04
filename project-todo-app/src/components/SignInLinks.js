@@ -1,7 +1,14 @@
 import styles from './NavBar.module.css';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logoutThunk } from '../redux/users/thunks';
 
 export const SignInLinks = () => {
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logoutThunk());
+  };
+
   return (
     <div>
       <Link className={styles.links} to="/">
@@ -10,9 +17,9 @@ export const SignInLinks = () => {
       <Link className={styles.links} to="/todos">
         ToDos
       </Link>
-      <Link className={styles.button} to="/logout">
+      <a href=" " onClick={handleLogout} className={styles.button}>
         LogOut
-      </Link>
+      </a>
     </div>
   );
 };
