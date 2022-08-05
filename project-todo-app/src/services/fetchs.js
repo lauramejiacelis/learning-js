@@ -26,9 +26,14 @@ export function logoutFetch() {
 }
 
 export const getTodosApi = () => {
-  return fetch('https://dsangel-todos-api.herokuapp.com/api/todos', {
-    headers: {
-      'content-type': 'application/json',
-    },
-  }).then((res) => res.json());
+  return fetch('https://dsangel-todos-api.herokuapp.com/api/todos').then(
+    (res) =>
+      res.json().then((info) => {
+        if (!res.ok) {
+          console.log(info);
+          throw info;
+        }
+        return info;
+      })
+  );
 };

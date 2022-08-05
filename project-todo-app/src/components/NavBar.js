@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
 import styles from './NavBar.module.css';
+import { useSelector } from 'react-redux';
 import { SignInLinks } from './SignInLinks';
 import { SignOutLinks } from './SignOutLinks';
-import { useSelector } from 'react-redux';
 import { loginSelector } from '../redux/users/selectors';
 
 function NavBar() {
   const user = useSelector(loginSelector);
   console.log(user);
-  const links = user ? <SignInLinks /> : <SignOutLinks />;
+  const links = user.data ? <SignInLinks /> : <SignOutLinks />;
   return (
     <div className={styles.navBar}>
       <Link to="/">

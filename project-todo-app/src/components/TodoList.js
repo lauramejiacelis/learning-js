@@ -11,6 +11,7 @@ import {
 import TodoItem from './TodoItem';
 
 function TodoList({ todos }) {
+  console.log(todos);
   return (
     <Box>
       <TableContainer>

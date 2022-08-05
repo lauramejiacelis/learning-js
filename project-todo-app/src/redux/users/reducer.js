@@ -2,9 +2,10 @@ import { USER_ACTION_TYPES } from './actionTypes';
 
 const initialState = {
   user: {},
+  register: {},
   loginError: null,
   signInError: null,
-}
+};
 
 //refactorizar este reducer
 export const userReducer = (state = initialState, action) => {
@@ -15,26 +16,27 @@ export const userReducer = (state = initialState, action) => {
     case USER_ACTION_TYPES.SIGNIN_SUCCESS:
       console.log('signIn success');
       return {
-        ...state, 
-        signInError:null
+        ...state,
+        register: action.payload,
+        signInError: null,
       };
     case USER_ACTION_TYPES.SIGNIN_ERROR:
       console.log('signIn error');
       return {
-        ...state, 
+        ...state,
         signInError: action.payload,
       };
     case USER_ACTION_TYPES.LOGIN_SUCCESS:
       console.log('logIn success');
       return {
-        ...state, 
+        ...state,
         user: action.payload,
-        loginError:null
+        loginError: null,
       };
     case USER_ACTION_TYPES.LOGIN_ERROR:
       console.log('logIn error');
       return {
-        ...state, 
+        ...state,
         loginError: action.payload,
       };
     case USER_ACTION_TYPES.LOGOUT:
@@ -43,5 +45,4 @@ export const userReducer = (state = initialState, action) => {
     default:
       return state;
   }
-}
-
+};

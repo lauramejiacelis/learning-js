@@ -12,28 +12,31 @@ import { UserInfo } from '../components/User';
 
 const RegisterForm = () => {
   const user = useSelector(signInSelector);
-  //console.log(user.length);
+  console.log(user);
   const error = useSelector(signInErrorSelector);
   const dispatch = useDispatch();
 
-  const handleSubmit = (data) => {
+  const handleSubmit = (data, { resetForm }) => {
     dispatch(signInThunk(data));
+    resetForm({ data: '' });
   };
 
-  if (user) {
+  if (user.data) {
     return (
-      <Container>
+      <Container textAlign="center">
         <Heading color="#4b4234" size="md" textAlign="center">
           Register Success
         </Heading>
-        <UserInfo user={user} />
-        <Text color="#4b4234" fontWeight="bold">
+        <UserInfo user={user.data} />
+        <Text color="#4b4234" fontWeight="bold" textAlign="center">
           Now you can:
         </Text>
         <Box
+          as="button"
           bgColor="#48c2a6"
           color="beige"
           p="5px 25px"
+          mt="5px"
           borderRadius="5px"
           fontSize="1.2em"
           fontWeight="bold"
@@ -92,29 +95,7 @@ const RegisterForm = () => {
           )}
         </Formik>
       </div>
-      <div>
-        {error ? (
-          <ErrorComponent
-            errorPlace={Object.keys(error)}
-            errorInfo={Object.values(error)}
-          />
-        ) : (
-          ''
-        )}
-      </div>
-      {/* <div>
-        {user ? (
-          <Box py={5}>
-            {' '}
-            <Heading color="#4b4234" size="md" textAlign="center">
-              Register Success
-            </Heading>
-            <UserInfo user={user} />
-          </Box>
-        ) : (
-          ''
-        )}
-      </div> */}
+      <div>{error ? <ErrorComponent error={error} /> : ''}</div>
     </div>
   );
 };

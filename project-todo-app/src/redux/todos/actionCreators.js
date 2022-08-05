@@ -24,3 +24,7 @@ export const getError = (err) => ({
   type: TODOS_ACTION_TYPES.GET_ERROR,
   payload: err,
 });
+
+export const getTodosLoading = () => ({
+  type: TODOS_ACTION_TYPES.LOADING_TODOS,
+});

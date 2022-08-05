@@ -2,7 +2,7 @@ export const userSelector = (state) => state.user;
 
 export const loginSelector = (state) => state.user.user;
 
-export const signInSelector = (state) => state.user.user;
+export const signInSelector = (state) => state.user.register;
 
 export const loginErrorSelector = (state) => state.user.loginError;
 
