@@ -1,10 +1,7 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import {
-  loginErrorReducer,
-  loginReducer,
-  signInErrorReducer,
-  signInReducer,
+  userReducer,
 } from './users/reducer';
 import { todosReducer } from './todos/reducer';
 
@@ -12,10 +9,7 @@ const composeEnhancers =
   typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 
 const reducer = combineReducers({
-  signIn: signInReducer,
-  signInError: signInErrorReducer,
-  login: loginReducer,
-  loginError: loginErrorReducer,
+  user: userReducer,
   todos: todosReducer,
 });
 

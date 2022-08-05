@@ -9,6 +9,7 @@ import { loginErrorSelector, loginSelector } from '../redux/users/selectors';
 import { loginThunk } from '../redux/users/thunks';
 import { UserInfo } from '../components/User';
 import { Box, Heading } from '@chakra-ui/react';
+import { Redirect } from 'react-router-dom'
 
 function Login() {
   const user = useSelector(loginSelector);
@@ -22,14 +23,15 @@ function Login() {
 
   console.log(user);
   console.log(error);
+  console.log(user.data)
 
-  if (user) {
+  if (user.data) {
     return (
       <Box py={5}>
         <Heading color="#4b4234" size="md" textAlign="center">
           Login Success
         </Heading>
-        <UserInfo user={user} />
+        <UserInfo user={user.data} />
       </Box>
     );
   }

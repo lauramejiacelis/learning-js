@@ -20,7 +20,7 @@ const RegisterForm = () => {
     dispatch(signInThunk(data));
   };
 
-  if (user.length > 0) {
+  if (user) {
     return (
       <Container>
         <Heading color="#4b4234" size="md" textAlign="center">

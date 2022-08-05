@@ -1,7 +1,9 @@
-export const signInSelector = (state) => state.signIn;
+export const userSelector = (state) => state.user;
 
-export const signInErrorSelector = (state) => state.signInError;
+export const loginSelector = (state) => state.user.user;
 
-export const loginSelector = (state) => state.login.data; //agregado para manejar la info del estado
+export const signInSelector = (state) => state.user.user;
 
-export const loginErrorSelector = (state) => state.loginError;
+export const loginErrorSelector = (state) => state.user.loginError;
+
+export const signInErrorSelector = (state) => state.user.signInError;

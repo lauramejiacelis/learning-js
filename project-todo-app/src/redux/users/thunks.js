@@ -1,35 +1,25 @@
 import {
-  singInLoading,
   singInSuccess,
   singInError,
   loginSuccess,
   loginError,
   logout,
 } from './actionCreators';
-import { loginSelector, signInSelector } from './selectors';
 import { authFetch, logoutFetch } from '../../services/fetchs';
 
-export const signInThunk = (data) => (dispatch, getState) => {
-  /* const state = getState();
-  const user = signInSelector(state);
-  console.log(state);
-  console.log(user); */
-  /* if (user.length > 0) {
-    return;
-  } */
-  //dispatch(singInLoading);
-  authFetch('register', data)
-    .then((user) => {
-      dispatch(singInSuccess(user));
+export const signInThunk = (user) => (dispatch) => {
+  
+  authFetch('register', {user})// {user:data}
+    .then((data) => {
+      dispatch(singInSuccess(data));
     })
     .catch((e) => {
       dispatch(singInError(e));
     });
-  //console.log(state);
+  
 };
 
-export const loginThunk = (data) => (dispatch, getState) => {
-  const state = getState();
+export const loginThunk = (data) => (dispatch) => {
 
   authFetch('login', data)
     .then((user) => {
@@ -39,10 +29,9 @@ export const loginThunk = (data) => (dispatch, getState) => {
       dispatch(loginError(e));
     });
 
-  console.log(state);
 };
 
-export const logoutThunk = () => (dispatch, getState) => {
+export const logoutThunk = () => (dispatch) => {
   logoutFetch().then((message) => {
     dispatch(logout(message));
   });
