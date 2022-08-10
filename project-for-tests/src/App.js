@@ -1,125 +1,44 @@
-import {
-  Button,
-  Container,
-  FormLabel,
-  Heading,
-  Input,
-  VStack,
-} from '@chakra-ui/react';
+import { Box, Button, Container, Heading, Input } from '@chakra-ui/react';
+import { TodoList } from './TodoList';
 import { useState } from 'react';
-import { Formik, Form, useField } from 'formik';
-import * as Yup from 'yup';
+import { useSelector, useDispatch } from 'react-redux';
+import { getTodosSelector } from './redux/todos/selector';
+import { addTodo } from './redux/todos/actionCreators';
 
-function App() {
-  const [user, setUser] = useState({});
-  const [loginError, setLoginError] = useState();
-  const [todos, setTodos] = useState({});
+export default function App() {
+  const [input, setInput] = useState('');
+  const todos = useSelector(getTodosSelector);
+  const dispatch = useDispatch();
 
-  const handleSubmit = (data) => {
-    console.log('submit');
-    loginFetch(data)
-      .then((res) => {
-        setUser(data);
-        setLoginError();
-      })
-      .catch((err) => {
-        setLoginError(err);
-        setUser({});
-      });
+  const handleChange = ({ target: { value } }) => {
+    // const value = event.target.value;
+    setInput(value);
   };
-  console.log(user);
-  console.log(loginError);
 
-  /*  if (user) {
-    return getTodosFetch().then((resp) => console.log(resp));
-  } */
-
-  const handleTodos = (e) => {
-    getTodosFetch().then((resp) => console.log(resp));
+  const handleAdd = () => {
+    //setTodos((prevTodos) => [...prevTodos, { description: input, id }]); //lo ensayé con [...todos, input] y también me dio
+    dispatch(addTodo(input));
+    setInput('');
   };
+  console.log(todos);
 
   return (
-    <Container>
-      <VStack py={10}>
-        <Heading>Login</Heading>
-        <Formik
-          initialValues={{
-            email: '',
-            password: '',
-          }}
-          validationSchema={loginSchema}
-          onSubmit={handleSubmit}
-        >
-          {(formik) => (
-            <Form>
-              <FormInput
-                label="Email"
-                name="email"
-                type="text"
-                placeholder="email@email.com"
-              />
-              <FormInput
-                label="Password"
-                name="password"
-                type="password"
-                placeholder="*********"
-              />
-              <Button type="submit">Send</Button>
-            </Form>
-          )}
-        </Formik>
-      </VStack>
-      <VStack mt={5}>
-        <Heading>Todos</Heading>
-        <Button onClick={handleTodos}>Get Todos</Button>
-      </VStack>
+    <Container alignSelf="center">
+      <Box textAlign="center" p={6}>
+        <Heading textAlign="center">To Do App with Hooks</Heading>
+        <Heading size="md" textAlign="center">
+          and by myself
+        </Heading>
+        <Input
+          type="text"
+          placeholder="enter a todo"
+          value={input}
+          onChange={handleChange}
+          my={3}
+        />
+        <Button onClick={handleAdd}>Add Todo</Button>
+      </Box>
+      {todos ? <TodoList todos={todos} /> : ''}
     </Container>
   );
 }
-
-export default App;
-
-const loginFetch = (user) => {
-  return fetch('https://dsangel-todos-api.herokuapp.com/api/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(user),
-  }).then((res) => {
-    console.log(res);
-    return res.json().then((info) => {
-      if (!res.ok) {
-        throw info;
-      }
-      return info;
-    });
-  });
-};
-
-export const loginSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('Invalid email')
-    .required('Please enter your email'),
-  password: Yup.string()
-    .min(6, 'too short')
-    .max(9, 'too long')
-    .required('Please enter your password'),
-});
-
-export const FormInput = ({ label, ...props }) => {
-  const [field, meta] = useField(props);
-  return (
-    <>
-      <FormLabel htmlFor={props.name}>{label}</FormLabel>
-      <Input {...field} {...props}></Input>
-      {meta.touched && meta.error ? <div>{meta.error}</div> : null}
-    </>
-  );
-};
-
-const getTodosFetch = () => {
-  return fetch('https://dsangel-todos-api.herokuapp.com/api/todos').then(
-    (res) => res.json()
-  );
-};
