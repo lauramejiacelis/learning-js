@@ -14,3 +14,16 @@ export const deleteTodo = (id) => ({
   type: TODOS_ACTION_TYPES.DELETE_TODO,
   payload: { id },
 });
+
+export const cancelEdit = () => ({
+  type: TODOS_ACTION_TYPES.CANCEL_EDIT,
+});
+
+export const completeEdit = () => ({
+  type: TODOS_ACTION_TYPES.COMPLETE_EDIT,
+});
+
+export const isEditing = (id) => ({
+  type: TODOS_ACTION_TYPES.IS_EDITING,
+  payload: { id },
+});

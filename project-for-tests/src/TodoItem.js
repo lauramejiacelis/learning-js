@@ -1,16 +1,24 @@
 import { VStack, Heading, Box, HStack, Button, Input } from '@chakra-ui/react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteTodo, editTodo } from './redux/todos/actionCreators';
+import {
+  cancelEdit,
+  deleteTodo,
+  editTodo,
+  isEditing,
+} from './redux/todos/actionCreators';
 
-export const TodoItem = ({ description, id }) => {
+export const TodoItem = ({ description, id, editing }) => {
   const dispatch = useDispatch();
 
-  const handleEdit = () => {};
+  const handleEdit = () => {
+    dispatch(editTodo({ description, id }));
+  };
   console.log(id);
+  console.log(editing);
 
   const handleDelete = () => {
     //no le tenía que pasar id... ya lo tomaba del contexto global mk
-
     dispatch(deleteTodo(id));
   };
 
@@ -23,6 +31,7 @@ export const TodoItem = ({ description, id }) => {
         {description}
       </Heading>
       <Box> id:{id}</Box>
+      <Box> Editing:{editing}</Box>
       <HStack>
         <Button m={3} onClick={handleEdit}>
           Edit Todo
@@ -36,9 +45,19 @@ export const TodoItem = ({ description, id }) => {
 };
 
 export const TodoItemEdit = ({ description, id }) => {
-  const handleUpdate = () => {};
-  const handleFinishEdit = () => {};
-  const handleCancel = () => {};
+  const [input, setInput] = useState('');
+  const dispatch = useDispatch();
+
+  const handleUpdate = ({ target: { value } }) => {
+    console.log('update');
+  };
+  const handleFinishEdit = () => {
+    console.log('Finish');
+  };
+  const handleCancel = () => {
+    dispatch(cancelEdit());
+    console.log('Cancel Edit');
+  };
 
   return (
     <VStack border="1px" borderColor="gray.200">
