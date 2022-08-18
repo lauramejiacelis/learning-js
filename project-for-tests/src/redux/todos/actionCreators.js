@@ -15,12 +15,14 @@ export const deleteTodo = (id) => ({
   payload: { id },
 });
 
-export const cancelEdit = () => ({
+export const cancelEdit = (id) => ({
   type: TODOS_ACTION_TYPES.CANCEL_EDIT,
+  payload: { id },
 });
 
-export const completeEdit = () => ({
+export const completeEdit = (data) => ({
   type: TODOS_ACTION_TYPES.COMPLETE_EDIT,
+  payload: data,
 });
 
 export const isEditing = (id) => ({

@@ -16,13 +16,7 @@ export const todosReducer = (state = initialState, action) => {
       console.log(action.payload);
       return state.filter((todo) => todo.id !== action.payload.id);
 
-    case TODOS_ACTION_TYPES.IS_EDITING:
-      console.log('is editing reducer');
-      console.log(action.payload);
-      return state.map((todo) =>
-        todo.id === action.payload.id ? { ...state, isEditing: true } : todo
-      );
-    case TODOS_ACTION_TYPES.EDIT_TODO: //esto hay que mirarlo bien
+    case TODOS_ACTION_TYPES.EDIT_TODO:
       console.log('Edit');
       return state.map((todo) => {
         console.log(todo.id);
@@ -37,12 +31,25 @@ export const todosReducer = (state = initialState, action) => {
             }
           : todo;
       });
+
     case TODOS_ACTION_TYPES.CANCEL_EDIT:
       console.log('Cancel Edit');
-      return {
-        ...state,
-        isEditing: false,
-      };
+      return state.map((todo) =>
+        todo.id === action.payload.id ? { ...todo, isEditing: false } : todo
+      );
+
+    case TODOS_ACTION_TYPES.COMPLETE_EDIT:
+      console.log('Complete Edit');
+      return state.map((todo) =>
+        todo.id === action.payload.id
+          ? {
+              ...todo,
+              isEditing: false,
+              description: action.payload.description,
+            }
+          : todo
+      );
+
     default:
       return state;
   }

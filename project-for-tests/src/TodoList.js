@@ -12,9 +12,19 @@ export const TodoList = ({ todos }) => {
       <Grid templateColumns="repeat(2, 1fr)" gap={5}>
         {todos.map(({ description, id, isEditing }) =>
           isEditing ? (
-            <TodoItemEdit description={description} id={id} key={id} />
+            <TodoItemEdit
+              description={description}
+              id={id}
+              key={id}
+              isEditing={isEditing}
+            />
           ) : (
-            <TodoItem description={description} id={id} key={id} />
+            <TodoItem
+              description={description}
+              id={id}
+              key={id}
+              isEditing={isEditing}
+            />
           )
         )}
       </Grid>

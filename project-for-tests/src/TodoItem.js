@@ -3,19 +3,19 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   cancelEdit,
+  completeEdit,
   deleteTodo,
   editTodo,
-  isEditing,
 } from './redux/todos/actionCreators';
 
-export const TodoItem = ({ description, id, editing }) => {
+export const TodoItem = ({ description, id, isEditing }) => {
   const dispatch = useDispatch();
 
   const handleEdit = () => {
     dispatch(editTodo({ description, id }));
   };
   console.log(id);
-  console.log(editing);
+  console.log(isEditing);
 
   const handleDelete = () => {
     //no le tenía que pasar id... ya lo tomaba del contexto global mk
@@ -31,7 +31,7 @@ export const TodoItem = ({ description, id, editing }) => {
         {description}
       </Heading>
       <Box> id:{id}</Box>
-      <Box> Editing:{editing}</Box>
+      <Box> Editing:{isEditing.toString()}</Box>
       <HStack>
         <Button m={3} onClick={handleEdit}>
           Edit Todo
@@ -44,18 +44,21 @@ export const TodoItem = ({ description, id, editing }) => {
   );
 };
 
-export const TodoItemEdit = ({ description, id }) => {
+export const TodoItemEdit = ({ description, id, isEditing }) => {
   const [input, setInput] = useState('');
   const dispatch = useDispatch();
 
-  const handleUpdate = ({ target: { value } }) => {
-    console.log('update');
+  const handleChange = ({ target: { value } }) => {
+    // const value = event.target.value;
+    console.log(value);
+    setInput(value);
   };
-  const handleFinishEdit = () => {
+  const handleCompleteEdit = () => {
+    dispatch(completeEdit({ description: input, id }));
     console.log('Finish');
   };
   const handleCancel = () => {
-    dispatch(cancelEdit());
+    dispatch(cancelEdit(id));
     console.log('Cancel Edit');
   };
 
@@ -68,13 +71,14 @@ export const TodoItemEdit = ({ description, id }) => {
         size="md"
         mt={5}
         type="text"
-        value={description}
+        value={input}
         name="description"
-        onChange={handleUpdate}
+        onChange={handleChange}
       />
       <Box> id:{id}</Box>
+      <Box> Editing:{isEditing.toString()}</Box>
       <HStack>
-        <Button m={3} onClick={handleFinishEdit}>
+        <Button m={3} onClick={handleCompleteEdit}>
           Finish Edit
         </Button>
         <Button m={3} onClick={handleCancel}>
