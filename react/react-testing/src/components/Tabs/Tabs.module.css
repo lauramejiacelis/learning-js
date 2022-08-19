@@ -1,0 +1,28 @@
+.container {
+  border: 1px solid black;
+  width: fit-content;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.tab {
+  min-width: 100px;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+}
+
+.tab:last-child {
+  border-right: 1px solid black;
+}
+
+.tab + .tab {
+  border-left: 1px solid black;
+}
+
+.content {
+  border-top: 1px solid black;
+}
