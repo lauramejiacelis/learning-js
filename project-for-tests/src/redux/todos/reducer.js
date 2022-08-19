@@ -1,9 +1,6 @@
 import { TODOS_ACTION_TYPES } from './actionTypes';
 
-const initialState = {
-  isEditing: false,
-  todos: [],
-};
+const initialState = [];
 
 let id = 0;
 
@@ -12,26 +9,47 @@ export const todosReducer = (state = initialState, action) => {
     case TODOS_ACTION_TYPES.ADD_TODO:
       console.log('created todo', action.payload);
       id++;
-      return {
-        ...state,
-        isEditing: false,
-        todos: [...state.todos, { id, description: action.payload }],
-      };
+      return [...state, { id, description: action.payload, isEditing: false }];
+
     case TODOS_ACTION_TYPES.DELETE_TODO:
       console.log('Delete');
       console.log(action.payload);
-      return {
-        isEditing: false,
-        todos: state.todos.filter((todo) => todo.id !== action.payload.id),
-      };
+      return state.filter((todo) => todo.id !== action.payload.id);
+
     case TODOS_ACTION_TYPES.EDIT_TODO:
       console.log('Edit');
-      return {
-        isEditing: true,
-        todos: state.todos.map((todo) =>
-          todo.id === action.payload.id ? action.payload : todo
-        ),
-      };
+      return state.map((todo) => {
+        console.log(todo.id);
+        console.log(todo.description);
+        console.log(action.payload);
+        console.log(action.payload.id);
+        return todo.id === action.payload.id
+          ? {
+              ...todo,
+              description: action.payload.description,
+              isEditing: true,
+            }
+          : todo;
+      });
+
+    case TODOS_ACTION_TYPES.CANCEL_EDIT:
+      console.log('Cancel Edit');
+      return state.map((todo) =>
+        todo.id === action.payload.id ? { ...todo, isEditing: false } : todo
+      );
+
+    case TODOS_ACTION_TYPES.COMPLETE_EDIT:
+      console.log('Complete Edit');
+      return state.map((todo) =>
+        todo.id === action.payload.id
+          ? {
+              ...todo,
+              isEditing: false,
+              description: action.payload.description,
+            }
+          : todo
+      );
+
     default:
       return state;
   }

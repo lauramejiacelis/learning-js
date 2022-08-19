@@ -1,16 +1,24 @@
 import { VStack, Heading, Box, HStack, Button, Input } from '@chakra-ui/react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteTodo, editTodo } from './redux/todos/actionCreators';
+import {
+  cancelEdit,
+  completeEdit,
+  deleteTodo,
+  editTodo,
+} from './redux/todos/actionCreators';
 
-export const TodoItem = ({ description, id }) => {
+export const TodoItem = ({ description, id, isEditing }) => {
   const dispatch = useDispatch();
 
-  const handleEdit = () => {};
+  const handleEdit = () => {
+    dispatch(editTodo({ description, id }));
+  };
   console.log(id);
+  console.log(isEditing);
 
   const handleDelete = () => {
     //no le tenía que pasar id... ya lo tomaba del contexto global mk
-
     dispatch(deleteTodo(id));
   };
 
@@ -23,6 +31,7 @@ export const TodoItem = ({ description, id }) => {
         {description}
       </Heading>
       <Box> id:{id}</Box>
+      <Box> Editing:{isEditing.toString()}</Box>
       <HStack>
         <Button m={3} onClick={handleEdit}>
           Edit Todo
@@ -35,10 +44,23 @@ export const TodoItem = ({ description, id }) => {
   );
 };
 
-export const TodoItemEdit = ({ description, id }) => {
-  const handleUpdate = () => {};
-  const handleFinishEdit = () => {};
-  const handleCancel = () => {};
+export const TodoItemEdit = ({ description, id, isEditing }) => {
+  const [input, setInput] = useState('');
+  const dispatch = useDispatch();
+
+  const handleChange = ({ target: { value } }) => {
+    // const value = event.target.value;
+    console.log(value);
+    setInput(value);
+  };
+  const handleCompleteEdit = () => {
+    dispatch(completeEdit({ description: input, id }));
+    console.log('Finish');
+  };
+  const handleCancel = () => {
+    dispatch(cancelEdit(id));
+    console.log('Cancel Edit');
+  };
 
   return (
     <VStack border="1px" borderColor="gray.200">
@@ -49,13 +71,14 @@ export const TodoItemEdit = ({ description, id }) => {
         size="md"
         mt={5}
         type="text"
-        value={description}
+        value={input}
         name="description"
-        onChange={handleUpdate}
+        onChange={handleChange}
       />
       <Box> id:{id}</Box>
+      <Box> Editing:{isEditing.toString()}</Box>
       <HStack>
-        <Button m={3} onClick={handleFinishEdit}>
+        <Button m={3} onClick={handleCompleteEdit}>
           Finish Edit
         </Button>
         <Button m={3} onClick={handleCancel}>
