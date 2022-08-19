@@ -1,4 +1,12 @@
-import { Box, Button, Container, Heading, Input } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Container,
+  Heading,
+  Stack,
+  Input,
+} from '@chakra-ui/react';
+import { SunIcon, MoonIcon } from '@chakra-ui/icons';
 import { TodoList } from './TodoList';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -7,6 +15,10 @@ import { addTodo } from './redux/todos/actionCreators';
 
 export default function App() {
   const [input, setInput] = useState('');
+  const [theme, setTheme] = useState({
+    color: 'black',
+    bgColor: 'white',
+  });
   const todos = useSelector(getTodosSelector);
   const dispatch = useDispatch();
 
@@ -22,23 +34,44 @@ export default function App() {
   };
   console.log(todos);
 
+  const handleClick = () => {
+    theme.color === 'black'
+      ? setTheme({
+          color: 'white',
+          bgColor: '#1C1C1C',
+        })
+      : setTheme({
+          color: 'black',
+          bgColor: 'white',
+        });
+  };
+
   return (
-    <Container alignSelf="center">
-      <Box textAlign="center" p={6}>
-        <Heading textAlign="center">To Do App with Hooks</Heading>
-        <Heading size="md" textAlign="center">
-          and by myself
-        </Heading>
-        <Input
-          type="text"
-          placeholder="enter a todo"
-          value={input}
-          onChange={handleChange}
-          my={3}
-        />
-        <Button onClick={handleAdd}>Add Todo</Button>
-      </Box>
-      {todos ? <TodoList todos={todos} /> : ''}
-    </Container>
+    <Box alignSelf="center" bgColor={theme.bgColor} color={theme.color}>
+      <Stack alignItems={'end'} margin={5}>
+        {theme.color === 'black' ? (
+          <SunIcon onClick={handleClick} cursor="pointer" />
+        ) : (
+          <MoonIcon onClick={handleClick} cursor="pointer" />
+        )}
+      </Stack>
+      <Container>
+        <Box textAlign="center" p={6}>
+          <Heading textAlign="center">To Do App with Hooks</Heading>
+          <Heading size="md" textAlign="center">
+            and by myself
+          </Heading>
+          <Input
+            type="text"
+            placeholder="enter a todo"
+            value={input}
+            onChange={handleChange}
+            my={3}
+          />
+          <Button onClick={handleAdd}>Add Todo</Button>
+        </Box>
+        {todos ? <TodoList todos={todos} /> : ''}
+      </Container>
+    </Box>
   );
 }

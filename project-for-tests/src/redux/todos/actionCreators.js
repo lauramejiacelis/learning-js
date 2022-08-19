@@ -25,7 +25,7 @@ export const completeEdit = (data) => ({
   payload: data,
 });
 
-export const isEditing = (id) => ({
-  type: TODOS_ACTION_TYPES.IS_EDITING,
-  payload: { id },
+export const updateTodo = (temporalTodo) => ({
+  type: TODOS_ACTION_TYPES.UPDATE_TODO,
+  payload: temporalTodo,
 });

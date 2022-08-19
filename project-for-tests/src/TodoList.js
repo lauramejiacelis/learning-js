@@ -1,7 +1,5 @@
 import { Box, Grid } from '@chakra-ui/react';
 import { TodoItem, TodoItemEdit } from './TodoItem';
-import { useSelector } from 'react-redux';
-import { isEditingSelector } from './redux/todos/selector';
 
 export const TodoList = ({ todos }) => {
   //const isEditing = useSelector(isEditingSelector);

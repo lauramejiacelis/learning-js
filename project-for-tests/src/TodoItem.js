@@ -1,12 +1,13 @@
 import { VStack, Heading, Box, HStack, Button, Input } from '@chakra-ui/react';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
+  editTodo,
+  deleteTodo,
   cancelEdit,
   completeEdit,
-  deleteTodo,
-  editTodo,
+  updateTodo,
 } from './redux/todos/actionCreators';
+import { updateTodoSelector } from './redux/todos/selector';
 
 export const TodoItem = ({ description, id, isEditing }) => {
   const dispatch = useDispatch();
@@ -14,8 +15,8 @@ export const TodoItem = ({ description, id, isEditing }) => {
   const handleEdit = () => {
     dispatch(editTodo({ description, id }));
   };
-  console.log(id);
-  console.log(isEditing);
+  //console.log(id);
+  //console.log(isEditing);
 
   const handleDelete = () => {
     //no le tenía que pasar id... ya lo tomaba del contexto global mk
@@ -45,21 +46,20 @@ export const TodoItem = ({ description, id, isEditing }) => {
 };
 
 export const TodoItemEdit = ({ description, id, isEditing }) => {
-  const [input, setInput] = useState('');
+  const temporalTodo = useSelector(updateTodoSelector);
+  console.log(temporalTodo);
   const dispatch = useDispatch();
 
-  const handleChange = ({ target: { value } }) => {
+  const handleUpdateEdit = ({ target: { value } }) => {
     // const value = event.target.value;
     console.log(value);
-    setInput(value);
+    dispatch(updateTodo(value));
   };
   const handleCompleteEdit = () => {
-    dispatch(completeEdit({ description: input, id }));
-    console.log('Finish');
+    dispatch(completeEdit({ description: temporalTodo, id }));
   };
   const handleCancel = () => {
     dispatch(cancelEdit(id));
-    console.log('Cancel Edit');
   };
 
   return (
@@ -71,9 +71,9 @@ export const TodoItemEdit = ({ description, id, isEditing }) => {
         size="md"
         mt={5}
         type="text"
-        value={input}
+        value={temporalTodo.description}
         name="description"
-        onChange={handleChange}
+        onChange={handleUpdateEdit}
       />
       <Box> id:{id}</Box>
       <Box> Editing:{isEditing.toString()}</Box>
