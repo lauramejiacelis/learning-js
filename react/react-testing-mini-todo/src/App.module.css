@@ -4,20 +4,19 @@
 }
 
 .mainContainer{
-  background-color: blanchedalmond;
   text-align: center;
 }
 
 .inputContainer{
   width: 80%;
-  background-color: lightpink;
+  background-color: lightgray;
   padding: 20px 10px;
   margin: 0 auto;
 }
 
 .listContainer{
   width: 80%;
-  background-color: rgb(241, 163, 238);
   padding: 20px 10px;
   margin: 0 auto;
+  color: black
 }

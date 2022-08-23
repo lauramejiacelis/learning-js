@@ -1,34 +1,28 @@
 import styles from './App.module.css'
 import {useState} from 'react'
+import {TodoList} from './components/TodoList'
+import {InputAdd} from './components/InputAdd'
 
 function App() {
-  const [input, setInput] = useState("")
-  const [todos, setTodos] = useState(["mercar", "comer"])
+  //let data= ["eat", "pray", "love"]
+  let data=[]
 
-  const handleChange = ({target: {value}}) =>{
-    setInput(value)
-  }
+  const [todos, setTodos] = useState(data)
 
-  const handleAdd = () => {
-    setTodos([...todos, input])
-    setInput('')
+  const addTodo = ( userInput ) => {
+    setTodos([...todos, userInput]) 
   }
 
   return (
     <div className={styles.mainContainer}>
       <h1>Testing Homework</h1>
-      <div className={styles.inputContainer}>
-        <label for="todoInput">To do: </label>
-        <input type="text" id="todoInput" name="todoInput" value={input} onChange={handleChange} />
-        <button onClick={handleAdd}>Add</button>
-      </div>
-      <div className={styles.listContainer}>
-        <ul>
-          {todos.map((todo)=><li>{todo}</li>)}
-        </ul>
-        </div>
+      <InputAdd addTodo={addTodo}/>
+      <TodoList todos={todos}/>
     </div>
   );
 }
 
 export default App;
+
+
+
