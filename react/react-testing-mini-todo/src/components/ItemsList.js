@@ -1,6 +1,6 @@
 import styles from '../App.module.css'
 
-export const TodoList = ({todos})=>{
+export const ItemsList = ({todos})=>{
 
   return (<div className={styles.listContainer}>
       <ul>

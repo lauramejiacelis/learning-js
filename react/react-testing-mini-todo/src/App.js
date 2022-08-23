@@ -1,6 +1,6 @@
 import styles from './App.module.css'
 import {useState} from 'react'
-import {TodoList} from './components/TodoList'
+import {ItemsList} from './components/ItemsList'
 import {InputAdd} from './components/InputAdd'
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
     <div className={styles.mainContainer}>
       <h1>Testing Homework</h1>
       <InputAdd addTodo={addTodo}/>
-      <TodoList todos={todos}/>
+      <ItemsList todos={todos}/>
     </div>
   );
 }
