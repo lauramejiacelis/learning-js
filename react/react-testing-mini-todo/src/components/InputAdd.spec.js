@@ -5,11 +5,11 @@ import userEvent from '@testing-library/user-event';
 describe("InputAdd", ()=>{
   it ("should render a Todo Input", ()=>{
     render(
-      <InputAdd todos={["go to the market", "dance", "do the homework"]} />
+      <InputAdd />
     )
     const inputAdd = screen.getByTestId("inputAdd")
     expect(inputAdd).toBeInTheDocument();
-    expect(inputAdd).toHaveAttribute("type", "text")
+    
   })
 
   it("should pass a valid input", ()=>{
@@ -22,4 +22,21 @@ describe("InputAdd", ()=>{
     expect(inputAdd).toHaveValue("mercar")
     expect(screen.queryByTestId("error")).not.toBeInTheDocument()
   })
+
+  //given should(assert) when(act)
+  it("should call onAdd when the user types and then clicks the button", ()=>{
+    const spy = jest.fn()//arrange
+    render(<InputAdd onAdd={spy}/>)//act onAdd={(text)=>{expect(text).toBeEqual("mercar")}}
+    const inputAdd = screen.getByTestId("inputAdd")//act
+    const buttonAdd = screen.getByTestId("buttonAdd")//act
+    
+    userEvent.type(inputAdd, "mercar")//act
+    userEvent.click(buttonAdd)//act
+
+    expect(spy).toHaveBeenCalledWith("mercar") //assert
+
+
+
+  })
+
 })

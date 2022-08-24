@@ -9,14 +9,14 @@ function App() {
 
   const [todos, setTodos] = useState(data)
 
-  const addTodo = ( userInput ) => {
+  const handleAdd = ( userInput ) => {
     setTodos([...todos, userInput]) 
   }
 
   return (
     <div className={styles.mainContainer}>
       <h1>Testing Homework</h1>
-      <InputAdd addTodo={addTodo}/>
+      <InputAdd onAdd={handleAdd}/>
       <ItemsList todos={todos}/>
     </div>
   );
