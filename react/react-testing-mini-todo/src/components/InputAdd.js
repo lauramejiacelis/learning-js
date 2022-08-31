@@ -25,7 +25,7 @@ export const InputAdd = ({onAdd}) =>{
       <label htmlFor="inputAdd">To do: </label>
       <input type="text" id="inputAdd" data-testid="inputAdd" name="todoInput" value={input} onChange={handleChange} />
       {error ? <div style={{color: "red"}} data-testid="error">Error</div> : ""}
-      <button onClick={handleAdd} data-testid="buttonAdd">Add</button>
+      <button onClick={handleAdd} data-testid="buttonAdd" >Add</button>
     </div>
 
   )

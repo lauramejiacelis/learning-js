@@ -15,7 +15,11 @@ function App() {
 
   return (
     <div className={styles.mainContainer}>
-      <h1>Testing Homework</h1>
+      <div className={styles.tittleContainer}>
+        <h1>To Do List</h1>
+        <h6>Testing Homework</h6>
+      </div>
+      
       <InputAdd onAdd={handleAdd}/>
       <ItemsList todos={todos}/>
     </div>
