@@ -4,10 +4,11 @@ import {ItemsList} from './components/ItemsList'
 import {InputAdd} from './components/InputAdd'
 
 function App() {
-  //let data= ["eat", "pray", "love"]
-  let data=[]
+  let data= ["Prepare Breakfast", "Do testing homework", "Buy Presents"]
+  //let data=[]
 
   const [todos, setTodos] = useState(data)
+  
 
   const handleAdd = ( userInput ) => {
     setTodos([...todos, userInput]) 
