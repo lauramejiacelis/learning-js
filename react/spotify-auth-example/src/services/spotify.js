@@ -12,6 +12,7 @@ const GRANT_TYPE = "authorization_code";
 const encodedSecret = encodeIdAndSecret(CLIENT_ID, CLIENT_SECRET);
 
 export function getToken(code) {
+  console.log(REDIRECT_URI)
   return instance
     .post(
       "https://accounts.spotify.com/api/token",

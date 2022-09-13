@@ -4,6 +4,7 @@ import { getToken } from "services/spotify";
 
 export default () => {
   const [params] = useSearchParams();
+  console.log(params)
 
   const navigate = useNavigate();
 
@@ -13,7 +14,7 @@ export default () => {
     getToken(code)
       .then(({ ok }) => {
         if (ok) {
-          return navigate("/playlists");
+          return navigate("/homemenu");
         }
 
         //TODO: implement error state
