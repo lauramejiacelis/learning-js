@@ -7,7 +7,7 @@ export const MENU = [
     {
       link: "/profile",
       tittle : "Profile",
-      src : "https://www.pngkey.com/png/full/202-2024691_my-profile-comments-my-profile-icon-png.png"
+      src : "https://cdn-icons-png.flaticon.com/512/431/431248.png"
     },
     {
       link: "/search",
