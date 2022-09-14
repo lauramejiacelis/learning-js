@@ -40,3 +40,9 @@ export function getPlaylists() {
     .get("https://api.spotify.com/v1/me/playlists")
     .then(({ data }) => data);
 }
+
+export function getTracks(id){
+  return instance
+    .get(`https://api.spotify.com/v1/playlists/${id}/tracks`)
+    .then(({ data }) => data)
+}
