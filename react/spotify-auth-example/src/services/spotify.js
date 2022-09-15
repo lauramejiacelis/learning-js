@@ -46,3 +46,15 @@ export function getTracks(id){
     .get(`https://api.spotify.com/v1/playlists/${id}/tracks`)
     .then(({ data }) => data)
 }
+
+export function getUser(){
+  return instance
+    .get(`https://api.spotify.com/v1/me`)
+    .then(({ data }) => data)
+}
+
+export function getSearch() {
+  return instance
+    .get("https://api.spotify.com/v1/search")
+    .then(({ data }) => data);
+}
