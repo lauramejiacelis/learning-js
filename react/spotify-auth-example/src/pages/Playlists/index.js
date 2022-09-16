@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Box, Container, Flex, Heading } from "@chakra-ui/react";
+import { Box,  Heading } from "@chakra-ui/react";
 import { getPlaylists } from "services/spotify";
 import { NavBar } from "components/NavBar";
 import { Card } from "components/Card"

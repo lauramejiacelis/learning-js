@@ -17,7 +17,7 @@ export const Profile = ()=>{
       <NavBar/>
       <Heading textAlign={'center'} pt={10}>Profile</Heading>
       {userProfile ? <Box>
-        <Card borderRadius='50%' link={''} tittle={userProfile.display_name}  src={userProfile.images[0] ? userProfile.images[0].url : "error"}/>
+        <Card borderRadius='20%' link={''} tittle={userProfile.display_name}  src={userProfile.images[0] ? userProfile.images[0].url : "error"}/>
         <Text textAlign={'center'}>User ID: {userProfile.id}  </Text>
       </Box> : "error"}
       

@@ -53,8 +53,8 @@ export function getUser(){
     .then(({ data }) => data)
 }
 
-export function getSearch() {
+export function getSearch(item, type) {
   return instance
-    .get("https://api.spotify.com/v1/search")
+    .get(`https://api.spotify.com/v1/search?q=${item}&type=${type}`)
     .then(({ data }) => data);
 }

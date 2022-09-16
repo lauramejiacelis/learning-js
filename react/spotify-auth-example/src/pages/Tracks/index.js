@@ -1,10 +1,8 @@
-import { Box, Heading, List, ListItem } from "@chakra-ui/react"
+import { Box, Heading, Text, Table, TableContainer, Tbody, Tr, VStack } from "@chakra-ui/react"
 import { NavBar } from "components/NavBar"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { getTracks } from "services/spotify"
-import { Card } from "components/Card"
-import { FlexView } from "components/FlexView"
 
 export const Tracks = ()=>{
     const {playlist_id} = useParams()
@@ -21,10 +19,16 @@ export const Tracks = ()=>{
     return(
         <Box>
             <NavBar/>
-            <Heading textAlign={'center'} pt={10}>Tracks</Heading>
-            <List>
-                {tracks.map(({track})=><ListItem>{track.name}</ListItem>)}
-            </List>
+            <Heading textAlign={'center'} py={10}>Tracks</Heading>
+            <VStack>
+                <TableContainer>
+                    <Table size={'md'} variant='simple'>
+                        <Tbody>
+                            {tracks.map(({track})=><Tr border='1px' borderColor='gray.200'> <Text fontSize='lg'>{track.name}</Text></Tr>)}
+                        </Tbody>
+                    </Table>
+                </TableContainer>
+            </VStack>
         </Box>
     )
 }
