@@ -1,4 +1,6 @@
 import { Box, Button, Center, Flex, Heading, Input, Radio, RadioGroup, Stack } from "@chakra-ui/react"
+import { Card } from "components/Card"
+import { FlexView } from "components/FlexView"
 import { NavBar } from "components/NavBar"
 import { useState } from "react"
 import { getSearch } from "services/spotify"
@@ -7,7 +9,7 @@ export const Search = ()=>{
 
   const [type, setType] = useState('artist')
   const [inputValue, setInputValue] = useState('')
-  const [item, setItem] = useState([])
+  const [items, setItems] = useState([])
 
   const handleChange = ( { target : { value } }) => {
     setInputValue(value)
@@ -19,8 +21,10 @@ export const Search = ()=>{
     getSearch(inputValue, type).then(console.log)
     let types = type.concat('s')
     console.log(types)
-    getSearch(inputValue, type).then((info)=>  setItem(info.types.items))
+    getSearch(inputValue, type).then((info)=>  setItems(info[`${types}`].items))
   }
+  console.log(items)
+  //console.log(items.images[1].url)
 
   return (
     <Box>
@@ -48,9 +52,7 @@ export const Search = ()=>{
           </Stack>
         </RadioGroup>
       </Center>
-      <Flex>
-        {/* {artists.map((artist)=>artist.name)} */}
-      </Flex>
+      <FlexView data= {items.map((item)=><Card borderRadius={'10%'} link={''} tittle={item.name}  src={item.images[1].url}/>)} />
     </Box>
   )
 }
