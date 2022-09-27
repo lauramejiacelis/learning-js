@@ -11,17 +11,20 @@ export const GAMES = [
   },
 ];
 
-export const RPS = {
-  rock: {
-    tittle: 'Rock',
-    src: '',
+export const RPS = [
+  {
+    name: 'Rock',
+    src: 'https://res.cloudinary.com/lauram2celis/image/upload/v1663967151/rock-paper-scissors/rock_qg4yh3.png',
+    beats: 'Scissors',
   },
-  paper: {
-    tittle: 'paper',
-    src: '',
+  {
+    name: 'Paper',
+    src: 'https://res.cloudinary.com/lauram2celis/image/upload/v1663967151/rock-paper-scissors/paper_s2aqin.png',
+    beats: 'Rock',
   },
-  scissors: {
-    tittle: 'scissors',
-    src: '',
+  {
+    name: 'Scissors',
+    src: 'https://res.cloudinary.com/lauram2celis/image/upload/v1663967151/rock-paper-scissors/scissors_j8nhjt.png',
+    beats: 'Paper',
   },
-};
+];

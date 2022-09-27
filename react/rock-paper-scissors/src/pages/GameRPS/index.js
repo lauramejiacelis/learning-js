@@ -1,5 +1,6 @@
 import {
   Box,
+  Center,
   Grid,
   GridItem,
   Image,
@@ -9,6 +10,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { useState } from 'react';
+import { RPS } from '../../constants';
 
 const GameRPS = () => {
   const [player, setPlayer] = useState([
@@ -23,23 +25,9 @@ const GameRPS = () => {
   ]);
   const [turn, setTurn] = useState(0);
 
-  const OPTIONS = [
-    {
-      name: 'R',
-      beats: 'S',
-    },
-    {
-      name: 'S',
-      beats: 'P',
-    },
-    {
-      name: 'P',
-      beats: 'R',
-    },
-  ];
-
   return (
     <Box px={20} py={10}>
+      <Box bg={'#CC57C7'} h={10} w={10} display={'none'} />
       <Text color={'#CC57C7'} fontSize={'2xl'} as={'b'}>
         Rock, Paper, Scissors
       </Text>
@@ -52,38 +40,24 @@ const GameRPS = () => {
             <Text color={'#333333'} fontSize={'large'} as={'b'}>
               Score: 0
             </Text>
-            <Image
-              h={150}
-              _hover={{
-                bg: '#FFAFFF',
-              }}
-              borderRadius={10}
-              src="https://res.cloudinary.com/lauram2celis/image/upload/v1663967151/rock-paper-scissors/rock_qg4yh3.png"
-            />
-            <Text color={'#333333'} fontSize={'large'} as={'b'}>
-              PRESS "A"
-            </Text>
-            <Image
-              h={150}
-              src="https://res.cloudinary.com/lauram2celis/image/upload/v1663967151/rock-paper-scissors/paper_s2aqin.png"
-            />
-            <Text color={'#333333'} fontSize={'large'} as={'b'}>
-              PRESS "S"
-            </Text>
-            <Image
-              h={150}
-              src="https://res.cloudinary.com/lauram2celis/image/upload/v1663967151/rock-paper-scissors/scissors_j8nhjt.png"
-            />
-            <Text color={'#333333'} fontSize={'large'} as={'b'}>
-              PRESS "D"
-            </Text>
+            {RPS.map((option) => (
+              <GameOption name={option.name} src={option.src} />
+            ))}
           </VStack>
         </GridItem>
         <GridItem bg={'#E19BDE'} />
         <GridItem bg={'#E19BDE'}>
-          <Text color={'#333333'} fontSize={'xl'}>
-            Player 2
-          </Text>
+          <VStack py={5}>
+            <Text color={'#333333'} fontSize={'2em'} as={'b'}>
+              Player 2
+            </Text>
+            <Text color={'#333333'} fontSize={'large'} as={'b'}>
+              Score: 0
+            </Text>
+            {RPS.map((option) => (
+              <GameOption name={option.name} src={option.src} />
+            ))}
+          </VStack>
         </GridItem>
       </Grid>
       <Box p={10}>
@@ -115,3 +89,19 @@ const GameRPS = () => {
 };
 
 export default GameRPS;
+
+export const GameOption = ({ name, src }) => {
+  return (
+    <VStack
+      _hover={{
+        bg: '#FFAFFF',
+      }}
+      borderRadius={10}
+    >
+      <Image h={150} src={src} />
+      <Text color={'#333333'} fontSize={'large'} as={'b'}>
+        {name}
+      </Text>
+    </VStack>
+  );
+};
