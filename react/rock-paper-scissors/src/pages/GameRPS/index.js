@@ -8,28 +8,29 @@ import { GAMES } from '../../constants';
 const GameRPS = () => {
   const [player, setPlayer] = useState([
     {
-      id: 'Player1',
+      id: 'player1',
       name: '',
       score: 0,
+      active: true,
     },
     {
-      id: 'Player2',
+      id: 'player2',
       name: '',
       score: 0,
+      active: false,
     },
   ]);
   //const [step, setStep] = useState(0);
 
   return (
     <Box px={20} py={10}>
-
       <Text color={'#CC57C7'} fontSize={'2xl'} as={'b'}>
         Rock, Paper, Scissors
       </Text>
 
       <InputAdd />
 
-      <Board player={player} setPlayer={setPlayer}/>
+      <Board player={player} setPlayer={setPlayer} />
 
       <Instructions
         howToPlay={GAMES[0].instructions.howToPlay}

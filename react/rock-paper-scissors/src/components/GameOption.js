@@ -1,11 +1,9 @@
 import { Image, Text, VStack } from '@chakra-ui/react';
 
-export const GameOption = ({ name, src,onClick, player }) => {
+export const GameOption = ({ name, src, onClick, playerid }) => {
   const handleOption = () => {
-    onClick(name, player)
+    onClick(name, playerid);
     console.log('Click');
-    console.log(name);
-    
   };
 
   return (
