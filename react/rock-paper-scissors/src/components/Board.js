@@ -2,55 +2,49 @@ import { useEffect, useState } from 'react';
 import { Grid, GridItem, Text, VStack } from '@chakra-ui/react';
 import { GameOption } from './GameOption';
 import { RPS } from '../constants';
+import { changeActivePlayer, changeScore } from '../services';
 
 export const Board = ({ player, setPlayer }) => {
   const [round, setRound] = useState(0);
-  const [turn, setTurn] = useState(0);
   const [playerInTurn, setPlayerInTurn] = useState('');
   const [game, setGame] = useState([]);
-  const [results, setResults] = useState({});
+  const [results, setResults] = useState('');
 
   useEffect(() => {
     let activePlayer = player.find((e) => e.active === true);
     setPlayerInTurn(activePlayer.id);
 
     if (game.length === 2) {
-      //game[0].player1 === game[1].player2 ? setResults('tie') :
+      const playerOneOption = RPS.find((option)=>option.name === game[0])
+      if (playerOneOption.beats === game[1]){
+        setResults(player[0].id) //player1
+        console.log(results)
+        setPlayer(changeScore(player,results))
+      }
+      console.log(player)
+      console.log(playerOneOption)
       setRound(round + 1);
       setGame([]);
-      //esto hay que moverlo
-      const changeActiveP = player.map((player) => {
-        if (player.active === true) {
-          return {
-            ...player,
-            active: false,
-          };
-        } else {
-          return {
-            ...player,
-            active: true,
-          };
-        }
-        return player;
-      });
-      setPlayer(changeActiveP);
+      
     }
-  }, [player, game]);
+  }, [player, game, results, setResults , round, setPlayer ]);
+  console.log(results)
 
   const handleOption = (option, playerid) => {
     console.log(option);
     console.log(playerid);
-    let move = {};
-    move[playerid] = option;
+    //let move = {};
+    //move[playerid] = option;
+    
     if (game.length < 2) {
-      setGame([...game, move]);
-      //turn === 0 ? setTurn(1) : setTurn(0);
+      //setGame([...game, move]);
+      setGame([...game, option])
+      
+      setPlayer(changeActivePlayer(player));
     }
   };
 
-  console.log(playerInTurn);
   console.log(game);
-  console.log(turn);
 
   return (
     <Grid templateColumns={'1fr 2fr 1fr'} gap={'2'}>
@@ -109,3 +103,4 @@ export const Board = ({ player, setPlayer }) => {
     </Grid>
   );
 };
+
