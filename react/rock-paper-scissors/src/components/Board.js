@@ -1,50 +1,67 @@
 import { useEffect, useState } from 'react';
-import { Grid, GridItem, Text, VStack } from '@chakra-ui/react';
+import { Grid, GridItem, Text, VStack, useToast, Box } from '@chakra-ui/react';
 import { GameOption } from './GameOption';
 import { RPS } from '../constants';
-import { changeActivePlayer, changeScore } from '../services';
+import { updateActivePlayer, updateScore, updateMove, updateWon } from '../services';
 
 export const Board = ({ player, setPlayer }) => {
   const [round, setRound] = useState(0);
   const [playerInTurn, setPlayerInTurn] = useState('');
   const [game, setGame] = useState([]);
+  const [move, setMove] = useState({
+    player1: "",
+    player2: "",
+    won: ""
+  })
   const [results, setResults] = useState('');
+  const toast = useToast();
 
   useEffect(() => {
     let activePlayer = player.find((e) => e.active === true);
     setPlayerInTurn(activePlayer.id);
 
-    if (game.length === 2) {
-      const playerOneOption = RPS.find((option)=>option.name === game[0])
-      if (playerOneOption.beats === game[1]){
-        setResults(player[0].id) //player1
-        console.log(results)
-        setPlayer(changeScore(player,results))
+    if (move.player1 !== '' && move.player2 !== ''){
+      const playerOneOption = RPS.find((option) => option.name === move.player1);
+      if (playerOneOption.beats === move.player2) {
+        setMove(updateWon(move, player[0].id))
+        setPlayer(updateScore(player, move.won));
+      } else if (playerOneOption.name === move.player2) {
+        console.log("it's a tie");
+        toast({
+          duration: 3000,
+          isClosable: true,
+          render: () => (
+            <Box color="white" p={3} bg="#A4329F" fontSize={'1.5em'} as={'b'}>
+              It's a tie, No one get points
+            </Box>
+          ),
+        });
+      } else {
+        setMove(updateWon(move, player[1].id))
+        setPlayer(updateScore(player, move.won))
+        
       }
-      console.log(player)
-      console.log(playerOneOption)
+    
+      setMove({
+        player1: "",
+        player2: "",
+        won: ""
+      })
       setRound(round + 1);
-      setGame([]);
-      
+    
     }
-  }, [player, game, results, setResults , round, setPlayer ]);
-  console.log(results)
+
+  }, [player, move, round, setPlayer]);
+  console.log(results);
 
   const handleOption = (option, playerid) => {
     console.log(option);
     console.log(playerid);
-    //let move = {};
-    //move[playerid] = option;
-    
-    if (game.length < 2) {
-      //setGame([...game, move]);
-      setGame([...game, option])
-      
-      setPlayer(changeActivePlayer(player));
-    }
+    setMove(updateMove(move, playerid, option))
+    setPlayer(updateActivePlayer(player));
   };
 
-  console.log(game);
+  console.log(move)
 
   return (
     <Grid templateColumns={'1fr 2fr 1fr'} gap={'2'}>
@@ -103,4 +120,3 @@ export const Board = ({ player, setPlayer }) => {
     </Grid>
   );
 };
-
