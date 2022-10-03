@@ -20,7 +20,6 @@ const GameRPS = () => {
       active: false,
     },
   ]);
-  //const [step, setStep] = useState(0);
 
   return (
     <Box px={20} py={10}>
