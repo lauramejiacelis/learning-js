@@ -21,7 +21,7 @@ export const GAMES = [
     tittle: 'Rock, Paper, Scissors, Lizard, Spock',
   },
 ];
-
+// value y otro label... 
 export const RPS = [
   {
     name: 'Rock',

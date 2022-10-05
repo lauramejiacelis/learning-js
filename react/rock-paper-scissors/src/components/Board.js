@@ -18,8 +18,8 @@ import {
   updateMove,
   updateWon,
 } from '../services';
-
-export const Board = ({ player, setPlayer }) => {
+//la idea es que en alguna parte pueda escoger el número de jugadores
+export const Board = ({ player, setPlayer }) => {//debería entrar aquí como props
   const [round, setRound] = useState(0);
   const [playerInTurn, setPlayerInTurn] = useState('');
   const [move, setMove] = useState({
@@ -41,7 +41,7 @@ export const Board = ({ player, setPlayer }) => {
         (option) => option.name === move.player1
       );
       if (playerOneOption.beats === move.player2) {
-        setMove(updateWon(move, player[0].id));
+        setMove(updateWon(move, player[0].id));//player[0] está quemado
         setPlayer(updateScore(player, move.won));
       } else if (playerOneOption.name === move.player2) {
         console.log("it's a tie");
@@ -123,7 +123,7 @@ export const Board = ({ player, setPlayer }) => {
           <Text color={'#333333'} fontSize={'large'} as={'b'}>
             Score: {player[0].score}
           </Text>
-          {RPS.map((option) => (
+          {RPS.map((option) => (//esto debería ser un argumento
             <GameOption
               name={option.name}
               src={option.src}
