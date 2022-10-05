@@ -1,8 +1,7 @@
 import { Box } from '@chakra-ui/react';
 import { Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
-import GameRPS from './pages/GameRPS';
-import GameRPSLS from './pages/GameRPSLS';
+import Game from './pages/Game';
 import Home from './pages/Home';
 
 const App = () => {
@@ -11,8 +10,7 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/gamerps" element={<GameRPS />} />
-        <Route path="/gamerpsls" element={<GameRPSLS />} />
+        <Route path="/game/:id" element={<Game />} />
       </Routes>
     </Box>
   );

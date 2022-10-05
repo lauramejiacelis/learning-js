@@ -21,7 +21,11 @@ const Home = () => {
           Choose your Game
         </Text>
         {GAMES.map((info) => (
-          <GameCard link={info.link} src={info.src} tittle={info.tittle} />
+          <GameCard
+            link={`game/${info.id}`}
+            src={info.src}
+            tittle={info.tittle}
+          />
         ))}
       </Box>
     </Center>

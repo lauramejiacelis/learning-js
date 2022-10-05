@@ -8,10 +8,8 @@ import {
   Box,
   Image,
   Button,
-  Show,
 } from '@chakra-ui/react';
 import { GameOption } from './GameOption';
-import { RPS } from '../constants';
 import {
   updateActivePlayer,
   updateScore,
@@ -19,7 +17,8 @@ import {
   updateWon,
 } from '../services';
 //la idea es que en alguna parte pueda escoger el número de jugadores
-export const Board = ({ player, setPlayer }) => {//debería entrar aquí como props
+export const Board = ({ player, setPlayer, moves }) => {
+  //debería entrar aquí como props
   const [round, setRound] = useState(0);
   const [playerInTurn, setPlayerInTurn] = useState('');
   const [move, setMove] = useState({
@@ -37,13 +36,13 @@ export const Board = ({ player, setPlayer }) => {//debería entrar aquí como pr
     setPlayerInTurn(activePlayer.id);
 
     if (move.player1 !== '' && move.player2 !== '') {
-      const playerOneOption = RPS.find(
-        (option) => option.name === move.player1
+      const playerOneOption = moves.find(
+        (option) => option.value === move.player1
       );
       if (playerOneOption.beats === move.player2) {
-        setMove(updateWon(move, player[0].id));//player[0] está quemado
+        setMove(updateWon(move, player[0].id)); //player[0] está quemado
         setPlayer(updateScore(player, move.won));
-      } else if (playerOneOption.name === move.player2) {
+      } else if (playerOneOption.value === move.player2) {
         console.log("it's a tie");
         toast({
           duration: 3000,
@@ -123,15 +122,19 @@ export const Board = ({ player, setPlayer }) => {//debería entrar aquí como pr
           <Text color={'#333333'} fontSize={'large'} as={'b'}>
             Score: {player[0].score}
           </Text>
-          {RPS.map((option) => (//esto debería ser un argumento
-            <GameOption
-              name={option.name}
-              src={option.src}
-              onClick={handleOption}
-              playerid={player[0].id}
-              key={option.name}
-            />
-          ))}
+          {moves.map(
+            (
+              option //esto debería ser un argumento
+            ) => (
+              <GameOption
+                name={option.value}
+                src={option.src}
+                onClick={handleOption}
+                playerid={player[0].id}
+                key={option.value}
+              />
+            )
+          )}
         </VStack>
       </GridItem>
 
@@ -163,13 +166,13 @@ export const Board = ({ player, setPlayer }) => {//debería entrar aquí como pr
           <Text color={'#333333'} fontSize={'large'} as={'b'}>
             Score: {player[1].score}
           </Text>
-          {RPS.map((option) => (
+          {moves.map((option) => (
             <GameOption
-              name={option.name}
+              name={option.value}
               src={option.src}
               onClick={handleOption}
               playerid={player[1].id}
-              key={option.name}
+              key={option.value}
             />
           ))}
         </VStack>
