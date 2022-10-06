@@ -9,7 +9,7 @@ import { GAMES } from '../../constants';
 const Game = () => {
   const { id } = useParams();
   console.log(id);
-  const [player, setPlayer] = useState([
+  const [players, setPlayers] = useState([
     {
       id: 'player1',
       name: '',
@@ -32,7 +32,11 @@ const Game = () => {
 
       <InputAdd />
 
-      <Board player={player} setPlayer={setPlayer} moves={GAMES[id].moves} />
+      <Board
+        players={players}
+        setPlayers={setPlayers}
+        moves={GAMES[id].moves}
+      />
 
       <Instructions
         howToPlay={GAMES[id].instructions.howToPlay}

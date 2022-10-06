@@ -17,8 +17,9 @@ import {
   updateWon,
 } from '../services';
 //la idea es que en alguna parte pueda escoger el número de jugadores
-export const Board = ({ player, setPlayer, moves }) => {
+export const Board = ({ players, setPlayers, moves }) => {
   //debería entrar aquí como props
+  console.log(players);
   const [round, setRound] = useState(0);
   const [playerInTurn, setPlayerInTurn] = useState('');
   const [move, setMove] = useState({
@@ -32,16 +33,17 @@ export const Board = ({ player, setPlayer, moves }) => {
   const [show, setShow] = useState('inherit');
 
   useEffect(() => {
-    let activePlayer = player.find((e) => e.active === true);
+    let activePlayer = players.find((e) => e.active === true);
     setPlayerInTurn(activePlayer.id);
 
     if (move.player1 !== '' && move.player2 !== '') {
       const playerOneOption = moves.find(
         (option) => option.value === move.player1
       );
+      console.log(playerOneOption);
       if (playerOneOption.beats === move.player2) {
-        setMove(updateWon(move, player[0].id)); //player[0] está quemado
-        setPlayer(updateScore(player, move.won));
+        setMove(updateWon(move, players[0].id)); //player[0] está quemado
+        setPlayers(updateScore(players, move.won));
       } else if (playerOneOption.value === move.player2) {
         console.log("it's a tie");
         toast({
@@ -59,8 +61,9 @@ export const Board = ({ player, setPlayer, moves }) => {
           won: '',
         });
       } else {
-        setMove(updateWon(move, player[1].id));
-        setPlayer(updateScore(player, move.won));
+        //la lógica falta ampliarse para rpsls
+        setMove(updateWon(move, players[1].id));
+        setPlayers(updateScore(players, move.won));
       }
     }
 
@@ -74,27 +77,27 @@ export const Board = ({ player, setPlayer, moves }) => {
     }
 
     if (round === 3) {
-      const maxScore = Math.max(...player.map((player) => player.score));
-      const winner = player.find((player) => player.score === maxScore);
+      const maxScore = Math.max(...players.map((player) => player.score));
+      const winner = players.find((player) => player.score === maxScore);
       setResults(winner.id);
       setHide('initial');
       setShow('none');
       setRound(0);
     }
-  }, [player, move, round, setPlayer, toast]);
+  }, [moves, players, move, round, setPlayers, toast]);
   console.log(results);
 
   const handleOption = (option, playerid) => {
     console.log(option);
     console.log(playerid);
     setMove(updateMove(move, playerid, option));
-    setPlayer(updateActivePlayer(player));
+    setPlayers(updateActivePlayer(players));
   };
 
   console.log(move);
 
   const handlePlay = () => {
-    setPlayer([
+    setPlayers([
       {
         id: 'player1',
         name: '',
@@ -117,10 +120,10 @@ export const Board = ({ player, setPlayer, moves }) => {
       <GridItem bg={'#E19BDE'}>
         <VStack py={5}>
           <Text color={'#333333'} fontSize={'2em'} as={'b'}>
-            {player[0].id}
+            {players[0].id}
           </Text>
           <Text color={'#333333'} fontSize={'large'} as={'b'}>
-            Score: {player[0].score}
+            Score: {players[0].score}
           </Text>
           {moves.map(
             (
@@ -130,7 +133,7 @@ export const Board = ({ player, setPlayer, moves }) => {
                 name={option.value}
                 src={option.src}
                 onClick={handleOption}
-                playerid={player[0].id}
+                playerid={players[0].id}
                 key={option.value}
               />
             )
@@ -161,17 +164,17 @@ export const Board = ({ player, setPlayer, moves }) => {
       <GridItem bg={'#E19BDE'}>
         <VStack py={5}>
           <Text color={'#333333'} fontSize={'2em'} as={'b'}>
-            {player[1].id}
+            {players[1].id}
           </Text>
           <Text color={'#333333'} fontSize={'large'} as={'b'}>
-            Score: {player[1].score}
+            Score: {players[1].score}
           </Text>
           {moves.map((option) => (
             <GameOption
               name={option.value}
               src={option.src}
               onClick={handleOption}
-              playerid={player[1].id}
+              playerid={players[1].id}
               key={option.value}
             />
           ))}
