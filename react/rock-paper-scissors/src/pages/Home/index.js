@@ -22,7 +22,7 @@ const Home = () => {
         </Text>
         {GAMES.map((info) => (
           <GameCard
-            link={`game/${info.id}`}
+            link={`game/${info.id}/setplayers`}
             src={info.src}
             tittle={info.tittle}
           />

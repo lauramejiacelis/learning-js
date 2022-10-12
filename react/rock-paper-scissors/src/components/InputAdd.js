@@ -1,4 +1,4 @@
-import { Button, Input, VStack } from '@chakra-ui/react';
+import { Button, Input, Container } from '@chakra-ui/react';
 import { useState } from 'react';
 
 export const InputAdd = () => {
@@ -13,16 +13,20 @@ export const InputAdd = () => {
 
   const handleAdd = () => {};
   return (
-    <VStack display={'none'}>
+    <Container
+      maxW="md"
+      p={10}
+      centerContent={true}
+      justifyContent="center"
+      gap={5}
+    >
       <Input
         value={input}
         onChange={handleChange}
         placeholder="Player 1 Name"
         focusBorderColor={'#CC57C7'}
       />
-      <Button onClick={handleAdd} _hover={{ bg: '#CC57C7', color: 'white' }}>
-        Add Player
-      </Button>
-    </VStack>
+      <Button onClick={handleAdd}>Add Player</Button>
+    </Container>
   );
 };

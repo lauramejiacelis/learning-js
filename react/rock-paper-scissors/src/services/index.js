@@ -27,22 +27,21 @@ export const updateActivePlayer = (player) =>
   });
 
 export const updateMove = (move, player, option) => {
-  const data = Object.keys(move).find((key)=> key === player)
-    if (data === player){
-      return {
-        ...move,
-        [player]: option,
-      }
-    }
-
-}
+  const data = Object.keys(move).find((key) => key === player);
+  if (data === player) {
+    return {
+      ...move,
+      [player]: option,
+    };
+  }
+};
 
 export const updateWon = (move, player) => {
-  const won = Object.keys(move).find((key)=> key === 'won')
-    if(won !== ''){
-      return {
-        ...move,
-        won: player
-      }
-    }
-}
+  const won = Object.keys(move).find((key) => key === 'won');
+  if (won !== '') {
+    return {
+      ...move,
+      won: player,
+    };
+  }
+};
