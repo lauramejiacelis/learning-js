@@ -3,10 +3,25 @@ import { useState } from 'react';
 import { InputAdd } from '../../components/InputAdd';
 
 const SetPlayers = () => {
-  const [playersNumber, setPlayersNumber] = useState(0)
+  const [selection, setSelection] = useState(2);
+  const [playersNumber, setPlayersNumber] = useState(0);
+  const [names, setNames] = useState([]);
+
+  const handleChange = ({ target: { value } }) => {
+    setSelection(value);
+  };
+  console.log(selection);
+
   const handleClick = () => {
     console.log('setting players');
+    setPlayersNumber(selection);
   };
+  console.log(playersNumber);
+
+  const handleAdd = (userInput) => {
+    setNames([...names, userInput]);
+  };
+  console.log(names);
 
   return (
     <Container
@@ -17,15 +32,17 @@ const SetPlayers = () => {
       gap={5}
     >
       <Text color={'#333333'} fontSize={'large'} as={'b'}>
-        Choose players
+        Choose number of players
       </Text>
-      <Select>
+      <Select onChange={handleChange}>
         <option value={2}>2 players</option>
         <option value={3}>3 players</option>
         <option value={4}>4 players</option>
       </Select>
-      <Button onClick={handleClick}>Set Players</Button>
-      <InputAdd />
+      <Button disabled={playersNumber > 0 ? true : false} onClick={handleClick}>
+        Set Players
+      </Button>
+      {playersNumber > 0 ? <InputAdd onAdd={handleAdd} /> : ''}
     </Container>
   );
 };

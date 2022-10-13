@@ -7,6 +7,7 @@ const Button = defineStyleConfig({
       borderColor: '#CC57C7',
       color: '#CC57C7',
       _hover: { bg: '#AA34A4', color: 'white' },
+      _disabled: { bg: '#E19BDE', color: 'white' },
     },
     solid: {
       bg: '#CC57C7',
@@ -14,6 +15,7 @@ const Button = defineStyleConfig({
       _hover: { bg: '#AA34A4', color: 'white' },
     },
   },
+
   defaultProps: {
     size: 'md',
     variant: 'solid',

@@ -1,7 +1,15 @@
-import { Button, Input, Container } from '@chakra-ui/react';
+import {
+  Button,
+  Input,
+  Container,
+  FormControl,
+  FormLabel,
+  FormHelperText,
+  FormErrorMessage,
+} from '@chakra-ui/react';
 import { useState } from 'react';
 
-export const InputAdd = () => {
+export const InputAdd = ({ onAdd }) => {
   const [input, setInput] = useState('');
   const [error, setError] = useState(false);
 
@@ -11,7 +19,15 @@ export const InputAdd = () => {
   };
   console.log(input);
 
-  const handleAdd = () => {};
+  const handleAdd = () => {
+    if (input) {
+      onAdd(input);
+      setInput('');
+    } else {
+      setError(true);
+    }
+  };
+
   return (
     <Container
       maxW="md"
@@ -20,12 +36,18 @@ export const InputAdd = () => {
       justifyContent="center"
       gap={5}
     >
-      <Input
-        value={input}
-        onChange={handleChange}
-        placeholder="Player 1 Name"
-        focusBorderColor={'#CC57C7'}
-      />
+      <FormControl>
+        <FormLabel>Player Name</FormLabel>
+        <Input
+          value={input}
+          onChange={handleChange}
+          placeholder="Player 1 Name"
+          focusBorderColor={'#CC57C7'}
+        />
+        <FormHelperText>{`Please enter ... name`}</FormHelperText>
+        {error ? <FormErrorMessage> Name is requiered </FormErrorMessage> : ''}
+      </FormControl>
+
       <Button onClick={handleAdd}>Add Player</Button>
     </Container>
   );
