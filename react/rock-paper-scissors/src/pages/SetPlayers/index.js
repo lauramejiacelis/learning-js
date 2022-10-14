@@ -1,4 +1,4 @@
-import { Button, Container, Text, Select, Heading } from '@chakra-ui/react';
+import { Box, Button, Container, Text, Select, Heading } from '@chakra-ui/react';
 import { useState } from 'react';
 import { InputAdd } from '../../components/InputAdd';
 
@@ -31,17 +31,31 @@ const SetPlayers = () => {
       justifyContent="center"
       gap={5}
     >
-      <Text color={'#333333'} fontSize={'large'} as={'b'}>
+      {playersNumber === 0 ? (
+      <Container
+        maxW="md"
+        p={10}
+        centerContent={true}
+        justifyContent="center"
+        gap={5}>
+        <Text color={'#333333'} fontSize={'large'} as={'b'}>
         Choose number of players
-      </Text>
-      <Select onChange={handleChange}>
-        <option value={2}>2 players</option>
-        <option value={3}>3 players</option>
-        <option value={4}>4 players</option>
-      </Select>
-      <Button disabled={playersNumber > 0 ? true : false} onClick={handleClick}>
-        Set Players
-      </Button>
+        </Text>
+        <Select onChange={handleChange}>
+          <option value={2}>2 players</option>
+          <option value={3}>3 players</option>
+          <option value={4}>4 players</option>
+        </Select>
+        <Button disabled={playersNumber > 0 ? true : false} onClick={handleClick}>
+          Set Players
+        </Button>
+      </Container>) : (
+          <Text color={'#333333'} fontSize={'large'} as={'b'}>
+            {`You chose ${playersNumber} players`}
+          </Text>
+        )}
+      
+      
       {playersNumber > 0 ? <InputAdd onAdd={handleAdd} /> : ''}
     </Container>
   );

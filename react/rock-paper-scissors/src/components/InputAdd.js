@@ -4,14 +4,14 @@ import {
   Container,
   FormControl,
   FormLabel,
-  FormHelperText,
-  FormErrorMessage,
+  Box,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 
 export const InputAdd = ({ onAdd }) => {
   const [input, setInput] = useState('');
   const [error, setError] = useState(false);
+  const [counter, setCounter] = useState(1)
 
   const handleChange = ({ target: { value } }) => {
     setInput(value);
@@ -23,15 +23,18 @@ export const InputAdd = ({ onAdd }) => {
     if (input) {
       onAdd(input);
       setInput('');
-    } else {
+      setCounter(counter+1)
+    } else if (input === '') {
       setError(true);
     }
   };
+  console.log(counter)
+  console.log(error)
 
   return (
     <Container
       maxW="md"
-      p={10}
+      p={5}
       centerContent={true}
       justifyContent="center"
       gap={5}
@@ -41,11 +44,10 @@ export const InputAdd = ({ onAdd }) => {
         <Input
           value={input}
           onChange={handleChange}
-          placeholder="Player 1 Name"
+          placeholder={`Please enter player ${counter} name`}
           focusBorderColor={'#CC57C7'}
         />
-        <FormHelperText>{`Please enter ... name`}</FormHelperText>
-        {error ? <FormErrorMessage> Name is requiered </FormErrorMessage> : ''}
+        {error === true ? (<Box color={'red'}>Error, enter player name</Box>) : ''}
       </FormControl>
 
       <Button onClick={handleAdd}>Add Player</Button>
