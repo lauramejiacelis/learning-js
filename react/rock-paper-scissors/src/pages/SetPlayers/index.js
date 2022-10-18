@@ -1,11 +1,16 @@
 import { Box, Button, Container, Text, Select, Heading } from '@chakra-ui/react';
 import { useState } from 'react';
 import { InputAdd } from '../../components/InputAdd';
+import { redirect, useParams } from 'react-router-dom';
+
 
 const SetPlayers = () => {
+  const {id} = useParams()
   const [selection, setSelection] = useState(2);
   const [playersNumber, setPlayersNumber] = useState(0);
   const [names, setNames] = useState([]);
+
+  console.log(id)
 
   const handleChange = ({ target: { value } }) => {
     setSelection(value);
@@ -50,13 +55,16 @@ const SetPlayers = () => {
           Set Players
         </Button>
       </Container>) : (
-          <Text color={'#333333'} fontSize={'large'} as={'b'}>
-            {`You chose ${playersNumber} players`}
-          </Text>
+          <Container>
+            <Text color={'#333333'} fontSize={'large'} as={'b'}>
+              {`You chose ${playersNumber} players`}
+            </Text>
+            <InputAdd onAdd={handleAdd} />
+          </Container>
+          
         )}
       
-      
-      {playersNumber > 0 ? <InputAdd onAdd={handleAdd} /> : ''}
+      {names.length > 0 && names.length === playersNumber ? 'hello' : ""} 
     </Container>
   );
 };
