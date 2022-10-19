@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 
-export const InputAdd = ({ onAdd }) => {
+export const InputAdd = ({onAdd}) => {
   const [input, setInput] = useState('');
   const [error, setError] = useState(false);
   const [counter, setCounter] = useState(1)
@@ -40,17 +40,17 @@ export const InputAdd = ({ onAdd }) => {
       gap={5}
     >
       <FormControl>
-        <FormLabel>Player Name</FormLabel>
+        <FormLabel>{`PLAYER NAME`}</FormLabel>
         <Input
           value={input}
           onChange={handleChange}
           placeholder={`Please enter player ${counter} name`}
           focusBorderColor={'#CC57C7'}
         />
-        {error === true ? (<Box color={'red'}>Error, enter player name</Box>) : ''}
+        {error === true ? (<Box color={'red'}>{`Error, enter player name`}</Box>) : ''}
       </FormControl>
 
-      <Button onClick={handleAdd}>Add Player</Button>
+      <Button onClick={handleAdd}>{`Add Player`}</Button>
     </Container>
   );
 };

@@ -1,14 +1,21 @@
-import { Box, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Container,
+  Text,
+} from '@chakra-ui/react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Board } from '../../components/Board';
 import { InputAdd } from '../../components/InputAdd';
+import { SetPlayers } from '../../components/SetPlayers';
 import { Instructions } from '../../components/Instructions';
+import { Board } from '../../components/Board';
 import { GAMES } from '../../constants';
 
 const Game = () => {
   const { id } = useParams();
   console.log(id);
+  const [playersNumber, setPlayersNumber] = useState(0);
+  const [names, setNames] = useState([]);
   const [players, setPlayers] = useState([
     {
       id: 'player1',
@@ -24,14 +31,24 @@ const Game = () => {
     },
   ]);
 
-  return (
-    <Box px={20} py={10}>
+  const handleSet = (userSelection) =>{
+    setPlayersNumber(userSelection);
+  }
+  console.log(playersNumber);
+  console.log(names.length);
+
+  const handleAdd = (userInput) => {
+    setNames([...names, userInput]);
+  };
+  console.log(names);
+
+  console.log(names.length > 0);
+  console.log(names.length === playersNumber);
+  if (names.length > 0 && names.length === parseInt(playersNumber)) {
+    return (<Box px={20} py={10}>
       <Text color={'#CC57C7'} fontSize={'2xl'} as={'b'}>
         {GAMES[id].tittle}
       </Text>
-
-      <InputAdd />
-
       <Board
         players={players}
         setPlayers={setPlayers}
@@ -43,8 +60,31 @@ const Game = () => {
         rules={GAMES[id].instructions.rules}
         notes={GAMES[id].instructions.notes}
       />
-    </Box>
+    </Box>);
+  }
+
+  return (
+    <Container
+      maxW="md"
+      p={10}
+      centerContent={true}
+      justifyContent="center"
+      gap={5} 
+    >
+      {playersNumber === 0 ? (
+        <SetPlayers onSet={handleSet}/>
+      ) : (
+        <Container >
+          <Text color={'#333333'} fontSize={'large'} as={'b'} >
+            {`You chose ${playersNumber} players`}
+          </Text>
+          <InputAdd onAdd={handleAdd} />
+        </Container>
+      )}
+      
+    </Container>
   );
 };
 
 export default Game;
+
