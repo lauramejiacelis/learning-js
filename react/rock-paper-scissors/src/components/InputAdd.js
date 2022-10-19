@@ -8,10 +8,11 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 
-export const InputAdd = ({onAdd}) => {
+export const InputAdd = ({ onAdd, name }) => {
   const [input, setInput] = useState('');
   const [error, setError] = useState(false);
-  const [counter, setCounter] = useState(1)
+  const [counter, setCounter] = useState(1);
+  console.log(name);
 
   const handleChange = ({ target: { value } }) => {
     setInput(value);
@@ -23,13 +24,13 @@ export const InputAdd = ({onAdd}) => {
     if (input) {
       onAdd(input);
       setInput('');
-      setCounter(counter+1)
+      setCounter(counter + 1);
     } else if (input === '') {
       setError(true);
     }
   };
-  console.log(counter)
-  console.log(error)
+  console.log(counter);
+  console.log(error);
 
   return (
     <Container
@@ -40,17 +41,21 @@ export const InputAdd = ({onAdd}) => {
       gap={5}
     >
       <FormControl>
-        <FormLabel>{`PLAYER NAME`}</FormLabel>
+        <FormLabel>{`${name.toUpperCase()} NAME`}</FormLabel>
         <Input
           value={input}
           onChange={handleChange}
-          placeholder={`Please enter player ${counter} name`}
+          placeholder={`Please enter ${name} ${counter} name`}
           focusBorderColor={'#CC57C7'}
         />
-        {error === true ? (<Box color={'red'}>{`Error, enter player name`}</Box>) : ''}
+        {error === true ? (
+          <Box color={'red'}>{`Error, enter ${name} name`}</Box>
+        ) : (
+          ''
+        )}
       </FormControl>
 
-      <Button onClick={handleAdd}>{`Add Player`}</Button>
+      <Button onClick={handleAdd}>{`ADD ${name.toUpperCase()}`}</Button>
     </Container>
   );
 };

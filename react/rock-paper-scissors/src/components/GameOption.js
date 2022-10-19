@@ -13,10 +13,8 @@ export const GameOption = ({ name, src, onClick, playerid }) => {
       }}
       borderRadius={10}
     >
-      <Image h={150} src={src} onClick={handleOption} />
-      <Text color={'#333333'} fontSize={'large'} as={'b'}>
-        {name}
-      </Text>
+      <Image h={85} src={src} onClick={handleOption} />
+      {/* <Text color={'#333333'}>{name.toUpperCase()}</Text> */}
     </VStack>
   );
 };

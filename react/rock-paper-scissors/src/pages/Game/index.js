@@ -1,8 +1,4 @@
-import {
-  Box,
-  Container,
-  Text,
-} from '@chakra-ui/react';
+import { Box, Container, Text } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { InputAdd } from '../../components/InputAdd';
@@ -10,6 +6,7 @@ import { SetPlayers } from '../../components/SetPlayers';
 import { Instructions } from '../../components/Instructions';
 import { Board } from '../../components/Board';
 import { GAMES } from '../../constants';
+import { NewBoard } from '../../components/NewBoard';
 
 const Game = () => {
   const { id } = useParams();
@@ -31,9 +28,9 @@ const Game = () => {
     },
   ]);
 
-  const handleSet = (userSelection) =>{
+  const handleSet = (userSelection) => {
     setPlayersNumber(userSelection);
-  }
+  };
   console.log(playersNumber);
   console.log(names.length);
 
@@ -45,22 +42,26 @@ const Game = () => {
   console.log(names.length > 0);
   console.log(names.length === playersNumber);
   if (names.length > 0 && names.length === parseInt(playersNumber)) {
-    return (<Box px={20} py={10}>
-      <Text color={'#CC57C7'} fontSize={'2xl'} as={'b'}>
-        {GAMES[id].tittle}
-      </Text>
-      <Board
-        players={players}
-        setPlayers={setPlayers}
-        moves={GAMES[id].moves}
-      />
+    return (
+      <Box px={20} py={10}>
+        <Text color={'#CC57C7'} fontSize={'2xl'} as={'b'}>
+          {GAMES[id].tittle}
+        </Text>
+        <Board
+          players={players}
+          setPlayers={setPlayers} //esto es lo que jamás se puede hacer...
+          moves={GAMES[id].moves}
+        />
 
-      <Instructions
-        howToPlay={GAMES[id].instructions.howToPlay}
-        rules={GAMES[id].instructions.rules}
-        notes={GAMES[id].instructions.notes}
-      />
-    </Box>);
+        <Instructions
+          howToPlay={GAMES[id].instructions.howToPlay}
+          rules={GAMES[id].instructions.rules}
+          notes={GAMES[id].instructions.notes}
+        />
+
+        <NewBoard num={playersNumber} names={names} moves={GAMES[id].moves} />
+      </Box>
+    );
   }
 
   return (
@@ -69,22 +70,26 @@ const Game = () => {
       p={10}
       centerContent={true}
       justifyContent="center"
-      gap={5} 
+      gap={5}
     >
       {playersNumber === 0 ? (
-        <SetPlayers onSet={handleSet}/>
+        <SetPlayers onSet={handleSet} />
       ) : (
-        <Container >
-          <Text color={'#333333'} fontSize={'large'} as={'b'} >
+        <Container
+          maxW="md"
+          p={5}
+          centerContent={true}
+          justifyContent="center"
+          gap={5}
+        >
+          <Text color={'#333333'} fontSize={'large'} as={'b'}>
             {`You chose ${playersNumber} players`}
           </Text>
-          <InputAdd onAdd={handleAdd} />
+          <InputAdd onAdd={handleAdd} name={'player'} />
         </Container>
       )}
-      
     </Container>
   );
 };
 
 export default Game;
-
