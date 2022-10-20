@@ -47,11 +47,6 @@ const Game = () => {
         <Text color={'#CC57C7'} fontSize={'2xl'} as={'b'}>
           {GAMES[id].tittle}
         </Text>
-        <Board
-          players={players}
-          setPlayers={setPlayers} //esto es lo que jamás se puede hacer...
-          moves={GAMES[id].moves}
-        />
 
         <Instructions
           howToPlay={GAMES[id].instructions.howToPlay}
