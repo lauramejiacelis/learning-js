@@ -25,6 +25,7 @@ const Home = () => {
             link={`game/${info.id}`}
             src={info.src}
             tittle={info.tittle}
+            key={info.id}
           />
         ))}
       </Box>

@@ -1,4 +1,4 @@
-import { Image, Text, VStack } from '@chakra-ui/react';
+import { Image, VStack } from '@chakra-ui/react';
 
 export const GameOption = ({ name, src, onClick, playerid }) => {
   const handleOption = () => {

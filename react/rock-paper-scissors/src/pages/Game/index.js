@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import { InputAdd } from '../../components/InputAdd';
 import { SetPlayers } from '../../components/SetPlayers';
 import { Instructions } from '../../components/Instructions';
-import { Board } from '../../components/Board';
 import { GAMES } from '../../constants';
 import { NewBoard } from '../../components/NewBoard';
 
@@ -13,20 +12,6 @@ const Game = () => {
   console.log(id);
   const [playersNumber, setPlayersNumber] = useState(0);
   const [names, setNames] = useState([]);
-  const [players, setPlayers] = useState([
-    {
-      id: 'player1',
-      name: '',
-      score: 0,
-      active: true,
-    },
-    {
-      id: 'player2',
-      name: '',
-      score: 0,
-      active: false,
-    },
-  ]);
 
   const handleSet = (userSelection) => {
     setPlayersNumber(userSelection);
@@ -48,13 +33,14 @@ const Game = () => {
           {GAMES[id].tittle}
         </Text>
 
+        <NewBoard num={playersNumber} names={names} moves={GAMES[id].moves} />
+
         <Instructions
           howToPlay={GAMES[id].instructions.howToPlay}
           rules={GAMES[id].instructions.rules}
           notes={GAMES[id].instructions.notes}
         />
 
-        <NewBoard num={playersNumber} names={names} moves={GAMES[id].moves} />
       </Box>
     );
   }
