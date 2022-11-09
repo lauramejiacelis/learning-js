@@ -48,23 +48,21 @@ export const updateWon = (move, player) => {
 
 // 5/11/2022 Creo que de aquí para arriba se usaron en Board, es decir en el primer intento
 
-export const winner = (move1, move2, moves) =>{
-  console.log(moves)
-  console.log(move1)
-  const playerOneMove = moves.find((move) =>move.value === move1)
-  console.log(playerOneMove)
-  if(playerOneMove.beats === move2){
-    console.log('player 1 wins')
+export const winner = (move1, move2, moves) => {
+  console.log(moves);
+  console.log(move1);
+  const playerOneMove = moves.find((move) => move.value === move1);
+  console.log(playerOneMove);
+  if (playerOneMove.beats === move2) {
+    console.log('player 1 wins');
     return 0;
-  } else if (playerOneMove.value === move2){
-    console.log("it's a tie")
-    return 'tie'
+  } else if (playerOneMove.value === move2) {
+    console.log("it's a tie");
+    return "it's a tie!!!";
   } else {
-    console.log('player 2 wins')
+    console.log('player 2 wins');
     return 1;
   }
-}
+};
 
-export const updateRoundInfo = () =>{
-
-}
+export const updateRoundInfo = () => {};
