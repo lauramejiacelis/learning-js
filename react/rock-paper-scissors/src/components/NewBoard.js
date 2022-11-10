@@ -1,7 +1,8 @@
-import { Grid, GridItem, Text, VStack } from '@chakra-ui/react';
+import { Image, Grid, GridItem, Text, VStack, Button } from '@chakra-ui/react';
 import { useState } from 'react';
 import { GameOption } from './GameOption';
 import { winner } from '../services';
+import { Link } from 'react-router-dom';
 
 export const NewBoard = ({ num, names, moves }) => {
   const [roundsInfo, setRoundsInfo] = useState([]);
@@ -9,13 +10,6 @@ export const NewBoard = ({ num, names, moves }) => {
   const [round, setRound] = useState(1);
 
   const handleOption = (option, playerId) => {
-    console.log('new board');
-    console.log(option);
-    console.log(playerId);
-    console.log(move.length);
-    console.log(names.length);
-    console.log(moves);
-
     if (!move) {
       setMove(option);
     } else {
@@ -23,14 +17,39 @@ export const NewBoard = ({ num, names, moves }) => {
       const newRound = {
         round: round,
         playerMoves: [move, option],
-        roundWinner: winner(move, option, moves),
+        roundWinner: winner(move, option, moves, names),
       };
       setRoundsInfo([...roundsInfo, newRound]);
       setMove('');
     }
   };
-  console.log(move);
-  console.log(roundsInfo);
+
+  const endGame = roundsInfo
+    .map((data) => data.roundWinner)
+    .filter((data) => data !== "it's a tie!!!");
+
+  const finalResults = endGame.reduce((countPlayer, player) => {
+    countPlayer[player] = (countPlayer[player] || 0) + 1;
+    return countPlayer;
+  }, {});
+
+  const finalWinner = Object.entries(finalResults).reduce((prev, curr) => {
+    return prev[1] > curr[1] ? prev : curr;
+  }, []);
+
+  if (endGame.length === 3) {
+    return (
+      <VStack bg={'#CC57C7'} py={5}>
+        <Text color={'white'} px={5} fontSize={'50px'} as={'b'}>
+          {`${finalWinner[0].toUpperCase()} WINS`}
+        </Text>
+        <Image src="https://res.cloudinary.com/lauram2celis/image/upload/v1663949922/rock-paper-scissors/RockPaperScissors_q9rttv.png" />
+        <Button bgColor={'pink.800'}>
+          <Link to="/">Play Again</Link>
+        </Button>
+      </VStack>
+    );
+  }
 
   return (
     <Grid

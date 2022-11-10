@@ -9,23 +9,18 @@ import { NewBoard } from '../../components/NewBoard';
 
 const Game = () => {
   const { id } = useParams();
-  console.log(id);
+
   const [playersNumber, setPlayersNumber] = useState(0);
   const [names, setNames] = useState([]);
 
   const handleSet = (userSelection) => {
     setPlayersNumber(userSelection);
   };
-  console.log(playersNumber);
-  console.log(names.length);
 
   const handleAdd = (userInput) => {
     setNames([...names, userInput]);
   };
-  console.log(names);
 
-  console.log(names.length > 0);
-  console.log(names.length === playersNumber);
   if (names.length > 0 && names.length === parseInt(playersNumber)) {
     return (
       <Box px={20} py={10}>
@@ -40,7 +35,6 @@ const Game = () => {
           rules={GAMES[id].instructions.rules}
           notes={GAMES[id].instructions.notes}
         />
-
       </Box>
     );
   }
