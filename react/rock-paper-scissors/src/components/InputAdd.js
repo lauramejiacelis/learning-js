@@ -8,29 +8,23 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 
-export const InputAdd = ({ onAdd, name }) => {
+export const InputAdd = ({ onAdd, name, counter }) => {
   const [input, setInput] = useState('');
   const [error, setError] = useState(false);
-  const [counter, setCounter] = useState(1);
-  console.log(name);
 
   const handleChange = ({ target: { value } }) => {
     setInput(value);
     setError(false);
   };
-  console.log(input);
 
   const handleAdd = () => {
     if (input) {
       onAdd(input);
       setInput('');
-      setCounter(counter + 1);
     } else if (input === '') {
       setError(true);
     }
   };
-  console.log(counter);
-  console.log(error);
 
   return (
     <Container

@@ -12,13 +12,26 @@ const Game = () => {
 
   const [playersNumber, setPlayersNumber] = useState(0);
   const [names, setNames] = useState([]);
+  const [error, setError] = useState(false);
+  const [counter, setCounter] = useState(1);
 
   const handleSet = (userSelection) => {
     setPlayersNumber(userSelection);
   };
 
   const handleAdd = (userInput) => {
-    setNames([...names, userInput]);
+    if (
+      names.length > 0 &&
+      names
+        .map((name) => name.toUpperCase())
+        .filter((name) => name === userInput.toUpperCase()).length > 0
+    ) {
+      setError('Try a different name');
+    } else {
+      setNames([...names, userInput]);
+      setCounter(counter + 1);
+      setError(false);
+    }
   };
 
   if (names.length > 0 && names.length === parseInt(playersNumber)) {
@@ -60,7 +73,8 @@ const Game = () => {
           <Text color={'#333333'} fontSize={'large'} as={'b'}>
             {`You chose ${playersNumber} players`}
           </Text>
-          <InputAdd onAdd={handleAdd} name={'player'} />
+          <InputAdd onAdd={handleAdd} name={'player'} counter={counter} />
+          {error ? <Box color={'red'}>{`Error, ${error}`}</Box> : ''}
         </Container>
       )}
     </Container>

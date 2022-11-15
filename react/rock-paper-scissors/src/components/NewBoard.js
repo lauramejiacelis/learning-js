@@ -24,11 +24,11 @@ export const NewBoard = ({ num, names, moves }) => {
     }
   };
 
-  const endGame = roundsInfo
+  const roundCounter = roundsInfo
     .map((data) => data.roundWinner)
     .filter((data) => data !== "it's a tie!!!");
 
-  const finalResults = endGame.reduce((countPlayer, player) => {
+  const finalResults = roundCounter.reduce((countPlayer, player) => {
     countPlayer[player] = (countPlayer[player] || 0) + 1;
     return countPlayer;
   }, {});
@@ -37,7 +37,7 @@ export const NewBoard = ({ num, names, moves }) => {
     return prev[1] > curr[1] ? prev : curr;
   }, []);
 
-  if (endGame.length === 3) {
+  if (roundCounter.length === 3) {
     return (
       <VStack bg={'#CC57C7'} py={5}>
         <Text color={'white'} px={5} fontSize={'50px'} as={'b'}>
