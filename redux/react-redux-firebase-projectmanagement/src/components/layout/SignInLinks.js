@@ -5,7 +5,7 @@ const SignInLinks = () => {
     <ul className="right">
       <li>
         {' '}
-        <NavLink to="/">New Project</NavLink>{' '}
+        <NavLink to="/create">New Project</NavLink>{' '}
       </li>
       <li>
         {' '}
@@ -13,7 +13,7 @@ const SignInLinks = () => {
       </li>
       <li>
         {' '}
-        <NavLink to="/" className="btn btn-floating pink lighten-1">
+        <NavLink to="/" className="btn btn-floating teal accent-3">
           LM
         </NavLink>{' '}
       </li>
