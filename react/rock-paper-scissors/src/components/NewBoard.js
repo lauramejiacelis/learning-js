@@ -4,7 +4,7 @@ import { GameOption } from './GameOption';
 import { winner } from '../services';
 import { Link } from 'react-router-dom';
 
-export const NewBoard = ({ num, names, moves }) => {
+export const NewBoard = ({ num, names, moves, onUpdate }) => {
   const [roundsInfo, setRoundsInfo] = useState([]);
   const [move, setMove] = useState('');
   const [round, setRound] = useState(1);
@@ -23,6 +23,7 @@ export const NewBoard = ({ num, names, moves }) => {
       setMove('');
     }
   };
+  console.log(roundsInfo)
 
   const roundCounter = roundsInfo
     .map((data) => data.roundWinner)
