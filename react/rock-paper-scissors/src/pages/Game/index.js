@@ -12,7 +12,7 @@ const Game = () => {
   const { id } = useParams();
 
   const [playersNumber, setPlayersNumber] = useState(0);
-  const [players, setPlayers] = useState([])
+  const [players, setPlayers] = useState([]);
   const [names, setNames] = useState([]);
   const [error, setError] = useState(false);
   const [counter, setCounter] = useState(1);
@@ -35,20 +35,17 @@ const Game = () => {
         name: userInput,
         score: 0,
         active: false,
-      }
-      setPlayers([...players, newPlayer])
+      };
+      setPlayers([...players, newPlayer]);
       setNames([...names, userInput]);
       setCounter(counter + 1);
       setError(false);
     }
   };
-  console.log(names)
-  console.log(players)
 
   const handleUpdatePlayer = (players, winner) => {
-    setPlayers(updateScore(players, winner))
-  } //revisar este handle cómo funcionaría
-  //Analizar el updatescore qué es el players que recibe, el winner que recibe va a ser el winner  de la función en newboard... que tengo que cambiarlo para que retorne un id, no un name
+    setPlayers(updateScore(players, winner));
+  };
 
   if (names.length > 0 && names.length === parseInt(playersNumber)) {
     return (
@@ -57,7 +54,13 @@ const Game = () => {
           {GAMES[id].tittle}
         </Text>
 
-        <NewBoard num={playersNumber} names={names} moves={GAMES[id].moves} onUpdate={handleUpdatePlayer} />
+        <NewBoard
+          num={playersNumber}
+          names={names}
+          players={players}
+          moves={GAMES[id].moves}
+          onUpdate={handleUpdatePlayer}
+        />
         {/* Aquí es ideal pasar los players y debo modificar todo para adaptarlo al objeto */}
 
         <Instructions

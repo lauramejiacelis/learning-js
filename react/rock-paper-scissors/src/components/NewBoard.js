@@ -4,45 +4,37 @@ import { GameOption } from './GameOption';
 import { winner } from '../services';
 import { Link } from 'react-router-dom';
 
-export const NewBoard = ({ num, names, moves, onUpdate }) => {
+export const NewBoard = ({ num, players, moves, onUpdate }) => {
   const [roundsInfo, setRoundsInfo] = useState([]);
   const [move, setMove] = useState('');
   const [round, setRound] = useState(1);
+  console.log(players);
 
-  const handleOption = (option, playerId) => {
+  const handleOption = (option) => {
     if (!move) {
       setMove(option);
     } else {
       setRound(round + 1);
+      const roundWinner = winner(move, option, moves, players);
       const newRound = {
         round: round,
         playerMoves: [move, option],
-        roundWinner: winner(move, option, moves, names),
+        roundWinner: roundWinner,
       };
       setRoundsInfo([...roundsInfo, newRound]);
+      onUpdate(players, roundWinner);
       setMove('');
     }
   };
-  console.log(roundsInfo)
+  console.log(roundsInfo);
 
-  const roundCounter = roundsInfo
-    .map((data) => data.roundWinner)
-    .filter((data) => data !== "it's a tie!!!");
+  const scoreCounter = players.filter((player) => player.score >= 2);
 
-  const finalResults = roundCounter.reduce((countPlayer, player) => {
-    countPlayer[player] = (countPlayer[player] || 0) + 1;
-    return countPlayer;
-  }, {});
-
-  const finalWinner = Object.entries(finalResults).reduce((prev, curr) => {
-    return prev[1] > curr[1] ? prev : curr;
-  }, []);
-
-  if (roundCounter.length === 3) {
+  if (scoreCounter.length > 0) {
     return (
       <VStack bg={'#CC57C7'} py={5}>
         <Text color={'white'} px={5} fontSize={'50px'} as={'b'}>
-          {`${finalWinner[0].toUpperCase()} WINS`}
+          {`${scoreCounter[0].name.toUpperCase()} WINS`}
         </Text>
         <Image src="https://res.cloudinary.com/lauram2celis/image/upload/v1663949922/rock-paper-scissors/RockPaperScissors_q9rttv.png" />
         <Button bgColor={'pink.800'}>
@@ -72,8 +64,9 @@ export const NewBoard = ({ num, names, moves, onUpdate }) => {
           </Text>
         </VStack>
       </GridItem>
-      {names.map((name) => (
-        <GridItem bg={'#E19BDE'} key={name}>
+
+      {players.map((player) => (
+        <GridItem bg={'#E19BDE'} key={player.name}>
           <VStack py={5}>
             <Text
               color={'#333333'}
@@ -83,10 +76,10 @@ export const NewBoard = ({ num, names, moves, onUpdate }) => {
               fontSize={'xl'}
               as={'b'}
             >
-              {name.toUpperCase()}
+              {player.name.toUpperCase()}
             </Text>
             <Text color={'#333333'} fontSize={'md'} as={'b'}>
-              Score: {'missing'}
+              Score: {player.score}
             </Text>
             {moves.map(
               (
@@ -96,7 +89,7 @@ export const NewBoard = ({ num, names, moves, onUpdate }) => {
                   name={option.value}
                   src={option.src}
                   onClick={handleOption}
-                  playerid={names.indexOf(name)}
+                  playerid={player.id}
                   key={option.value}
                 />
               )
