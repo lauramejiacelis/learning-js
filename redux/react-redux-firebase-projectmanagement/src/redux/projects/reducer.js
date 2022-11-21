@@ -1,4 +1,4 @@
-import { PROJECTS_ACTION_TYPES } from './actionTypes'
+import { PROJECTS_ACTION_TYPES } from './actionTypes';
 
 const initialState = {
   projects: [
@@ -11,9 +11,14 @@ const initialState = {
 const projectsReducer = (state = initialState, action) => {
   switch (action.type) {
     case PROJECTS_ACTION_TYPES.ADD_PROJECT:
-      console.log('created project', action.payload)
+      console.log('created project', action.payload);
+      return state;
+    case PROJECTS_ACTION_TYPES.GET_ERROR:
+      console.log('created project error', action.payload);
+      return state;
+    default:
+      return state;
   }
-  return state;
 };
 
 export default projectsReducer;

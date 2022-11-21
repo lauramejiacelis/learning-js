@@ -24,7 +24,7 @@ export const listProjects = (projects) => ({
   payload: projects,
 });
 
-export const geterror = (err) => ({
+export const getError = (err) => ({
   type: PROJECTS_ACTION_TYPES.GET_ERROR,
   payload: err,
 });

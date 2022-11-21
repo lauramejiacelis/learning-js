@@ -7,7 +7,7 @@ const CreateProject = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.addProjectThunk(data)
+    props.addProjectThunk(data);
   };
 
   const handleChange = ({ target }) => {
@@ -38,8 +38,8 @@ const CreateProject = (props) => {
   );
 };
 
-const mapDispatchToProps =  {
-  addProjectThunk
-}
+const mapDispatchToProps = {
+  addProjectThunk,
+};
 
-export default connect(null, mapDispatchToProps)(CreateProject) ;
+export default connect(null, mapDispatchToProps)(CreateProject);
