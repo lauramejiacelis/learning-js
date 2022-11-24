@@ -7,7 +7,11 @@ import {
   getFirestore,
   firestoreReducer,
 } from 'redux-firestore';
-import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
+import {
+  reactReduxFirebase,
+  getFirebase,
+  firebaseReducer,
+} from 'react-redux-firebase';
 import { firebaseConfig } from '../config/fbConfig';
 
 const composeEnhancers =
@@ -27,7 +31,7 @@ const store = createStore(
         thunkMiddleware.withExtraArgument({ getFirebase, getFirestore })
       ),
       reduxFirestore(firebaseConfig)
-      // reactReduxFirebase(firebaseConfig)
+      //reactReduxFirebase(firebaseConfig)
     )
   )
 );

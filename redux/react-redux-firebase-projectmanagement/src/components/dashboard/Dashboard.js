@@ -14,7 +14,7 @@ const Dashboard = (props) => {
   useFirestoreConnect(['projects']);
   const projectss = useSelector((state) => state.firestore.data.projects);
   console.log(projectss);
-  console.log('fuck');
+  console.log('test');
 
   return (
     <div className="dashboard container">
