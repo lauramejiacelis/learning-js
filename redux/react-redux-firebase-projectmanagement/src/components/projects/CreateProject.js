@@ -1,11 +1,13 @@
 import { useState } from 'react';
+import { connect } from 'react-redux';
+import { addProjectThunk } from '../../redux/projects/thunks';
 
-const CreateProject = () => {
+const CreateProject = (props) => {
   const [data, setData] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(data);
+    props.addProjectThunk(data);
   };
 
   const handleChange = ({ target }) => {
@@ -36,4 +38,8 @@ const CreateProject = () => {
   );
 };
 
-export default CreateProject;
+const mapDispatchToProps = {
+  addProjectThunk,
+};
+
+export default connect(null, mapDispatchToProps)(CreateProject);
