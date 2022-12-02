@@ -25,3 +25,11 @@
 .register-form .form-control:focus{
   z-index: 2;
 }
+
+.register-form input{
+  margin-bottom: 10px;
+}
+
+.register-form .goBack{
+  margin-top: 15px;
+}

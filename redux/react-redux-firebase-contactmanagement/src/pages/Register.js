@@ -67,10 +67,13 @@ const Register = () =>{
             <FaUserPlus/> Sign up 
           </button>
 
-          <Link to='/login'>
-            <FaArrowAltCircleLeft/>
-            Back
-          </Link>
+          <div className="goBack">
+            <Link to='/login'>
+              <FaArrowAltCircleLeft/>
+              Back
+            </Link>
+          </div>
+          
         </form>
       </div>
     </div>
