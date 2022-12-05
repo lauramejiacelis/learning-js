@@ -12,10 +12,16 @@ const Login = () =>{
   })
   
   const {email, password} = state
+  
   const handleSubmit = () => {}
+
   const handleGoogleSignIn = () =>{}
+
   const handleFBSignIn = () =>{}
-  const handleChange = () =>{}
+
+  const handleChange = ({target}) =>{
+    setState({...state, [target.name]: target.value})
+  }
 
   return(
     <div>
@@ -26,13 +32,13 @@ const Login = () =>{
           <div className="social-login">
             <button className="btn google-btn social-btn" type="button" onClick={handleGoogleSignIn}>
               <FaGooglePlusG/>
-              <span> Sing in with Google+</span>
+              <span> Log in with Google+</span>
             </button>
 
             <button className="btn facebook-btn social-btn" type="button" onClick={handleFBSignIn}>
               <FaFacebookF/>
               <span>
-                Sing in with Facebook
+                Log in with Facebook
               </span>
             </button>
           </div>
@@ -60,7 +66,7 @@ const Login = () =>{
           required/>
 
           <button className="btn btn-secondary btn-block" type="submit">
-            <FaSignInAlt/> Sign in </button>
+            <FaSignInAlt/> Log in </button>
 
           <p className="no-register">Don't have an account yet?</p>
 

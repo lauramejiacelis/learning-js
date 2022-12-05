@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { FaUserPlus, FaArrowAltCircleLeft } from 'react-icons/fa'
 import './Register.css'
+import { registerInitiateThunk } from "../redux/users/thunks";
+import { auth } from '../firebase'
 
 const Register = () =>{
 
@@ -12,10 +14,38 @@ const Register = () =>{
     password:'',
     passwordConfirm:''
   })
+
+  //const currentUser = auth.currentUser
+  const  {currentUser}  = useSelector((state)=> state.user)
+  console.log(currentUser)
+  const navigate = useNavigate()
+
+  //this is not working!!!!
+  useEffect(()=>{
+    //console.log(currentUser.uid)
+    if(currentUser){
+      navigate('/')
+    }
+  }, [currentUser, navigate])
+
+  const dispatch = useDispatch()
   
   const {displayName, email, password, passwordConfirm} = state
-  const handleSubmit = () => {}
-  const handleChange = () =>{}
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(state)
+    if (password !== passwordConfirm){
+      return;
+    }
+    dispatch(registerInitiateThunk(email, password, displayName))
+    setState({displayName: '',
+    email: '',
+    password:'',
+    passwordConfirm:''})
+  }
+  const handleChange = ({target}) =>{
+    setState({...state, [target.name]: target.value})
+  }
 
   return(
     <div>
@@ -30,7 +60,7 @@ const Register = () =>{
           placeholder="Full Name"
           name="displayName"
           onChange={handleChange} 
-          value={email}
+          value={displayName}
           required/>
 
           <input
