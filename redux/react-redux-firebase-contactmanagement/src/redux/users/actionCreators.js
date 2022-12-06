@@ -34,8 +34,50 @@ export const loginError = (error) => {
   }
 }
 
-export const logout = () => {
+export const logoutSuccess = () => {
   return {
-    type: USER_ACTION_TYPES.LOGOUT
+    type: USER_ACTION_TYPES.LOGOUT_SUCCESS
+  }
+}
+
+export const logoutError = (error) => {
+  return {
+    type: USER_ACTION_TYPES.LOGOUT_ERROR,
+    payload: error
+  }
+}
+
+export const setUser = (user)=>{
+  return{
+    type: USER_ACTION_TYPES.SET_USER,
+    payload: user
+  }
+}
+
+export const googleLoginSuccess = (user) => {
+  return {
+    type: USER_ACTION_TYPES.GOOGLE_LOGIN_SUCCESS,
+    payload: user
+  }
+}
+
+export const googleLoginError = (error) => {
+  return {
+    type: USER_ACTION_TYPES.GOOGLE_LOGIN_ERROR,
+    payload: error
+  }
+}
+
+export const facebookLoginSuccess = (user) => {
+  return {
+    type: USER_ACTION_TYPES.FACEBOOK_LOGIN_SUCCESS,
+    payload: user
+  }
+}
+
+export const facebookLoginError = (error) => {
+  return {
+    type: USER_ACTION_TYPES.FACEBOOK_LOGIN_ERROR,
+    payload: error
   }
 }

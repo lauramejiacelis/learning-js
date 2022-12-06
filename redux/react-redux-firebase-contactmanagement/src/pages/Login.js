@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { FaUserPlus, FaFacebookF, FaGooglePlusG, FaSignInAlt } from 'react-icons/fa'
 import './Login.css'
+import { loginInitiateThunk } from "../redux/users/thunks";
 
 const Login = () =>{
 
@@ -13,11 +14,30 @@ const Login = () =>{
   
   const {email, password} = state
   
-  const handleSubmit = () => {}
+  const {currentUser} = useSelector((state) => state.user)
+
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    if(currentUser){
+      navigate("/")
+    }
+  },[currentUser])
+
+  const dispatch = useDispatch()
 
   const handleGoogleSignIn = () =>{}
 
   const handleFBSignIn = () =>{}
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if(!email || !password){
+      return;
+    }
+    dispatch(loginInitiateThunk(email, password))
+    setState({email: "", password:""})
+  }
 
   const handleChange = ({target}) =>{
     setState({...state, [target.name]: target.value})

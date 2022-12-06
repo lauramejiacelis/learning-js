@@ -26,11 +26,12 @@ const Register = () =>{
     if(currentUser){
       navigate('/')
     }
-  }, [currentUser, navigate])
+  }, [currentUser])
 
   const dispatch = useDispatch()
   
   const {displayName, email, password, passwordConfirm} = state
+  
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(state)
