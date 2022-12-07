@@ -22,6 +22,15 @@ const AddEdit =()=>{
     e.preventDefault();
     if(!name || !email || !contact){
       toast.error('Please provide value into each input')
+    } else {
+      db.child('contacts').push(state, (err)=> {
+        if(err) {
+          toast.error(err)
+        } else {
+          toast.success('Contact added successfully')
+        }
+      })
+      setTimeout(()=> navigate('/'), 500)
     }
 
   }
