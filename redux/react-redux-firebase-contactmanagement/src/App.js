@@ -9,6 +9,11 @@ import UserRoute from './components/UserRoute';
 import { auth } from './firebase'
 import { onAuthStateChanged } from "firebase/auth";
 import { setUser } from './redux/users/actionCreators';
+import Header from './components/Header';
+import AddEdit from './pages/AddEdit';
+import About from './pages/About';
+import { ToastContainer } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const dispatch= useDispatch()
@@ -21,13 +26,25 @@ function App() {
   
   return (
     <div className="App">
+      <Header/>
+      <ToastContainer position='top-center' />
       <Routes>
+        <Route path='/' element={<UserRoute/>}>
+          <Route path='/' element={<Home/>}/>
+        </Route>
+        
         <Route path='/' element={
           <UserRoute>
             <Home/>
           </UserRoute>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
+
+        <Route path='/' element={<UserRoute/>}>
+          <Route path='/addcontact' element={<AddEdit/>}/>
+        </Route>
+
+        <Route path='/about' element={<About/>}/>
       </Routes>
     </div>
   );

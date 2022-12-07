@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 import { FaUserPlus, FaFacebookF, FaGooglePlusG, FaSignInAlt } from 'react-icons/fa'
 import './Login.css'
-import { loginInitiateThunk } from "../redux/users/thunks";
+import { facebookLoginThunk, googleLoginThunk, loginInitiateThunk } from "../redux/users/thunks";
 
 const Login = () =>{
 
@@ -22,13 +22,17 @@ const Login = () =>{
     if(currentUser){
       navigate("/")
     }
-  },[currentUser])
+  },[currentUser, navigate])
 
   const dispatch = useDispatch()
 
-  const handleGoogleSignIn = () =>{}
+  const handleGoogleSignIn = () =>{
+    dispatch(googleLoginThunk())
+  }
 
-  const handleFBSignIn = () =>{}
+  const handleFBSignIn = () =>{
+    dispatch(facebookLoginThunk())
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -47,7 +51,7 @@ const Login = () =>{
     <div>
       <div className='logreg-form'>
         <form className="form-signin" onSubmit={handleSubmit}>
-          <h1 className="h3 mb-3 font-weight-normal" style={{textAlign: 'center'}}> Sign in</h1>
+          <h1 className="h3 mb-3 font-weight-normal" style={{textAlign: 'center'}}> Log in</h1>
 
           <div className="social-login">
             <button className="btn google-btn social-btn" type="button" onClick={handleGoogleSignIn}>

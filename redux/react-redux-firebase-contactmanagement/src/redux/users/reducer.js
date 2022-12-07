@@ -16,6 +16,8 @@ const userReducer = (state = initialState, action)=>{
       }
     case USER_ACTION_TYPES.REGISTER_SUCCESS:
     case USER_ACTION_TYPES.LOGIN_SUCCESS:
+    case USER_ACTION_TYPES.GOOGLE_LOGIN_SUCCESS:
+    case USER_ACTION_TYPES.FACEBOOK_LOGIN_SUCCESS:
       console.log(state)
       console.log('register success')
       console.log(action.payload)
@@ -38,6 +40,8 @@ const userReducer = (state = initialState, action)=>{
     case USER_ACTION_TYPES.REGISTER_ERROR:
     case USER_ACTION_TYPES.LOGIN_ERROR:
     case USER_ACTION_TYPES.LOGOUT_ERROR:
+    case USER_ACTION_TYPES.GOOGLE_LOGIN_ERROR:
+    case USER_ACTION_TYPES.FACEBOOK_LOGIN_ERROR:
       console.log('error!!!')
       return {
         ...state,
