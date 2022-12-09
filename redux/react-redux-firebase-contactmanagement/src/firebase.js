@@ -26,5 +26,6 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 const googleAuthProvider = new GoogleAuthProvider();
 const facebookAuthProvider = new FacebookAuthProvider();
+const colRef = collection(db, 'contacts')
 
-export {auth, googleAuthProvider, facebookAuthProvider, db}
+export {auth, googleAuthProvider, facebookAuthProvider, db, colRef}
