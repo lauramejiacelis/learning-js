@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutThunk } from "../redux/users/thunks";
 import './Header.css'
 
 const Header = () =>{
   const [activeTab, setActiveTab] = useState('Home')
+  const [search, setSearch] = useState('')
   const location = useLocation()
+  const navigate = useNavigate()
 
   const {currentUser:user} = useSelector((state)=>({...state.user}))
 
@@ -27,12 +29,31 @@ const Header = () =>{
       setActiveTab('Signin')
     } 
   }, [location])
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    navigate(`/search?name=${search}`)
+    setSearch('')
+  }
+
   return(
     <div className="header">
       <Link to='/'>
         <p className="logo">Contact App</p>
       </Link>
       <div className="header-right">
+
+        <form onSubmit={handleSubmit} style={{display: 'inline'}}>
+          <input
+            type='text'
+            className='inputField'
+            placeholder='Search Contact...'
+            onChange={(e)=> setSearch(e.target.value)}
+            value={search}
+          />
+
+        </form>
+
         <Link to='/'>
           <p 
           className={`${activeTab === 'Home' ? 'active' : ''}`} onClick={()=> setActiveTab('Home')}>

@@ -14,6 +14,8 @@ import AddEdit from './pages/AddEdit';
 import About from './pages/About';
 import { ToastContainer } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
+import View from './pages/View';
+import Search from './pages/Search';
 
 function App() {
   const dispatch= useDispatch()
@@ -42,6 +44,18 @@ function App() {
 
         <Route path='/' element={<UserRoute/>}>
           <Route path='/addcontact' element={<AddEdit/>}/>
+        </Route>
+
+        <Route path='/' element={<UserRoute/>}>
+          <Route path='/update/:id' element={<AddEdit/>}/>
+        </Route>
+
+        <Route path='/' element={<UserRoute/>}>
+          <Route path='/view/:id' element={<View/>}/>
+        </Route>
+
+        <Route path='/' element={<UserRoute/>}>
+          <Route path='/search' element={<Search/>}/>
         </Route>
 
         <Route path='/about' element={<About/>}/>
