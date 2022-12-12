@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-//import { db, colRef } from "../firebase";
 import { toast, ToastContainer } from "react-toastify";
 import './AddEdit.css'
-import { getDocs, addDoc } from 'firebase/firestore';
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, ref,  child, push } from "firebase/database";
+
 
 const initialState = {
   name: '',
@@ -26,39 +25,21 @@ const AddEdit =()=>{
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if(!name || !email || !contact){
       toast.error('Please provide value into each input')
     } else {
       console.log(state)
-      // set(colRef,
-      //   {state}
-      // ).then(()=>{
-      //   toast.success('Contact added successfully')
-      // }).catch((err)=>{
-      //   toast.error(err)
-      // })
 
-      set(ref(db, 'contacts/' ), {
-        state
-      })
-      .then(() => {
+      push(child(ref(db), 'contacts'), {name, email, contact}).then(() => {
+        toast.success('Contact added successfully')
         console.log('Data saved successfully!')
-        // Data saved successfully!
       })
-      .catch((error) => {
-        console.log(error)
-        // The write failed...
+      .catch((err) => {
+        toast.error(err)
+        console.log(err)
       });
 
-
-
-      // db.child('contacts').push(state, (err)=> {
-      //   if(err) {
-      //     toast.error(err)
-      //   } else {
-      //     toast.success('Contact added successfully')
-      //   }
-      // })
       setTimeout(()=> navigate('/'), 500)
     }
 
