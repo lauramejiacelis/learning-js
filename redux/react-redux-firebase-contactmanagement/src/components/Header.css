@@ -17,7 +17,8 @@
 .header p.logo {
   font-size: 25px;
   font-weight: bold;
-  color: #4284f5;
+  color: #009879;
+  margin-top: 8px;
 }
 
 .header p:hover {
@@ -26,7 +27,7 @@
 }
 
 .header p.active {
-  background-color: dodgerblue;
+  background-color: #009879;
   color: white;
 }
 

@@ -48,6 +48,7 @@ const Search = ()=>{
             <th style={{textAlign: 'center'}}>No.</th>
             <th style={{textAlign: 'center'}}>Name</th>
             <th style={{textAlign: 'center'}}>Email</th>
+            <th style={{textAlign: 'center'}}>Status</th>
             <th style={{textAlign: 'center'}}>Contact</th>
           </tr>
         </thead>
@@ -58,6 +59,7 @@ const Search = ()=>{
                 <th scope='row'>{index+1}</th>
                 <td>{data[id].name}</td>
                 <td>{data[id].email}</td>
+                <td>{data[id].status}</td>
                 <td>{data[id].contact}</td>
               </tr>
             )

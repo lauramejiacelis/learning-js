@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { child, getDatabase, ref, remove, onValue} from "firebase/database";
-//import { db } from '../firebase'
+import { child, getDatabase, ref, remove, onValue, get, query, orderByChild, equalTo} from "firebase/database";
 import { toast } from 'react-toastify'
 import './Home.css'
 
@@ -35,6 +34,35 @@ const Home = () =>{
     }
   }
 
+  const filterData = (status)=> {
+    console.log(status)
+    get(query(ref((db), '/contacts'), orderByChild('status'), equalTo(status)))
+    .then((snapshot)=>{
+      if(snapshot.val()){
+        const data = snapshot.val()
+        setData(data)
+      } else {
+        setData({})
+      }
+    }).catch((err)=>console.log(err))
+  }
+
+  const handleChange = () => {
+
+  }
+
+  const CONTACT_INFO = {
+    NAME: 'name',
+    EMAIL: 'email',
+    STATUS: 'status',
+    CONTACT: 'contact'
+  }
+
+  const CONTACT_INFO_LABEL = Object.values(CONTACT_INFO).map((label)=>{
+    let newLabel = label.charAt(0).toUpperCase() + label.slice(1)
+    console.log(newLabel)
+    return newLabel
+  })
 
   return(
     <div className='mx-auto' style={{marginTop: '40px'}}>
@@ -42,10 +70,7 @@ const Home = () =>{
         <thead>
           <tr>
             <th style={{textAlign: 'center'}}>No.</th>
-            <th style={{textAlign: 'center'}}>Name</th>
-            <th style={{textAlign: 'center'}}>Email</th>
-            <th style={{textAlign: 'center'}}>Status</th>
-            <th style={{textAlign: 'center'}}>Contact</th>
+            {CONTACT_INFO_LABEL.map((label)=><th>{label}</th>)}
             <th style={{textAlign: 'center'}}>Action</th>
           </tr>
         </thead>
@@ -74,6 +99,16 @@ const Home = () =>{
           })}
         </tbody>
       </table>
+
+      <label>Sort by: </label>
+      <select className='dropdown' name='sortValue' onChange={handleChange}>
+        <option>Please select value</option>
+        {CONTACT_INFO_LABEL.map((label)=><option>{label}</option>)}
+      </select>
+
+      <label>Status: </label>
+      <button className='bttn btn-active' onClick={()=> filterData('Active')}>Active</button>
+      <button className='bttn btn-inactive' onClick={()=> filterData('Inactive')}>Inactive</button>
     </div>
   )
 }

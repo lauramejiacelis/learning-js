@@ -83,7 +83,7 @@ const Header = () =>{
             Sign Out
           </p>
         ):(
-          <Link>
+          <Link to='/login'>
             <p className={`${activeTab === 'Signin' ? 'active' : ''}`} onClick={()=> setActiveTab('Signin')}>
               Sign In
             </p>
