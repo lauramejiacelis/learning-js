@@ -6,6 +6,9 @@ import './Home.css'
 
 const Home = () =>{
   const [data, setData] = useState({})
+  const [sortedData, setSortedData] = useState([])
+  const [sort, setSort] = useState(false)
+
   const db = getDatabase();
 
   useEffect(()=>{
@@ -47,9 +50,19 @@ const Home = () =>{
     }).catch((err)=>console.log(err))
   }
 
-  const handleChange = () => {
-
+  const handleChange = ({target}) => {
+    console.log(target.value)
+    setSort(true)
+    get(query(ref((db), '/contacts'), orderByChild(`${target.value}`))).then((snapshot)=>{
+      let sortedDat = []
+      snapshot.forEach((snap)=>{
+        sortedDat.push(snap.val())
+      })
+      setSortedData(sortedDat)
+    })
+    
   }
+  console.log(sortedData)
 
   const CONTACT_INFO = {
     NAME: 'name',
@@ -60,7 +73,7 @@ const Home = () =>{
 
   const CONTACT_INFO_LABEL = Object.values(CONTACT_INFO).map((label)=>{
     let newLabel = label.charAt(0).toUpperCase() + label.slice(1)
-    console.log(newLabel)
+    //console.log(newLabel)
     return newLabel
   })
 
@@ -70,40 +83,57 @@ const Home = () =>{
         <thead>
           <tr>
             <th style={{textAlign: 'center'}}>No.</th>
-            {CONTACT_INFO_LABEL.map((label)=><th>{label}</th>)}
+            {CONTACT_INFO_LABEL.map((label)=><th key={label.toString()}>{label}</th>)}
             <th style={{textAlign: 'center'}}>Action</th>
           </tr>
         </thead>
+        {!sort &&
+          <tbody>
+            {Object.keys(data).map((id, index) => {
+              return (
+                <tr key={id}>
+                  <th scope='row'>{index+1}</th>
+                  <td>{data[id].name}</td>
+                  <td>{data[id].email}</td>
+                  <td>{data[id].status}</td>
+                  <td>{data[id].contact}</td>
+                  <td>
+                    <Link to={`/update/${id}`}>
+                      <button className='bttn btn-edit'>Edit</button>
+                    </Link>
+
+                    <button className='bttn btn-delete' onClick={()=>onDelete(id)}>Delete</button>
+
+                    <Link to={`/view/${id}`}>
+                      <button className='bttn btn-view'>view</button>
+                    </Link>
+                  </td>
+                </tr>
+              )
+            })}
+          </tbody>
+      }
+      {sort &&
         <tbody>
-          {Object.keys(data).map((id, index) => {
+          {sortedData.map((item, index)=>{
             return (
-              <tr key={id}>
+              <tr key={index}>
                 <th scope='row'>{index+1}</th>
-                <td>{data[id].name}</td>
-                <td>{data[id].email}</td>
-                <td>{data[id].status}</td>
-                <td>{data[id].contact}</td>
-                <td>
-                  <Link to={`/update/${id}`}>
-                    <button className='bttn btn-edit'>Edit</button>
-                  </Link>
-
-                  <button className='bttn btn-delete' onClick={()=>onDelete(id)}>Delete</button>
-
-                  <Link to={`/view/${id}`}>
-                    <button className='bttn btn-view'>view</button>
-                  </Link>
-                </td>
+                <td>{item.name}</td>
+                <td>{item.email}</td>
+                <td>{item.status}</td>
+                <td>{item.contact}</td>
               </tr>
             )
           })}
         </tbody>
+      }
       </table>
 
       <label>Sort by: </label>
       <select className='dropdown' name='sortValue' onChange={handleChange}>
         <option>Please select value</option>
-        {CONTACT_INFO_LABEL.map((label)=><option>{label}</option>)}
+        {CONTACT_INFO_LABEL.map((label)=><option value={label.toLowerCase()} key={label.toString()}>{label}</option>)}
       </select>
 
       <label>Status: </label>
