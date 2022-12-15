@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { AppBar, Box, List, ListItem, ListItemIcon, Toolbar, Typography } from '@mui/material';
+import {  Box, List, ListItem, ListItemIcon,  Typography } from '@mui/material';
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
-import Image from "next/image";
 import { ListItemText } from "@mui/material";
+import NavBar from '../components/NavBar'
 
 export default function Home() {
   const [pokemons, setPokemons] = useState([]);
@@ -38,17 +38,3 @@ export default function Home() {
   );
 }
 
-export const NavBar = () =>{
-  return(
-    <AppBar position="static" sx={{ bgcolor: '#FFB461' }} >
-      <Toolbar>
-        <Image
-        src={'https://res.cloudinary.com/lauram2celis/image/upload/v1669671652/pokemon/PokemonsCharacters_pf0esj.png'}
-        alt="pokemon"
-        height="100"
-        width='200'/>
-        <Typography variant="h3" component='div'> POKEMON APP </Typography>
-      </Toolbar>
-    </AppBar>
-  )
-}

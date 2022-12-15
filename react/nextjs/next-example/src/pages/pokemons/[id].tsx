@@ -7,7 +7,7 @@ export default function PokemonDetail() {
     query: { id },
   } = useRouter();
 
-  const [pokemon, setPokemon] = useState();
+  const [pokemon, setPokemon] = useState<any>();
 
   useEffect(() => {
     if (id) {
