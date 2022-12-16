@@ -77,6 +77,17 @@ const Home = () =>{
     return newLabel
   })
 
+  const handleReset = ()=>{
+    setSort(false)
+    onValue(child(ref(db), 'contacts'), (snapshot)=> {
+      if(snapshot.val() !== null){
+        setData({...snapshot.val()})
+      } else {
+        setData({})
+      }
+    })
+  }
+
   return(
     <div className='mx-auto' style={{marginTop: '40px'}}>
       <table className='styled-table'>
@@ -135,6 +146,8 @@ const Home = () =>{
         <option>Please select value</option>
         {CONTACT_INFO_LABEL.map((label)=><option value={label.toLowerCase()} key={label.toString()}>{label}</option>)}
       </select>
+
+      <button className='bttn btn-reset' onClick={handleReset}>Reset</button>
 
       <label>Status: </label>
       <button className='bttn btn-active' onClick={()=> filterData('Active')}>Active</button>

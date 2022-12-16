@@ -43,7 +43,8 @@ const Header = () =>{
       </Link>
       <div className="header-right">
 
-        <form onSubmit={handleSubmit} style={{display: 'inline'}}>
+        {user && (
+          <form onSubmit={handleSubmit} style={{display: 'inline'}}>
           <input
             type='text'
             className='inputField'
@@ -53,6 +54,7 @@ const Header = () =>{
           />
 
         </form>
+        )}
 
         <Link to='/'>
           <p 
