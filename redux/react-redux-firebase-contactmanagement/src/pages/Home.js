@@ -84,7 +84,7 @@ const Home = () =>{
           <tr>
             <th style={{textAlign: 'center'}}>No.</th>
             {CONTACT_INFO_LABEL.map((label)=><th key={label.toString()}>{label}</th>)}
-            <th style={{textAlign: 'center'}}>Action</th>
+            {!sort && (<th style={{textAlign: 'center'}}>Action</th>)}
           </tr>
         </thead>
         {!sort &&
