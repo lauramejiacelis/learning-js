@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Head from "next/head";
+import Card from '../../components/Card'
 
 export const getStaticPaths = async () => {
   const res = await fetch("https://rickandmortyapi.com/api/character");
@@ -30,16 +32,17 @@ export const getStaticProps = async (context)=>{
 const Details = ({character}) => {
   console.log(character)
   return (
-    <div>
-      <Image src={character.image} width={200} height={200} alt={`${character.name}`}/>
-      <h1>{character.name}</h1>
-      <p>{character.status} - {character.species}</p>
-      <p>Last known location: </p>
-      <p>{character.location.name}</p>
-      <p>First seen in: </p>
-      <p>{character.origin.name}</p>
-
-    </div>
+    <>
+      <Head>
+          <title>{character.name}</title>
+          <meta name="keywords" content="characters" />
+          <link rel="icon" href="/logo.png" />
+        </Head>
+        <div style={{display: 'flex', justifyContent: 'center'}}>
+          <Card url={character.image} title={character.name} status={character.status} species={character.species} location={character.location.name} origin={character.origin.name} />
+        </div>
+    </>
+    
   );
 };
 
