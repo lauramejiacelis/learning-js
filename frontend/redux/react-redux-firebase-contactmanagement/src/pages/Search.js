@@ -42,6 +42,11 @@ const Search = ()=>{
   if(data && Object.keys(data).length !== 0){
     return(
     <div className='mx-auto' style={{marginTop: '40px'}}>
+
+      <Link to='/'>
+        <button className='bttn btn-edit'>Go Back</button>
+      </Link>
+
       <table className='styled-table'>
         <thead>
           <tr>
