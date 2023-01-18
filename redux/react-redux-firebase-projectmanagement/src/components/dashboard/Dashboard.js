@@ -11,10 +11,11 @@ const Dashboard = (props) => {
   const { projects } = props;
   console.log(projects);
 
-  useFirestoreConnect(['projects']);
-  const projectss = useSelector((state) => state.firestore.data.projects);
-  console.log(projectss);
-  console.log('test');
+  // 18/01/2023 Quedó empezado porque falla la conexión con firebase
+  // useFirestoreConnect(['projects']);
+  // const projectss = useSelector((state) => state.firestore.data.projects);
+  // console.log(projectss);
+  // console.log('test');
 
   return (
     <div className="dashboard container">

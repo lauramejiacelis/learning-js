@@ -20,7 +20,7 @@ const composeEnhancers =
 const reducer = combineReducers({
   auth: authReducer,
   projects: projectsReducer,
-  firestore: firestoreReducer,
+  //firestore: firestoreReducer,
 });
 
 const store = createStore(
@@ -31,7 +31,7 @@ const store = createStore(
         thunkMiddleware.withExtraArgument({ getFirebase, getFirestore })
       ),
       reduxFirestore(firebaseConfig)
-      //reactReduxFirebase(firebaseConfig)
+      // reactReduxFirebase(firebaseConfig)
     )
   )
 );
