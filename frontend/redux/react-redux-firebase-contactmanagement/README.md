@@ -1,3 +1,8 @@
+# ContactApp
+ 
+ I made this project to practice Create React App, Redux, Firebase Authentication, CRUD, protected routes.
+ Here you can you can login or signUp with Google or Facebook, once's your login you can Add, Edit, Delete, Filter and Search, View Contact Details.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
