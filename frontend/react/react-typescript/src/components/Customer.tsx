@@ -1,4 +1,9 @@
-const Customer = () => {
+
+interface IProps{
+
+}
+
+const Customer = ({}) => {
   return (  
     <div>Customer</div>
   );
