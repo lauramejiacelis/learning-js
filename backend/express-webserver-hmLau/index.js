@@ -19,10 +19,9 @@ app.get('/', (req, res) => {
 
   axios.get('https://pokeapi.co/api/v2/pokemon')
     .then(response=>{
-      let pokemonsArray = []
-      response.data.results.map((item)=>pokemonsArray.push(item.name))
+      let pokemonsArray = response.data.results.map((item)=>(item.name))
       console.log(pokemonsArray)
-      res.render('home',{ pokemonsArray});
+      res.render('home', { pokemonsArray });
     })
     
     .catch((err) => console.log(err));
