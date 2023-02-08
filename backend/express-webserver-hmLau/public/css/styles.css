@@ -41,12 +41,18 @@
   height:100vh; 
   display: flex;
   flex-direction: column;
-  
+  gap: 10px;
   align-items: center;
+  padding-top: 20px;
 }
 
 .box-container{
   display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  column-gap: 10px;
+  row-gap: 15px;
+  z-index: 3;
 } 
 
 .box{
@@ -56,9 +62,27 @@
   display: grid;
 }
 
+.card{
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: antiquewhite;
+  gap: 10px;
+  padding: 10px;
+}
+
+.data-container{
+  display: flex;
+  padding: 20px;
+  gap: 40px;
+  justify-content: space-between;
+}
+
 .bg-img{
   opacity: 0.4;
   position: absolute;
+  z-index: 1;
   right: 0px;
   bottom: 0px;
 }
