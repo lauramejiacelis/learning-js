@@ -1,6 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Customer from './components/Customer';
+import CustomerClass from './components/CustomerClass';
 
 const App = ()=>{
   return(
@@ -13,6 +15,18 @@ const App = ()=>{
             <button className='btn btn-success btn-sm'>
               <i className="fa fa-book"></i>
               Read More</button>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col">
+            <Customer name={'laura'} age={34} title={'Frontend Developer'}/>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col">
+            <CustomerClass name={'laura'} age={34} title={'Frontend Developer'}/>
           </div>
         </div>
       </div>
