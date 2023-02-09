@@ -42,7 +42,6 @@ app.get('/pokemon/:name', (req, res)=>{
         moves: response.data.moves.map(({move})=>move.name),
         types: response.data.types.map(({type})=>type.name)
       }
-      response.data
       console.log(pokemonInfo)
       res.render('pokemon', { name:pokemonInfo.name.toUpperCase(), height: pokemonInfo.height, weight:pokemonInfo.height, id: pokemonInfo.id, image:pokemonInfo.image, moves: pokemonInfo.moves, types:pokemonInfo.types });
     })

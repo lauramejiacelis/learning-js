@@ -5,6 +5,10 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+h2, h3{
+  z-index: 3;
+}
+
 .navbar-container{
   background-color: #EF5350;
   color: white;
@@ -57,9 +61,37 @@
 
 .box{
   padding: 20px;
-  background-color: #EF5350;
   color: white;
   display: grid;
+}
+
+.character{
+  background-color: #EF5350;
+}
+
+.moves{
+  background-color: #CCFF99;
+  color: black;
+}
+.types{
+  background-color: #FFFF99;
+  color: black;
+}
+.data{
+  background-color: #81D5FF;
+  color: black;
+}
+
+.info-container{
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 3;
+  gap: 10px;
+}
+
+.link{
+  text-decoration: none;
+  color: white;
 }
 
 .card{
@@ -70,13 +102,6 @@
   background-color: antiquewhite;
   gap: 10px;
   padding: 10px;
-}
-
-.data-container{
-  display: flex;
-  padding: 20px;
-  gap: 40px;
-  justify-content: space-between;
 }
 
 .bg-img{

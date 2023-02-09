@@ -18,7 +18,9 @@
 
     <div  class="box-container">
       {{#each pokemonsArray}}
-        <div class="box">{{this}}</div>
+        <div class="box character">
+          <a class="link" href="/pokemon/{{this}}">{{this}}</a>
+        </div>
       {{/each}}
 
     </div>

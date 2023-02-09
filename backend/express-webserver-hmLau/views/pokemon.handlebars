@@ -17,30 +17,28 @@
       <h2>{{name}}</h2>
       <img src={{image}} alt='pokemon image'/>
 
-        <div class="general-info">
-          <span>id: {{id}}</span>
-          <span>Height: {{height}}</span>
-          <span>Weight: {{weight}}</span>
+        <div class="info-container">
+          <div class="box data">id: {{id}}</div>
+          <div class="box data">Height: {{height}}</div>
+          <div class="box data">Weight: {{weight}}</div>
         </div>
 
-        <div class="data-container">
-          <div class="data">
-            <p>Moves:</p>
-            <ul>
-              {{#each moves}}
-                <li>{{this}}</li>
-              {{/each}}
-            </ul>
-          </div>
-          <div class="data">
-            <p>Types:</p>
-            <ul>
-              {{#each types}}
-                <li>{{this}}</li>
-              {{/each}}
-            </ul>
-          </div>
+        <h3>Types</h3>
+        <div class="info-container">
+          {{#each types}}
+            <div class="box types">{{this}}</div>
+          {{/each}}
         </div>
+
+        <h3>Moves</h3>
+        <div class="box-container">
+            {{#each moves}}
+              <div class="box moves">{{this}}</div>
+            {{/each}}
+          
+        </div>
+        
+        
         
 
       
