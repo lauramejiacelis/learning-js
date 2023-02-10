@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Customer from './components/Customer';
 import CustomerClass from './components/CustomerClass';
+import Employee from './components/Employee';
 
 const App = ()=>{
   return(
@@ -18,7 +19,7 @@ const App = ()=>{
           </div>
         </div>
 
-        <div className="row">
+        {/* <div className="row">
           <div className="col">
             <Customer name={'laura'} age={34} title={'Frontend Developer'}/>
           </div>
@@ -27,6 +28,12 @@ const App = ()=>{
         <div className="row">
           <div className="col">
             <CustomerClass name={'laura'} age={34} title={'Frontend Developer'}/>
+          </div>
+        </div> */}
+
+        <div className="row">
+          <div className="col">
+            <Employee/>
           </div>
         </div>
       </div>
