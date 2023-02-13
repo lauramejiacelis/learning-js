@@ -4,6 +4,8 @@ import './App.css';
 import Customer from './components/Customer';
 import CustomerClass from './components/CustomerClass';
 import Employee from './components/Employee';
+import EmployeeClass from './components/EmployeeClass'
+import Counter from './components/Counter';
 
 const App = ()=>{
   return(
@@ -19,6 +21,7 @@ const App = ()=>{
           </div>
         </div>
 
+        {/*Props Concept*/}
         {/* <div className="row">
           <div className="col">
             <Customer name={'laura'} age={34} title={'Frontend Developer'}/>
@@ -31,11 +34,26 @@ const App = ()=>{
           </div>
         </div> */}
 
-        <div className="row">
+        {/*State Concept*/}
+        {/* <div className="row">
           <div className="col">
             <Employee/>
           </div>
         </div>
+        <div className="row">
+          <div className="col">
+            <EmployeeClass/>
+          </div>
+        </div> */}
+
+        <div className="row">
+          <div className="col">
+            <Counter/>
+          </div>
+        </div> 
+
+
+        
       </div>
     </div>
   )
