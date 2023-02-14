@@ -10,6 +10,18 @@ const Counter:React.FC<IProps> = () => {
     count: 0
   })
 
+  let incr = ():void=>{
+    setState({
+      count: state.count + 1
+    })
+  }
+
+  let decr = ():void=>{
+    setState({
+      count: state.count - 1
+    })
+  }
+
   return ( 
     <div className="container">
       <div className="row">
@@ -19,8 +31,8 @@ const Counter:React.FC<IProps> = () => {
               <p className="h3 display-3">
                 Count: {state.count}
               </p>
-              <button className="btn btn-success m-1">Increment</button>
-              <button className="btn btn-danger m-1">Decrement</button>
+              <button className="btn btn-success m-1" onClick={incr}>Increment</button>
+              <button className="btn btn-danger m-1" onClick={decr}>Decrement</button>
             </div>
           </div>
         </div>
