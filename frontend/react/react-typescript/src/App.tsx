@@ -1,6 +1,11 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Customer from './components/Customer';
+import CustomerClass from './components/CustomerClass';
+import Employee from './components/Employee';
+import EmployeeClass from './components/EmployeeClass'
+import Counter from './components/Counter';
 
 const App = ()=>{
   return(
@@ -15,6 +20,40 @@ const App = ()=>{
               Read More</button>
           </div>
         </div>
+
+        {/*Props Concept*/}
+        {/* <div className="row">
+          <div className="col">
+            <Customer name={'laura'} age={34} title={'Frontend Developer'}/>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col">
+            <CustomerClass name={'laura'} age={34} title={'Frontend Developer'}/>
+          </div>
+        </div> */}
+
+        {/*State Concept*/}
+        {/* <div className="row">
+          <div className="col">
+            <Employee/>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <EmployeeClass/>
+          </div>
+        </div> */}
+
+        <div className="row">
+          <div className="col">
+            <Counter/>
+          </div>
+        </div> 
+
+
+        
       </div>
     </div>
   )
