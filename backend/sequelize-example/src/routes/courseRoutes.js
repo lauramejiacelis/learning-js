@@ -22,4 +22,6 @@ router.post("/", (req, res)=> {
   })
 })
 
+//Implement adding users to courses
+
 module.exports = router;
