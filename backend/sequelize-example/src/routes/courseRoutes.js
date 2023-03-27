@@ -23,4 +23,20 @@ router.post("/", (req, res) => {
 
 // Impelement adding users to courses
 
+router.post("/:id/user", async (req, res) => {
+  const { id } = req.params;
+  const { userId } = req.body;
+  const course = await Course.findOne({ where: { id } });
+  const user = await User.findOne({ where: { id: userId } });
+  await course.addUser(user);
+  res.send(course);
+});
+
+router.get("/:id/user", async (req, res) => {
+  const { id } = req.params;
+  const course = await Course.findOne({ where: { id } });
+  const users = await course.getUsers();
+  res.send(users);
+});
+
 module.exports = router;
