@@ -23,5 +23,13 @@ router.post("/", (req, res)=> {
 })
 
 //Implement adding users to courses
+router.post("/:id/user", async (req, res)=> {
+  const {id} = req.params;
+  const {userId} = req.body;
+  const course = await Course.findOne({ where: {id}})
+  const user = await User.findOne( {where: {id: userId}})
+  await course.addUser(user)
+  res.send(course)
+})
 
 module.exports = router;
