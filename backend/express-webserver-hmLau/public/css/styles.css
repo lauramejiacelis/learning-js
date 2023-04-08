@@ -2,32 +2,33 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-h2, h3{
+h2,
+h3 {
   z-index: 3;
 }
 
-.navbar-container{
-  background-color: #EF5350;
+.navbar-container {
+  background-color: #ef5350;
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.navbar-links{
+.navbar-links {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
-.navbar-item{
+.navbar-item {
   padding: 20px;
 }
 
-.home-link{
+.home-link {
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -35,14 +36,14 @@ h2, h3{
   font-size: x-large;
 }
 
-.logo{
+.logo {
   height: 100px;
 }
 
-.main-container{
+.main-container {
   position: relative;
-  width:100vw;
-  height:100vh; 
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -50,51 +51,51 @@ h2, h3{
   padding-top: 20px;
 }
 
-.box-container{
+.box-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
   column-gap: 10px;
   row-gap: 15px;
   z-index: 3;
-} 
+}
 
-.box{
+.box {
   padding: 20px;
   color: white;
   display: grid;
 }
 
-.character{
-  background-color: #EF5350;
+.character {
+  background-color: #ef5350;
 }
 
-.moves{
-  background-color: #CCFF99;
+.moves {
+  background-color: #ccff99;
   color: black;
 }
-.types{
-  background-color: #FFFF99;
+.types {
+  background-color: #ffff99;
   color: black;
 }
-.data{
-  background-color: #81D5FF;
+.data {
+  background-color: #81d5ff;
   color: black;
 }
 
-.info-container{
+.info-container {
   display: flex;
   flex-wrap: wrap;
   z-index: 3;
   gap: 10px;
 }
 
-.link{
+.link {
   text-decoration: none;
   color: white;
 }
 
-.card{
+.card {
   width: 500px;
   display: flex;
   flex-direction: column;
@@ -104,11 +105,10 @@ h2, h3{
   padding: 10px;
 }
 
-.bg-img{
+.bg-img {
   opacity: 0.4;
   position: absolute;
   z-index: 1;
   right: 0px;
   bottom: 0px;
 }
-

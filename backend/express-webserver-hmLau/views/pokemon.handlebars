@@ -1,9 +1,13 @@
 <nav class="navbar-container">
   <a href="/" class="home-link">
-    <img alt='pokemon logo' src="https://cdn.atomix.vg/wp-content/uploads/2013/10/Pikachu.png" class="logo"/>
+    <img
+      alt="pokemon logo"
+      src="https://cdn.atomix.vg/wp-content/uploads/2013/10/Pikachu.png"
+      class="logo"
+    />
     <h1>Pokemon App</h1>
   </a>
-  
+
   <div class="navbar-links">
     <div class="navbar-item">About</div>
     <div class="navbar-item">Contact</div>
@@ -12,38 +16,37 @@
 </nav>
 
 <div class="main-container">
-  
-    <div  class="card">
-      <h2>{{name}}</h2>
-      <img src={{image}} alt='pokemon image'/>
 
-        <div class="info-container">
-          <div class="box data">id: {{id}}</div>
-          <div class="box data">Height: {{height}}</div>
-          <div class="box data">Weight: {{weight}}</div>
-        </div>
+  <div class="card">
+    <h2>{{name}}</h2>
+    <img src={{image}} alt="pokemon image" />
 
-        <h3>Types</h3>
-        <div class="info-container">
-          {{#each types}}
-            <div class="box types">{{this}}</div>
-          {{/each}}
-        </div>
+    <div class="info-container">
+      <div class="box data">id: {{id}}</div>
+      <div class="box data">Height: {{height}}</div>
+      <div class="box data">Weight: {{weight}}</div>
+    </div>
 
-        <h3>Moves</h3>
-        <div class="box-container">
-            {{#each moves}}
-              <div class="box moves">{{this}}</div>
-            {{/each}}
-          
-        </div>
-        
-        
-        
+    <h3>Types</h3>
+    <div class="info-container">
+      {{#each types}}
+        <div class="box types">{{this}}</div>
+      {{/each}}
+    </div>
 
-      
+    <h3>Moves</h3>
+    <div class="box-container">
+      {{#each moves}}
+        <div class="box moves">{{this}}</div>
+      {{/each}}
 
     </div>
 
-  <img alt="pokemon-background" src="https://pngimg.com/uploads/pokemon/pokemon_PNG98.png" class="bg-img" />
+  </div>
+
+  <img
+    alt="pokemon-background"
+    src="https://pngimg.com/uploads/pokemon/pokemon_PNG98.png"
+    class="bg-img"
+  />
 </div>

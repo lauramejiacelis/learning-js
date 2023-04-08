@@ -1,26 +1,17 @@
 const http = require("http");
 
 const serverLau = http.createServer();
-const port = 8000
-const fs= require('fs').promises
+const port = 8000;
+const fs = require("fs").promises;
 
-const requestListener = (req, res)=>{
-  fs.readFile('./homeworkL.html')
-  .then(contents =>{
-    res.writeHead(200, { "Content-Type": "text/html" });
-    res.end(contents)
-  })
-}
+const requestListener = (req, res) => {
+  fs.readFile("./homeworkL.html").then((contents) => {
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(contents);
+  });
+};
 
-serverLau.on("request", (req, res) => {
-  console.log(req.method);
-  fs.readFile('./homeworkL.html')
-  .then(contents =>{
-    res.writeHead(200, { "Content-Type": "text/html" });
-    res.end(contents)
-  })
-});
-
+serverLau.on("request", requestListener);
 
 // serverLau.on("request", (req, res) => {
 //   console.log(req.method);
@@ -40,5 +31,5 @@ serverLau.on("request", (req, res) => {
 // });
 
 serverLau.listen(port, () => {
-    console.log(`Server running at port ${port} `)
+  console.log(`Server running at port ${port} `);
 });

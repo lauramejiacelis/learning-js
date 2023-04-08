@@ -29,50 +29,48 @@ app.get("/products", (req, res) => {
 
 app.post("/products", (req, res) => {
   console.log(req.body);
-  const product = req.body
-  products.push({...product})
+  const product = req.body;
+  products.push({ ...product });
   //products.push(req.body.product);
-  res.send(`Product ${product.name} has beed added successfully`)
+  res.send(`Product ${product.name} has beed added successfully`);
   res.end();
 });
 
-const productFound = (name)=>products.find(product=> product.name === name)
-
+const productFound = (name) =>
+  products.find((product) => product.name === name);
 
 app.get("/product/:name", (req, res) => {
-  const {name}= req.params
-  console.log(name)
-  productFound(name)
-  console.log(productFound(name))
-  productFound(name) ? res.send(`Product ${name} has been found`) : res.send(`Product ${name} is not in the list`)
-  
+  const { name } = req.params;
+  console.log(name);
+  const product = productFound(name);
+  product
+    ? res.send(`Product ${name} has been found`)
+    : res.send(`Product ${name} is not in the list`);
 });
 
 app.delete("/product/:name", (req, res) => {
-  const {name} = req.params;
-  productFound(name)
-  console.log(productFound)
-  if (productFound(name)){
-    products = products.filter((product)=> product.name !== name)
-    res.send(`Product ${name} has beed deleted successfully`)
+  const { name } = req.params;
+  const product = productFound(name);
+  if (product) {
+    products = products.filter((product) => product.name !== name);
+    res.send(`Product ${name} has beed deleted successfully`);
   } else {
     res.send(`Product ${name} is not in the list, so we can't delete it`);
   }
-  
 });
 
 app.put("/product/:name", (req, res) => {
-  const {name}= req.params
-  const {price} = req.body
-  
-  if(productFound(name) && price){
-    productFound(name).price = price;
-    res.send(`Product ${name} has been updated`)
-  } else if(!productFound(name)) {
-    res.send(`Product ${name} is not in the list, it can't be updated`);
-  } else if (!price) {
-    res.send(`You didn't enter a price`);
+  const { name } = req.params;
+  const { price } = req.body;
+  if (!price) {
+    return res.send(`You didn't enter a price`);
   }
+  const product = productFound(name);
+  if (!product) {
+    return res.send(`Product ${name} is not in the list, it can't be updated`);
+  }
+  product.price = price;
+  res.send(`Product ${name} has been updated`);
 });
 
 // Tarea: implementar el borrar producto por name

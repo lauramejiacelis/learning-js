@@ -1,30 +1,36 @@
 <nav class="navbar-container">
   <a href="/" class="home-link">
-    <img alt='pokemon logo' src="https://cdn.atomix.vg/wp-content/uploads/2013/10/Pikachu.png" class="logo"/>
+    <img
+      alt="pokemon logo"
+      src="https://cdn.atomix.vg/wp-content/uploads/2013/10/Pikachu.png"
+      class="logo"
+    />
     <h1>Pokemon App</h1>
   </a>
-  
+
   <div class="navbar-links">
     <div class="navbar-item">About</div>
     <div class="navbar-item">Contact</div>
   </div>
-  
 
 </nav>
 
 <div class="main-container">
-  
-    <h2>Pokemons</h2>
 
-    <div  class="box-container">
-      {{#each pokemonsArray}}
-        <div class="box character">
-          <a class="link" href="/pokemon/{{this}}">{{this}}</a>
-        </div>
-      {{/each}}
+  <h2>Pokemons</h2>
 
-    </div>
+  <div class="box-container">
+    {{#each pokemonsArray}}
+      <div class="box character">
+        <a class="link" href="/pokemon/{{this}}">{{this}}</a>
+      </div>
+    {{/each}}
 
-  <img alt="pokemon-background" src="https://pngimg.com/uploads/pokemon/pokemon_PNG98.png" class="bg-img" />
+  </div>
+
+  <img
+    alt="pokemon-background"
+    src="https://pngimg.com/uploads/pokemon/pokemon_PNG98.png"
+    class="bg-img"
+  />
 </div>
-
