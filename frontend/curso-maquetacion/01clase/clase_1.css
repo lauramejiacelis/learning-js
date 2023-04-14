@@ -1,0 +1,65 @@
+/*Selector Universal*/
+*{
+  box-sizing: border-box;
+}
+
+/*Fuente personalizda*/
+@font-face {
+  font-family: "JackSimba";
+  src: url(./fuentes/JackSimbaPU.otf);
+}
+
+/*Selector Grupal*/
+body, nav, header, main, footer{
+  width: 1100px;
+}
+
+body{
+  height: auto;
+  background-color: #F2F2F2;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: auto;
+}
+
+nav{
+  height: 50px;
+  background-color: rgb(0,0,0);
+}
+
+header{
+  height: 250px;
+  background-color: #3b0b17;
+}
+
+main{
+  height: auto;
+  background-color: #A4A4A4;
+  padding: 25px;
+  
+}
+
+h1{
+  text-align: center;
+  margin-top: 0;
+  font-family: 'Dancing Script', cursive;
+  font-size: 45px;
+}
+
+h2{
+  font-family: "JackSimba" ;
+  font-size: 50px;
+}
+
+p{
+margin-bottom: 0;
+}
+
+img{
+  width: 500px;
+  height: auto;
+}
+
+footer{
+  height: 300px;
+  background-color: black;
+}

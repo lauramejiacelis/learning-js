@@ -1,0 +1,36 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  color: #15163D;
+}
+
+nav{
+
+}
+
+header, section{
+  display: flex;
+}
+
+button{
+  width: 186.88px;
+  height: 48px;
+  color: white;
+  background: #04146C;
+  border-radius: 8px;
+}
+
+
+footer{
+  color: white;
+  width: 1440px;
+  height: 443px;
+  left: -31px;
+  top: 2764px;
+  background-color: #15163D;
+  display: flex;
+}
