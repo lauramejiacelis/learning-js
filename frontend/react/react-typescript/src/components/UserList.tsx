@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { IUserr } from "../models/IUserr";
+import { UserService } from "../services/UserService";
 
 interface IState{
   users: IUserr[]
@@ -7,37 +8,8 @@ interface IState{
 interface IProps{}
 
 const UserList:React.FC<IProps> = ()=>{
-  const [state, setState] = useState({
-    users: [
-    {
-      sno: 'AAA101',
-      name: 'Rajan',
-      age: 25,
-      designation: 'Software Engineer',
-      company: 'Infosys'
-    },
-    {
-      sno: 'AAA102',
-      name: 'John',
-      age: 35,
-      designation: 'Web Developer',
-      company: 'Globant'
-    },
-    {
-      sno: 'AAA103',
-      name: 'Camila',
-      age: 25,
-      designation: 'Frontend Developer',
-      company: 'Spphos'
-    },
-    {
-      sno: 'AAA104',
-      name: 'Sarah',
-      age: 43,
-      designation: 'Project Manager',
-      company: 'Spphos'
-    }
-  ]})
+  const [state, setState] = useState<IState>({
+    users: UserService.getAllUsers()})
 
   return(
     <React.Fragment>
@@ -50,7 +22,7 @@ const UserList:React.FC<IProps> = ()=>{
         </div>
         <div className="row">
           <div className="col">
-            <table className="table table-striped text-center table-hover">
+            <table className="table table-striped text-center table-hover shadow-lg">
               <thead  className="bg-dark text-white">
                 <tr>
                   <th>SNO</th>
