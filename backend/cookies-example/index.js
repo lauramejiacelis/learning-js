@@ -3,13 +3,24 @@ const cookieParser = require("cookie-parser");
 
 const app = express();
 
+//Dangerous function
 const validateCookie = (req, res, cookieName, value) => {
   if(req.cookies[cookieName] === `${value}`){
     return res.send(`You already visit /set${cookieName}`) 
-  } else {
-    console.log(req.cookies)
-    return res.send(`${cookieName} has been send successfully`)
-  }
+  } 
+  console.log(req.cookies)
+  return res.send(`${cookieName} has been send successfully`)
+  
+}
+
+//Better function
+const validateCookieOK = (cookieValue, cookieName, value) => {
+  if(cookieValue === `${value}`){
+    return (`You already visit /set${cookieName}`) 
+  } 
+  
+  return (`${cookieName} has been send successfully`)
+  
 }
 
 app.use(cookieParser());
@@ -26,7 +37,8 @@ app.get("/setcookiea", (req, res) => {
     sameSite: 'lax'
   })
 
-  validateCookie(req, res,'cookieA', 'setCookieA')
+  const result = validateCookieOK(req.cookies['cookieA'], 'cookieA', 'setCookieA')
+  res.send(result)
   
 })
 
