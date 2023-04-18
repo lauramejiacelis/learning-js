@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
 *{
   box-sizing: border-box;
   margin: 0;
@@ -5,15 +7,61 @@
 }
 
 body{
+  font-family: 'Inter', sans-serif;
   color: #15163D;
+  line-height: 27.5px;
+  background-image: radial-gradient(circle at top left, #5974FF ,  white 20%);
+  background-repeat: no-repeat;
+}
+
+main, header, nav {
+    width: 83.33%;
+    margin: auto;
+}
+
+p, a {
+    font-size: 16px;
+    font-weight: 300;
+}
+
+h1{
+  font-size: 58px;
+  line-height: 100%;
 }
 
 nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 18pt;
+  padding-top: 2.77%;
+}
 
+.logo{
+  width: 70px;
+}
+
+.nav-links a{
+  text-decoration: none;
+}
+
+section div, header div {
+  width: 50%;
 }
 
 header, section{
   display: flex;
+  
+  justify-content: center;
+  align-items: center;
+}
+
+header img{
+  height: 393px;
+}
+
+.content{
+  width: 40%;
 }
 
 button{
@@ -22,6 +70,15 @@ button{
   color: white;
   background: #04146C;
   border-radius: 8px;
+}
+
+.testimonials{
+  
+}
+
+.testimony-box{
+  background-color: #EFF2FF;
+  border-radius: 5px;
 }
 
 
