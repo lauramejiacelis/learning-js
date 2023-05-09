@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const { User } = require("../models");
+const authMiddleware = require("../middlewares/auth.middleware");
 
 const router = Router();
 
@@ -29,10 +30,8 @@ router.post("/login", async (req, res, next) => {
   res.send(user);
 });
 
-router.get("/me", async (req, res, next) => {
+router.get("/me", authMiddleware, async (req, res) => {
   const userId = req.session.userId;
-
-  if (!userId) return res.send("No session");
 
   const user = await User.findOne({
     where: { id: userId },
